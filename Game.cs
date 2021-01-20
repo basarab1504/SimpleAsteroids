@@ -5,6 +5,7 @@ namespace SimpleAsteroids
 {
     public class Game
     {
+        List<GameObject> toAdd = new List<GameObject>();
         List<GameObject> gameObjects = new List<GameObject>();
         ConsoleDrawer consoleDrawer = new ConsoleDrawer(3);
         Physics physics = new Physics();
@@ -19,14 +20,15 @@ namespace SimpleAsteroids
         public T Create<T>(Vector2 position) where T : GameObject, new()
         {
             var gameObject = new T() { Position = position };
-            gameObjects.Add(gameObject);
+            toAdd.Add(gameObject);
             return gameObject;
         }
 
         public void Update()
         {
-
             //создать
+            gameObjects.AddRange(toAdd);
+            toAdd.Clear();
 
             //включить
 

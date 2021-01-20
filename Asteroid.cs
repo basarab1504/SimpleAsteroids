@@ -11,5 +11,10 @@ namespace SimpleAsteroids
         {
             Position += Velocity;
         }
+
+        // public override void OnCollide(GameObject other)
+        // {
+        //     base.OnCollide(other);
+        // }
     }
 }

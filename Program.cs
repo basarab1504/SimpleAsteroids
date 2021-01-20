@@ -7,10 +7,10 @@ namespace SimpleAsteroids
     {
         static void Main(string[] args)
         {
-            // CollisionTest();
-            // BulletTest();
-            // ManyBulletTest();
-            // TwoShipBulletTest();
+            CollisionTest();
+            BulletTest();
+            ManyBulletTest();
+            TwoShipBulletTest();
         }
 
         static void CollisionTest()

@@ -14,7 +14,7 @@ namespace SimpleAsteroids
 
         public abstract void Update();
 
-        public void OnCollide(GameObject other)
+        public virtual void OnCollide(GameObject other)
         {
             Destroyed = true;
         }
