@@ -9,6 +9,8 @@ namespace SimpleAsteroids
         ConsoleDrawer consoleDrawer = new ConsoleDrawer(3);
         Physics physics = new Physics();
 
+        public List<GameObject> TEST => gameObjects;
+
         public void Start()
         {
 
@@ -25,14 +27,19 @@ namespace SimpleAsteroids
         {
 
             //создать
+
             //включить
+
+            //рисовка
+            // consoleDrawer.Update(gameObjects);
+
             //физика
             physics.Update(gameObjects);
+
             //логика
             foreach (var item in gameObjects)
                 item.Update();
-            //рисовка
-            consoleDrawer.Update(gameObjects);
+
             //удаление
             gameObjects.RemoveAll(x => x.Destroyed);
         }

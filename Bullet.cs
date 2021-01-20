@@ -14,7 +14,7 @@ namespace SimpleAsteroids
         public override void Update()
         {
             Position += Velocity;
-
+            
             lifeTimeLeft--;
             if (lifeTimeLeft == 0)
                 Destroyed = true;

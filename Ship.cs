@@ -6,7 +6,7 @@ namespace SimpleAsteroids
     public class Ship : GameObject
     {
         public float GunForce { get; set; } = 1;
-        public Vector2 GunPos => Direction;
+        public Vector2 GunPos => Position + Direction;
 
         public Ship()
         {
