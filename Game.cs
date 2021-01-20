@@ -31,7 +31,7 @@ namespace SimpleAsteroids
             //включить
 
             //рисовка
-            // consoleDrawer.Update(gameObjects);
+            consoleDrawer.Update(gameObjects);
 
             //физика
             physics.Update(gameObjects);
