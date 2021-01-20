@@ -11,6 +11,7 @@ namespace SimpleAsteroids
             game.Update();
             game.Update();
             game.Update();
+            game.Update();
         }
     }
 }
