@@ -1,0 +1,13 @@
+C:\Users\joker\OneDrive\Документы\Проекты\C#\SimpleAsteroids\bin\Debug\netcoreapp3.1\SimpleAsteroids.exe
+C:\Users\joker\OneDrive\Документы\Проекты\C#\SimpleAsteroids\bin\Debug\netcoreapp3.1\SimpleAsteroids.deps.json
+C:\Users\joker\OneDrive\Документы\Проекты\C#\SimpleAsteroids\bin\Debug\netcoreapp3.1\SimpleAsteroids.runtimeconfig.json
+C:\Users\joker\OneDrive\Документы\Проекты\C#\SimpleAsteroids\bin\Debug\netcoreapp3.1\SimpleAsteroids.runtimeconfig.dev.json
+C:\Users\joker\OneDrive\Документы\Проекты\C#\SimpleAsteroids\bin\Debug\netcoreapp3.1\SimpleAsteroids.dll
+C:\Users\joker\OneDrive\Документы\Проекты\C#\SimpleAsteroids\bin\Debug\netcoreapp3.1\SimpleAsteroids.pdb
+C:\Users\joker\OneDrive\Документы\Проекты\C#\SimpleAsteroids\obj\Debug\netcoreapp3.1\SimpleAsteroids.csprojAssemblyReference.cache
+C:\Users\joker\OneDrive\Документы\Проекты\C#\SimpleAsteroids\obj\Debug\netcoreapp3.1\SimpleAsteroids.AssemblyInfoInputs.cache
+C:\Users\joker\OneDrive\Документы\Проекты\C#\SimpleAsteroids\obj\Debug\netcoreapp3.1\SimpleAsteroids.AssemblyInfo.cs
+C:\Users\joker\OneDrive\Документы\Проекты\C#\SimpleAsteroids\obj\Debug\netcoreapp3.1\SimpleAsteroids.csproj.CoreCompileInputs.cache
+C:\Users\joker\OneDrive\Документы\Проекты\C#\SimpleAsteroids\obj\Debug\netcoreapp3.1\SimpleAsteroids.dll
+C:\Users\joker\OneDrive\Документы\Проекты\C#\SimpleAsteroids\obj\Debug\netcoreapp3.1\SimpleAsteroids.pdb
+C:\Users\joker\OneDrive\Документы\Проекты\C#\SimpleAsteroids\obj\Debug\netcoreapp3.1\SimpleAsteroids.genruntimeconfig.cache
