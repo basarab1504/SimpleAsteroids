@@ -28,8 +28,10 @@ namespace SimpleAsteroids
         private void InDraw(IEnumerable<GameObject> toCheck)
         {
             foreach (var item in toCheck)
-                foreach (var space in GetDrawPositions(item))
-                    map[space] = item.Symbol;
+            {
+                var space = new Vector2((int)item.Position.X, (int)item.Position.Y);
+                map[space] = item.Symbol;
+            }
         }
 
         private void Draw()
@@ -43,14 +45,16 @@ namespace SimpleAsteroids
             System.Console.WriteLine("======");
         }
 
-        private IEnumerable<Vector2> GetDrawPositions(IPositionable positionable)
+        private IEnumerable<Vector2> GetDrawPositions(GameObject gameObject)
         {
-            int halfSizeY = (int)Math.Floor(positionable.Size.Y * 0.5);
-            int halfSizeX = (int)Math.Floor(positionable.Size.X * 0.5);
+            int halfSizeY = (int)Math.Floor(gameObject.Size.Y * 0.5);
+            int halfSizeX = (int)Math.Floor(gameObject.Size.X * 0.5);
+
+            System.Console.WriteLine($"{gameObject.GetType()} {halfSizeX}:{halfSizeY}");
 
             for (int y = halfSizeY; y >= -halfSizeY; y -= 1)
                 for (int x = -halfSizeX; x <= halfSizeX; x += 1)
-                    yield return positionable.Position + new Vector2(x, y);
+                    yield return gameObject.Position + new Vector2(x, y);
         }
 
         private void Clear()

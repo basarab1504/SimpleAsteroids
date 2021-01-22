@@ -18,10 +18,9 @@ namespace SimpleAsteroids
             Position += Direction * Vector2.Abs(Velocity);
         }
 
-        public void Push()
+        public void Shoot()
         {
-            var bullet = Create<Bullet>();
-            bullet.Position = GunPos;
+            var bullet = Create<Bullet>(GunPos);
             bullet.Direction = Direction;
             bullet.Velocity = Direction * GunForce;
         }

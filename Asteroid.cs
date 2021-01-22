@@ -16,8 +16,7 @@ namespace SimpleAsteroids
         {
             base.OnCollide(other);
 
-            var asteroid = Create<Asteroid>();
-            asteroid.Position = Position + Direction;
+            var asteroid = Create<Asteroid>(Position + Direction);
             asteroid.Velocity = Velocity;
             asteroid.Direction = Direction;
         }

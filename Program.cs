@@ -7,10 +7,37 @@ namespace SimpleAsteroids
     {
         static void Main(string[] args)
         {
-            CollisionTest();
-            BulletTest();
-            ManyBulletTest();
-            TwoShipBulletTest();
+            // CollisionTest();
+            // BulletTest();
+            // ManyBulletTest();
+            // TwoShipBulletTest();
+            UFOTest();
+        }
+
+        static void UFOTest()
+        {
+            Game game = new Game();
+
+            var ship = game.Create<Ship>(new Vector2(0, 1));
+
+            var ufo = game.Create<UFO>(new Vector2(-2, 1));
+
+            var ufo2 = game.Create<UFO>(new Vector2(3, 1));
+
+            ufo.PlayerShip = ship;
+            ufo2.PlayerShip = ship;
+
+            game.Update();
+            ufo.Shoot();
+            ufo2.Shoot();
+            game.Update();
+            System.Console.WriteLine(game.TEST[3].Position == new Vector2(0, 1));
+            System.Console.WriteLine(game.TEST[4].Position == new Vector2(1, 1));
+            game.Update();
+            game.Update();
+            game.Update();
+
+            System.Console.WriteLine(game.TEST.Count == 2);
         }
 
         static void CollisionTest()
@@ -44,8 +71,8 @@ namespace SimpleAsteroids
             ship.Direction = new Vector2(1, 0);
             ship2.Direction = new Vector2(-1, 0);
 
-            ship.Push();
-            ship2.Push();
+            ship.Shoot();
+            ship2.Shoot();
 
             game.Update();
             game.Update();
@@ -60,7 +87,7 @@ namespace SimpleAsteroids
 
             var ship = game.Create<Ship>(new Vector2(0, -2));
 
-            ship.Push();
+            ship.Shoot();
 
             game.Update();
             game.Update();
@@ -75,15 +102,15 @@ namespace SimpleAsteroids
 
             var ship = game.Create<Ship>(new Vector2(0, -2));
 
-            ship.Push();
+            ship.Shoot();
 
             ship.Direction = new Vector2(1, 0);
 
-            ship.Push();
+            ship.Shoot();
 
             ship.Direction = new Vector2(-1, 0);
 
-            ship.Push();
+            ship.Shoot();
 
             game.Update();
             game.Update();
