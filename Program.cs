@@ -26,13 +26,12 @@ namespace SimpleAsteroids
             asteroid.Position = new Vector2(-2, 0);
             asteroid.Velocity = new Vector2(1, 0);
 
-            game.Start();
             game.Update();
             game.Update();
             game.Update();
             game.Update();
 
-            System.Console.WriteLine(game.TEST.Count == 0);
+            System.Console.WriteLine(game.TEST.Count == 1);
         }
 
         static void TwoShipBulletTest()
@@ -48,7 +47,6 @@ namespace SimpleAsteroids
             var bullet = game.Create<Bullet>(ship.GunPos);
             var bullet2 = game.Create<Bullet>(ship2.GunPos);
 
-            game.Start();
 
             ship.Push(bullet);
             ship2.Push(bullet2);
@@ -69,7 +67,6 @@ namespace SimpleAsteroids
 
             var bullet = game.Create<Bullet>(ship.GunPos);
 
-            game.Start();
 
             ship.Push(bullet);
 
@@ -87,7 +84,6 @@ namespace SimpleAsteroids
 
             var ship = game.Create<Ship>(new Vector2(0, -2));
 
-            game.Start();
 
             var bullet1 = game.Create<Bullet>(ship.GunPos);
             ship.Push(bullet1);

@@ -12,9 +12,14 @@ namespace SimpleAsteroids
             Position += Velocity;
         }
 
-        // public override void OnCollide(GameObject other)
-        // {
-        //     base.OnCollide(other);
-        // }
+        public override void OnCollide(GameObject other)
+        {
+            base.OnCollide(other);
+
+            var asteroid = Create<Asteroid>();
+            asteroid.Position = Position + Direction;
+            asteroid.Velocity = Velocity;
+            asteroid.Direction = Direction;
+        }
     }
 }
