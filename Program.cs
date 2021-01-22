@@ -44,14 +44,9 @@ namespace SimpleAsteroids
             ship.Direction = new Vector2(1, 0);
             ship2.Direction = new Vector2(-1, 0);
 
-            var bullet = game.Create<Bullet>(ship.GunPos);
-            var bullet2 = game.Create<Bullet>(ship2.GunPos);
+            ship.Push();
+            ship2.Push();
 
-
-            ship.Push(bullet);
-            ship2.Push(bullet2);
-
-            game.Update();
             game.Update();
             game.Update();
             game.Update();
@@ -65,17 +60,13 @@ namespace SimpleAsteroids
 
             var ship = game.Create<Ship>(new Vector2(0, -2));
 
-            var bullet = game.Create<Bullet>(ship.GunPos);
-
-
-            ship.Push(bullet);
+            ship.Push();
 
             game.Update();
             game.Update();
+            System.Console.WriteLine(game.TEST[1].Position == new Vector2(0, 1));
             game.Update();
-            System.Console.WriteLine(bullet.Position == new Vector2(0, 2));
-            game.Update();
-            System.Console.WriteLine(bullet.Destroyed == true);
+            System.Console.WriteLine(game.TEST.Count == 1);
         }
 
         static void ManyBulletTest()
@@ -84,33 +75,26 @@ namespace SimpleAsteroids
 
             var ship = game.Create<Ship>(new Vector2(0, -2));
 
-
-            var bullet1 = game.Create<Bullet>(ship.GunPos);
-            ship.Push(bullet1);
+            ship.Push();
 
             ship.Direction = new Vector2(1, 0);
 
-            var bullet2 = game.Create<Bullet>(ship.GunPos);
-            ship.Push(bullet2);
+            ship.Push();
 
             ship.Direction = new Vector2(-1, 0);
 
-            var bullet3 = game.Create<Bullet>(ship.GunPos);
-            ship.Push(bullet3);
+            ship.Push();
 
             game.Update();
             game.Update();
+
+            System.Console.WriteLine(game.TEST[1].Position == new Vector2(0, 1));
+            System.Console.WriteLine(game.TEST[2].Position == new Vector2(3, -2));
+            System.Console.WriteLine(game.TEST[3].Position == new Vector2(-3, -2));
+
             game.Update();
 
-            System.Console.WriteLine(bullet1.Position == new Vector2(0, 2));
-            System.Console.WriteLine(bullet2.Position == new Vector2(4, -2));
-            System.Console.WriteLine(bullet3.Position == new Vector2(-4, -2));
-
-            game.Update();
-
-            System.Console.WriteLine(bullet1.Destroyed == true);
-            System.Console.WriteLine(bullet2.Destroyed == true);
-            System.Console.WriteLine(bullet3.Destroyed == true);
+            System.Console.WriteLine(game.TEST.Count == 1);
         }
     }
 }
