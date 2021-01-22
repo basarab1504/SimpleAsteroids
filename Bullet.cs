@@ -15,9 +15,9 @@ namespace SimpleAsteroids
         {
             Position += Velocity;
 
-            lifeTimeLeft--;
             if (lifeTimeLeft == 0)
                 Destroyed = true;
+            lifeTimeLeft--;
         }
     }
 }
