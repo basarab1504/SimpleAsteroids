@@ -7,12 +7,40 @@ namespace SimpleAsteroids
     {
         static void Main(string[] args)
         {
-            CollisionTest();
-            BulletTest();
-            ManyBulletTest();
-            TwoShipBulletTest();
-            NoMoveUFOTest();
-            MoveUFOTest();
+            // CollisionTest();
+            // BulletTest();
+            // ManyBulletTest();
+            // TwoShipBulletTest();
+            // NoMoveUFOTest();
+            // MoveUFOTest();
+            // PhysicsLayerTest();
+        }
+
+        static void PhysicsLayerTest()
+        {
+            Game game = new Game();
+
+            var ship = game.Create<Ship>(new Vector2(0, 1));
+            var ship2 = game.Create<Ship>(new Vector2(0, -1));
+
+            ship.Velocity = new Vector2(0, -1);
+            ship.Direction = new Vector2(0, -1);
+
+            ship2.Velocity = new Vector2(0, 1);
+            ship2.Direction = new Vector2(0, 1);
+
+            game.Update();
+            game.Update();
+
+            System.Console.WriteLine(game.TEST.Count == 2);
+
+            var asteroid = game.Create<Asteroid>(new Vector2(0, 2));
+
+            game.Update();
+            game.Update();
+            game.Update();
+
+            System.Console.WriteLine(game.TEST.Count == 2);
         }
 
         static void NoMoveUFOTest()
