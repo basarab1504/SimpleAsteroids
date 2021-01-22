@@ -11,8 +11,8 @@ namespace SimpleAsteroids
             // BulletTest();
             // ManyBulletTest();
             // TwoShipBulletTest();
-            NoMoveUFOTest();
-            // MoveUFOTest();
+            // NoMoveUFOTest();
+            MoveUFOTest();
         }
 
         static void NoMoveUFOTest()
@@ -56,7 +56,7 @@ namespace SimpleAsteroids
             game.Update();
             game.Update();
             game.Update();
-            System.Console.WriteLine(game.TEST.Count == 3);
+            System.Console.WriteLine(game.TEST.Count == 2);
             game.Update();
         }
 
