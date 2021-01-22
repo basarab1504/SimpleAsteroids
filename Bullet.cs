@@ -2,8 +2,8 @@ namespace SimpleAsteroids
 {
     public class Bullet : GameObject
     {
-        public float LifeTime { get; set; } = 3;
         private float lifeTimeLeft;
+        public float LifeTime { get; set; } = 3;
 
         public Bullet()
         {

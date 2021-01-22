@@ -11,10 +11,10 @@ namespace SimpleAsteroids
             // BulletTest();
             // ManyBulletTest();
             // TwoShipBulletTest();
-            UFOTest();
+            NoMoveUFOTest();
         }
 
-        static void UFOTest()
+        static void NoMoveUFOTest()
         {
             Game game = new Game();
 
@@ -28,12 +28,9 @@ namespace SimpleAsteroids
             ufo2.PlayerShip = ship;
 
             game.Update();
-            ufo.Shoot();
-            ufo2.Shoot();
             game.Update();
             System.Console.WriteLine(game.TEST[3].Position == new Vector2(0, 1));
             System.Console.WriteLine(game.TEST[4].Position == new Vector2(1, 1));
-            game.Update();
             game.Update();
             game.Update();
 
