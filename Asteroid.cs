@@ -15,6 +15,7 @@ namespace SimpleAsteroids
         public Asteroid()
         {
             Symbol = 'A';
+            ScoreForDestroying = 1;
         }
 
         public override void Start()

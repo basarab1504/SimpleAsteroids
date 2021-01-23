@@ -13,6 +13,7 @@ namespace SimpleAsteroids
         public UFO()
         {
             Symbol = 'U';
+            ScoreForDestroying = 2;
         }
 
         public override void Update()

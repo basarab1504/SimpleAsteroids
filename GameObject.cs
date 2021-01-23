@@ -12,6 +12,7 @@ namespace SimpleAsteroids
         public Vector2 Velocity { get; set; }
         public bool Destroyed { get; protected set; }
         public char Symbol { get; set; }
+        public int ScoreForDestroying { get; set; }
 
         //можно лучше
         protected T Create<T>(Vector2 position) where T : GameObject, new()
@@ -26,7 +27,7 @@ namespace SimpleAsteroids
 
         public virtual void Start()
         {
-            
+
         }
 
         public abstract void Update();
