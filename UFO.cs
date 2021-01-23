@@ -21,6 +21,7 @@ namespace SimpleAsteroids
             Position += Velocity;
 
             cooldown--;
+            
             if (PlayerShip != null)
             {
                 Direction = Vector2.Normalize(PlayerShip.Position - Position);

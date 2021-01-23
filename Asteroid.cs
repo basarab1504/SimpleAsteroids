@@ -24,7 +24,14 @@ namespace SimpleAsteroids
             asteroid.Direction = Direction;
         }
 
-        private Vector2 RandomVelocity()
+        public void PushRandomDirection()
+        {
+            Vector2 direction = RandomDirection();
+            Direction = Vector2.Normalize(direction);
+            Velocity = RandomDirection();
+        }
+
+        private Vector2 RandomDirection()
         {
             double random = new Random().NextDouble();
             float xVelocity = random > 0.5 ? 1 : -1;

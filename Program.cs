@@ -7,16 +7,16 @@ namespace SimpleAsteroids
     {
         static void Main(string[] args)
         {
-            CollisionTest();
-            BulletTest();
-            ManyBulletTest();
-            TwoShipBulletTest();
-            NoMoveUFOTest();
-            MoveUFOTest();
-            PhysicsLayerTest();
-            ArenaTest();
-            SpawnerTest();
-            UFOSpawnerTest();
+            // CollisionTest();
+            // BulletTest();
+            // ManyBulletTest();
+            // TwoShipBulletTest();
+            // NoMoveUFOTest();
+            // MoveUFOTest();
+            // PhysicsLayerTest();
+            // ArenaTest();
+            // SpawnerTest();
+            // UFOSpawnerTest();
         }
 
         static void SpawnerTest()
