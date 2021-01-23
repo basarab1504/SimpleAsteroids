@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Numerics;
 
 namespace SimpleAsteroids
@@ -12,10 +13,17 @@ namespace SimpleAsteroids
         public bool Destroyed { get; protected set; }
         public char Symbol { get; set; }
 
+        //можно лучше
         protected T Create<T>(Vector2 position) where T : GameObject, new()
         {
             return Game.Create<T>(position);
         }
+
+        protected IEnumerable<T> Get<T>() where T : GameObject
+        {
+            return Game.Get<T>();
+        }
+        //
 
         public abstract void Update();
 

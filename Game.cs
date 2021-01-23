@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Numerics;
 
@@ -30,7 +29,6 @@ namespace SimpleAsteroids
     {
         List<GameObject> toAdd = new List<GameObject>();
         List<GameObject> gameObjects = new List<GameObject>();
-        Dictionary<Type, List<GameObject>> filters = new Dictionary<Type, List<GameObject>>();
 
         ConsoleDrawer consoleDrawer = new ConsoleDrawer(5);
         Arena arena = new Arena(5);
@@ -46,6 +44,14 @@ namespace SimpleAsteroids
             return gameObject;
         }
 
+        //нужно лучше
+        public IEnumerable<T> Get<T>() where T : GameObject
+        {
+            foreach(var item in gameObjects)
+                if(item is T)
+                    yield return item as T;
+        }
+
         public virtual void Start()
         {
             toAdd.Clear();
@@ -55,13 +61,7 @@ namespace SimpleAsteroids
         public virtual void Update()
         {
             //создать
-            foreach (var item in toAdd)
-            {
-                if (!filters.ContainsKey(item.GetType()))
-                    filters.Add(item.GetType(), new List<GameObject>());
-                filters[item.GetType()].Add(item);
-                gameObjects.Add(item);
-            }
+            gameObjects.AddRange(toAdd);
             toAdd.Clear();
 
             //включить
@@ -82,8 +82,6 @@ namespace SimpleAsteroids
                 item.Update();
 
             //удаление
-            foreach (var item in gameObjects)
-                filters[item.GetType()].Remove(item);
             gameObjects.RemoveAll(x => x.Destroyed);
         }
     }

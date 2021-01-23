@@ -125,8 +125,8 @@ namespace SimpleAsteroids
 
             var ufo2 = game.Create<UFO>(new Vector2(3, 1));
 
-            ufo.Target = ship;
-            ufo2.Target = ship;
+            // ufo.Target = ship;
+            // ufo2.Target = ship;
 
             game.Update();
             game.Update();
@@ -148,7 +148,7 @@ namespace SimpleAsteroids
             var ufo = game.Create<UFO>(new Vector2(-3, -3));
             ufo.Velocity = new Vector2(0, 1);
 
-            ufo.Target = ship;
+            // ufo.Target = ship;
 
             game.Update();
             game.Update();

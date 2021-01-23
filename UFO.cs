@@ -7,7 +7,6 @@ namespace SimpleAsteroids
         private float cooldown;
         public float GunForce { get; set; } = 1;
         public Vector2 GunPos => Position + Direction;
-        public Ship Target { get; set; }
         public float ShootingCooldown { get; set; } = 3;
         public float DistanceToKeep { get; set; } = 3;
 
@@ -21,17 +20,17 @@ namespace SimpleAsteroids
             Position += Velocity;
 
             cooldown--;
-            
-            if (Target != null)
-            {
-                Direction = Vector2.Normalize(Target.Position - Position);
 
-                if ((Target.Position - Position).Length() > DistanceToKeep)
+            foreach (var target in Get<Ship>())
+            {
+                Direction = Vector2.Normalize(target.Position - Position);
+
+                if ((target.Position - Position).Length() > DistanceToKeep)
                     Velocity = Direction;
                 else
                     Velocity = Vector2.Zero;
 
-                if (cooldown <= 0 && !Target.Destroyed)
+                if (cooldown <= 0 && !target.Destroyed)
                 {
                     Shoot();
                     cooldown = ShootingCooldown;
