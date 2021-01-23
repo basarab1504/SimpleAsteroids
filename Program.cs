@@ -7,23 +7,24 @@ namespace SimpleAsteroids
     {
         static void Main(string[] args)
         {
-            // CollisionTest();
-            // BulletTest();
-            // ManyBulletTest();
-            // TwoShipBulletTest();
-            // NoMoveUFOTest();
-            // MoveUFOTest();
-            // PhysicsLayerTest();
-            // ArenaTest();
+            CollisionTest();
+            BulletTest();
+            ManyBulletTest();
+            TwoShipBulletTest();
+            NoMoveUFOTest();
+            MoveUFOTest();
+            PhysicsLayerTest();
+            ArenaTest();
             SpawnerTest();
+            UFOSpawnerTest();
         }
 
         static void SpawnerTest()
         {
             Game game = new Game();
 
-            var asteroidSpawner = game.Create<Spawner<Asteroid>>(new Vector2(3, 3));
-            var asteroidSpawner2 = game.Create<Spawner<Asteroid>>(new Vector2(-3, -3));
+            var asteroidSpawner = game.Create<CooldownSpawner<Asteroid>>(new Vector2(3, 3));
+            var asteroidSpawner2 = game.Create<CooldownSpawner<Asteroid>>(new Vector2(-3, -3));
 
             game.Update();
             game.Update();
@@ -34,7 +35,28 @@ namespace SimpleAsteroids
             game.Update();
             game.Update();
 
-           System.Console.WriteLine(game.TEST.Count == 6);
+            System.Console.WriteLine(game.TEST.Count == 6);
+        }
+
+        static void UFOSpawnerTest()
+        {
+            Game game = new Game();
+
+            var ufoSpawner = game.Create<CooldownSpawner<UFO>>(new Vector2(0, 3));
+            ufoSpawner.SpawnCooldown = 5;
+
+            game.Update();
+            game.Update();
+
+            System.Console.WriteLine(game.TEST.Count == 2);
+
+            game.Update();
+            game.Update();
+            game.Update();
+            game.Update();
+            game.Update();
+            
+            System.Console.WriteLine(game.TEST.Count == 3);
         }
 
         static void ArenaTest()
