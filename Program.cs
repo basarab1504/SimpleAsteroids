@@ -7,16 +7,27 @@ namespace SimpleAsteroids
     {
         static void Main(string[] args)
         {
-            // CollisionTest();
-            // BulletTest();
-            // ManyBulletTest();
-            // TwoShipBulletTest();
-            // NoMoveUFOTest();
-            // MoveUFOTest();
-            // PhysicsLayerTest();
-            // ArenaTest();
-            // SpawnerTest();
-            // UFOSpawnerTest();
+            CollisionTest();
+            BulletTest();
+            ManyBulletTest();
+            TwoShipBulletTest();
+            NoMoveUFOTest();
+            MoveUFOTest();
+            PhysicsLayerTest();
+            ArenaTest();
+            SpawnerTest();
+            UFOSpawnerTest();
+            // AsteroidsGameTest();
+        }
+
+        static void AsteroidsGameTest()
+        {
+            Game game = new AsteroidsGame();
+            game.Start();
+            game.Update();
+            game.Update();
+            game.Update();
+            game.Update();
         }
 
         static void SpawnerTest()
@@ -114,8 +125,8 @@ namespace SimpleAsteroids
 
             var ufo2 = game.Create<UFO>(new Vector2(3, 1));
 
-            ufo.PlayerShip = ship;
-            ufo2.PlayerShip = ship;
+            ufo.Target = ship;
+            ufo2.Target = ship;
 
             game.Update();
             game.Update();
@@ -137,7 +148,7 @@ namespace SimpleAsteroids
             var ufo = game.Create<UFO>(new Vector2(-3, -3));
             ufo.Velocity = new Vector2(0, 1);
 
-            ufo.PlayerShip = ship;
+            ufo.Target = ship;
 
             game.Update();
             game.Update();
