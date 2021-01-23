@@ -14,6 +14,25 @@ namespace SimpleAsteroids
             // NoMoveUFOTest();
             // MoveUFOTest();
             // PhysicsLayerTest();
+            ArenaTest();
+        }
+
+        static void ArenaTest()
+        {
+            Game game = new Game();
+
+            var ship = game.Create<Ship>(new Vector2(4, 0));
+            ship.Direction = new Vector2(1, 0);
+            ship.Velocity = new Vector2(1, 0);
+
+            game.Update();
+            System.Console.WriteLine(ship.Position == new Vector2(5, 0));
+            game.Update();
+            System.Console.WriteLine(ship.Position == new Vector2(-4, 0));
+            game.Update();
+            game.Update();
+            game.Update();
+            System.Console.WriteLine(ship.Position == new Vector2(-1, 0));
         }
 
         static void PhysicsLayerTest()

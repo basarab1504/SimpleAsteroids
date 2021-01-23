@@ -9,6 +9,7 @@ namespace SimpleAsteroids
         List<GameObject> gameObjects = new List<GameObject>();
 
         ConsoleDrawer consoleDrawer = new ConsoleDrawer(5);
+        Arena arena = new Arena(5);
         Physics physics = new Physics();
 
         public List<GameObject> TEST => gameObjects;
@@ -30,10 +31,13 @@ namespace SimpleAsteroids
             //включить
 
             //рисовка
-            consoleDrawer.Update(gameObjects);
+            // consoleDrawer.Update(gameObjects);
 
             //физика
             physics.Update(gameObjects);
+
+            //арена
+            arena.Update(gameObjects);
 
             //логика
             foreach (var item in gameObjects)
