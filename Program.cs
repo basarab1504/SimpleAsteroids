@@ -24,18 +24,19 @@ namespace SimpleAsteroids
         {
             Game game = new AsteroidsGame();
             game.Start();
-            game.Update();
-            game.Update();
-            game.Update();
-            game.Update();
+            while(true)
+            {
+                game.Update();
+                Console.ReadKey();
+            }
         }
 
         static void SpawnerTest()
         {
             Game game = new Game();
 
-            var asteroidSpawner = game.Create<CooldownSpawner<Asteroid>>(new Vector2(3, 3));
-            var asteroidSpawner2 = game.Create<CooldownSpawner<Asteroid>>(new Vector2(-3, -3));
+            var asteroidSpawner = game.Create<CooldownSpawner<MockAsteroid>>(new Vector2(3, 3));
+            var asteroidSpawner2 = game.Create<CooldownSpawner<MockAsteroid>>(new Vector2(-3, -3));
 
             game.Update();
             game.Update();
@@ -106,7 +107,7 @@ namespace SimpleAsteroids
 
             System.Console.WriteLine(game.TEST.Count == 2);
 
-            var asteroid = game.Create<Asteroid>(new Vector2(0, 2));
+            var asteroid = game.Create<MockAsteroid>(new Vector2(0, 2));
 
             game.Update();
             game.Update();
@@ -169,7 +170,7 @@ namespace SimpleAsteroids
             ship.Direction = new Vector2(-1, 0);
             ship.Velocity = new Vector2(-1, 0);
 
-            var asteroid = game.Create<Asteroid>(Vector2.Zero);
+            var asteroid = game.Create<MockAsteroid>(Vector2.Zero);
             asteroid.Position = new Vector2(-2, 0);
             asteroid.Velocity = new Vector2(1, 0);
 

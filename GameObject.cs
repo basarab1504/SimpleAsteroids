@@ -23,7 +23,11 @@ namespace SimpleAsteroids
         {
             return Game.Get<T>();
         }
-        //
+
+        public virtual void Start()
+        {
+            
+        }
 
         public abstract void Update();
 

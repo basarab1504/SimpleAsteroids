@@ -3,11 +3,24 @@ using System.Numerics;
 
 namespace SimpleAsteroids
 {
+    public class MockAsteroid : Asteroid
+    {
+        public override void Start()
+        {
+        }
+    }
+
     public class Asteroid : GameObject
     {
         public Asteroid()
         {
             Symbol = 'A';
+        }
+
+        public override void Start()
+        {
+            base.Start();
+            PushRandomDirection();
         }
 
         public override void Update()
@@ -24,7 +37,7 @@ namespace SimpleAsteroids
             asteroid.Direction = Direction;
         }
 
-        public void PushRandomDirection()
+        private void PushRandomDirection()
         {
             Vector2 direction = RandomDirection();
             Direction = Vector2.Normalize(direction);

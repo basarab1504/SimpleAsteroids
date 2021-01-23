@@ -3,28 +3,6 @@ using System.Numerics;
 
 namespace SimpleAsteroids
 {
-    public class AsteroidsGame : Game
-    {
-        private Ship playerShip;
-
-        public override void Start()
-        {
-            base.Start();
-            playerShip = Create<Ship>(Vector2.Zero);
-            Create<CooldownSpawner<Asteroid>>(new Vector2(4, 4));
-            Create<CooldownSpawner<Asteroid>>(new Vector2(-4, -4));
-            Create<CooldownSpawner<UFO>>(new Vector2(0, -4));
-        }
-
-        public override void Update()
-        {
-            base.Update();
-
-            if (playerShip.Destroyed)
-                Start();
-        }
-    }
-
     public class Game
     {
         List<GameObject> toAdd = new List<GameObject>();
@@ -62,6 +40,7 @@ namespace SimpleAsteroids
         {
             //создать
             gameObjects.AddRange(toAdd);
+            toAdd.ForEach(x => x.Start());
             toAdd.Clear();
 
             //включить
