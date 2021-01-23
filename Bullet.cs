@@ -7,8 +7,13 @@ namespace SimpleAsteroids
 
         public Bullet()
         {
-            lifeTimeLeft = LifeTime;
             Symbol = 'B';
+        }
+
+        public override void Start()
+        {
+            base.Start();
+            lifeTimeLeft = LifeTime;
         }
 
         public override void Update()

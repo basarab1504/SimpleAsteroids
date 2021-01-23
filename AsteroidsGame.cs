@@ -18,7 +18,10 @@ namespace SimpleAsteroids
             base.Update();
 
             if (Get<Ship>().Count == 0)
+            {
+                System.Console.WriteLine($"+==+==|YOUR SCORE: {Score}|==+==+");
                 Start();
+            }
         }
     }
 }
