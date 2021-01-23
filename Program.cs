@@ -14,7 +14,27 @@ namespace SimpleAsteroids
             // NoMoveUFOTest();
             // MoveUFOTest();
             // PhysicsLayerTest();
-            ArenaTest();
+            // ArenaTest();
+            SpawnerTest();
+        }
+
+        static void SpawnerTest()
+        {
+            Game game = new Game();
+
+            var asteroidSpawner = game.Create<Spawner<Asteroid>>(new Vector2(3, 3));
+            var asteroidSpawner2 = game.Create<Spawner<Asteroid>>(new Vector2(-3, -3));
+
+            game.Update();
+            game.Update();
+
+            System.Console.WriteLine(game.TEST.Count == 4);
+
+            game.Update();
+            game.Update();
+            game.Update();
+
+           System.Console.WriteLine(game.TEST.Count == 6);
         }
 
         static void ArenaTest()
