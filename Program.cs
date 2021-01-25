@@ -18,8 +18,8 @@ namespace SimpleAsteroids
             SpawnerTest();
             UFOSpawnerTest();
             LaserBeamTest();
+            LaserBeamCollisionTest();
             // AsteroidsGameTest();
-
         }
 
         static void LaserBeamTest()
@@ -36,6 +36,24 @@ namespace SimpleAsteroids
             game.Update();
             System.Console.WriteLine(game.TEST.Count == 1);
 
+        }
+
+        static void LaserBeamCollisionTest()
+        {
+            Game game = new Game();
+
+            var ship = game.Create<Ship>(Vector2.Zero);
+            var asteroid = game.Create<NoChildAsteroid>(new Vector2(0, 2));
+            var asteroid2 = game.Create<NoChildAsteroid>(new Vector2(0, 1));
+
+            game.Update();
+            game.Update();
+            ship.ShootLaser();
+            game.Update();
+            System.Console.WriteLine(game.TEST.Count == 4);
+            game.Update();
+            game.Update();
+            System.Console.WriteLine(game.TEST.Count == 1);
         }
 
         static void AsteroidsGameTest()

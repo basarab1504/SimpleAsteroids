@@ -1,5 +1,13 @@
 namespace SimpleAsteroids
 {
+    public class LaserBullet : Bullet
+    {
+        public override void OnCollide(GameObject other)
+        {
+            
+        }
+    }
+
     public class Bullet : GameObject
     {
         private float lifeTimeLeft;

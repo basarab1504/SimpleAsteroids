@@ -10,6 +10,14 @@ namespace SimpleAsteroids
         }
     }
 
+    public class NoChildAsteroid : MockAsteroid
+    {
+        public override void OnCollide(GameObject other)
+        {
+            Destroyed = true;
+        }
+    }
+
     public class Asteroid : GameObject
     {
         public Asteroid()

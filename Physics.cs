@@ -30,11 +30,11 @@ namespace SimpleAsteroids
             }
             else if (gameObject is Asteroid)
             {
-                return other is Ship;
+                return other is Ship || other is Bullet;
             }
             else if (gameObject is UFO)
             {
-                return other is Ship;
+                return other is Ship || other is Bullet;
             }
             else if (gameObject is ISpawner)
             {

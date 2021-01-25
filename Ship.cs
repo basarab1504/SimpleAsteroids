@@ -22,7 +22,7 @@ namespace SimpleAsteroids
         public void ShootLaser()
         {
             for (int i = 1; i <= LaserBeamLenght; i++)
-                Create<Bullet>(Direction * i).LifeTime = 1;
+                Create<LaserBullet>(Direction * i).LifeTime = 1;
         }
 
         public void Shoot()
