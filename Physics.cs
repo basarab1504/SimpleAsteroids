@@ -12,10 +12,12 @@ namespace SimpleAsteroids
                 {
                     var iElement = toCheck[i];
                     var jElement = toCheck[j];
-                    if (iElement.Position == jElement.Position && ShouldCollide(iElement, jElement))
+                    if (iElement.Position == jElement.Position)
                     {
-                        iElement.OnCollide(jElement);
-                        jElement.OnCollide(iElement);
+                        if (ShouldCollide(iElement, jElement))
+                            iElement.OnCollide(jElement);
+                        if (ShouldCollide(jElement, iElement))
+                            jElement.OnCollide(iElement);
                         break;
                     }
                 }
@@ -37,6 +39,10 @@ namespace SimpleAsteroids
                 return other is Ship || other is Bullet;
             }
             else if (gameObject is ISpawner)
+            {
+                return false;
+            }
+            else if (gameObject is LaserBullet)
             {
                 return false;
             }
