@@ -10,7 +10,9 @@ namespace SimpleAsteroids
 
         public override void Update()
         {
-
+            foreach (var item in Get<GameObject>())
+                if (IsCrossedBorders(item))
+                    item.Position = RevertedPosition(item.Position);
         }
 
         public override void OnCollide(GameObject other)

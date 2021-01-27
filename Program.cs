@@ -19,8 +19,7 @@ namespace SimpleAsteroids
             // UFOSpawnerTest();
             // LaserBeamTest();
             // LaserBeamCollisionTest();
-            // ArenaTest();
-            // AsteroidsArenaTest();
+            AsteroidsArenaTest();
             // AsteroidsGameTest();
         }
 
@@ -28,13 +27,6 @@ namespace SimpleAsteroids
         {
             Game game = new Game();
             game.Create<Ship>(Vector2.Zero);
-            game.Update();
-        }
-
-        static void AsteroidsArenaTest()
-        {
-            Game game = new AsteroidsGame();
-            game.Start();
             game.Update();
         }
 
@@ -125,11 +117,17 @@ namespace SimpleAsteroids
             // System.Console.WriteLine(game.Score == 0);
         }
 
-        static void ArenaTest()
+        static void AsteroidsArenaTest()
         {
-            Game game = new Game();
+            Game game = new AsteroidsGame();
 
-            var ship = game.Create<Ship>(new Vector2(4, 0));
+            // var ship = game.Create<Ship>(new Vector2(4, 0));
+            game.Start();
+            game.Update();
+
+            var ship = game.Get<Ship>()[0];
+            
+            ship.Position = new Vector2(4, 0);
             ship.Direction = new Vector2(1, 0);
             ship.Velocity = new Vector2(1, 0);
 

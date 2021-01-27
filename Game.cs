@@ -23,9 +23,9 @@ namespace SimpleAsteroids
         }
 
         //нужно лучше
-        public ICollection<T> Get<T>() where T : GameObject
+        public IList<T> Get<T>() where T : GameObject
         {
-            ICollection<T> collection = new List<T>();
+            IList<T> collection = new List<T>();
             foreach (var item in gameObjects)
                 if (item is T)
                     collection.Add(item as T);
@@ -49,7 +49,7 @@ namespace SimpleAsteroids
             //включить
 
             //рисовка
-            // consoleDrawer.Update(gameObjects);
+            consoleDrawer.Update(gameObjects);
 
             //физика
             physics.Update(gameObjects);

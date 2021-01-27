@@ -11,9 +11,9 @@ namespace SimpleAsteroids
             base.Start();
             Create<Arena>(Vector2.Zero).FromZeroSteps = 5;
             Create<Ship>(Vector2.Zero);
-            Create<CooldownSpawner<Asteroid>>(new Vector2(4, 4));
-            Create<CooldownSpawner<Asteroid>>(new Vector2(-4, -4));
-            Create<CooldownSpawner<UFO>>(new Vector2(0, -4)).SpawnCooldown = 5;
+            // Create<CooldownSpawner<Asteroid>>(new Vector2(4, 4));
+            // Create<CooldownSpawner<Asteroid>>(new Vector2(-4, -4));
+            // Create<CooldownSpawner<UFO>>(new Vector2(0, -4)).SpawnCooldown = 5;
         }
 
         public override void Update()
