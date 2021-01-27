@@ -11,6 +11,7 @@ namespace SimpleAsteroids
 
         ConsoleDrawer consoleDrawer = new ConsoleDrawer(5);
         Physics physics = new Physics();
+        Input input = new Input();
 
         public abstract bool IsOver { get; }
 
@@ -55,6 +56,7 @@ namespace SimpleAsteroids
             physics.Update(gameObjects);
 
             //ввод
+            input.Update();
 
             //логика
             foreach (var item in gameObjects)

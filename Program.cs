@@ -7,20 +7,38 @@ namespace SimpleAsteroids
     {
         static void Main(string[] args)
         {
-            StaticShipTest();
-            CollisionTest();
-            BulletTest();
-            ManyBulletTest();
-            TwoShipBulletTest();
-            NoMoveUFOTest();
-            MoveUFOTest();
-            PhysicsLayerTest();
-            SpawnerTest();
-            UFOSpawnerTest();
-            LaserBeamTest();
-            LaserBeamCollisionTest();
+            InputTest();
+            // StaticShipTest();
+            // CollisionTest();
+            // BulletTest();
+            // ManyBulletTest();
+            // TwoShipBulletTest();
+            // NoMoveUFOTest();
+            // MoveUFOTest();
+            // PhysicsLayerTest();
+            // SpawnerTest();
+            // UFOSpawnerTest();
+            // LaserBeamTest();
+            // LaserBeamCollisionTest();
             // AsteroidsArenaTest();
             // AsteroidsGameTest();
+        }
+
+        static void InputTest()
+        {
+            TestGame game = new TestGame();
+            game.Start();
+            game.Update();
+            game.Update();
+            game.Update();
+            game.Update();
+            game.Update();
+            game.Update();
+            game.Update();
+            game.Update();
+            game.Update();
+            game.Update();
+            game.Update();
         }
 
         static void StaticShipTest()
