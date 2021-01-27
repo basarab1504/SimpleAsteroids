@@ -6,7 +6,7 @@ namespace SimpleAsteroids
     {
         private float cooldown;
         public float GunForce { get; set; } = 1;
-        public Vector2 GunPos => Position + Direction;
+        public Vector2 GunPos => Position + Direction * ColliderRadius * 2;
         public float ShootingCooldown { get; set; } = 3;
         public float DistanceToKeep { get; set; } = 3;
 

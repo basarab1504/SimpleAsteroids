@@ -7,19 +7,35 @@ namespace SimpleAsteroids
     {
         static void Main(string[] args)
         {
-            CollisionTest();
-            BulletTest();
-            ManyBulletTest();
-            TwoShipBulletTest();
-            NoMoveUFOTest();
-            MoveUFOTest();
-            PhysicsLayerTest();
-            ArenaTest();
-            SpawnerTest();
-            UFOSpawnerTest();
-            LaserBeamTest();
-            LaserBeamCollisionTest();
+            // StaticShipTest();
+            // CollisionTest();
+            // BulletTest();
+            // ManyBulletTest();
+            // TwoShipBulletTest();
+            // NoMoveUFOTest();
+            // MoveUFOTest();
+            // PhysicsLayerTest();
+            // SpawnerTest();
+            // UFOSpawnerTest();
+            // LaserBeamTest();
+            // LaserBeamCollisionTest();
+            // ArenaTest();
+            // AsteroidsArenaTest();
             // AsteroidsGameTest();
+        }
+
+        static void StaticShipTest()
+        {
+            Game game = new Game();
+            game.Create<Ship>(Vector2.Zero);
+            game.Update();
+        }
+
+        static void AsteroidsArenaTest()
+        {
+            Game game = new AsteroidsGame();
+            game.Start();
+            game.Update();
         }
 
         static void LaserBeamTest()
@@ -43,14 +59,14 @@ namespace SimpleAsteroids
             Game game = new Game();
 
             var ship = game.Create<Ship>(Vector2.Zero);
-            var asteroid = game.Create<NoChildAsteroid>(new Vector2(0, 2));
-            var asteroid2 = game.Create<NoChildAsteroid>(new Vector2(0, 1));
+            var asteroid = game.Create<NoChildAsteroid>(new Vector2(0, 4));
+            var asteroid2 = game.Create<NoChildAsteroid>(new Vector2(0, 3));
 
             game.Update();
             game.Update();
             ship.ShootLaser();
             game.Update();
-            System.Console.WriteLine(game.TEST.Count == 4);
+            System.Console.WriteLine(game.TEST.Count == 5);
             game.Update();
             game.Update();
             System.Console.WriteLine(game.TEST.Count == 1);
@@ -84,7 +100,7 @@ namespace SimpleAsteroids
             game.Update();
 
             System.Console.WriteLine(game.TEST.Count == 6);
-            System.Console.WriteLine(game.Score == 0);
+            // System.Console.WriteLine(game.Score == 0);
         }
 
         static void UFOSpawnerTest()
@@ -106,7 +122,7 @@ namespace SimpleAsteroids
             game.Update();
 
             System.Console.WriteLine(game.TEST.Count == 3);
-            System.Console.WriteLine(game.Score == 0);
+            // System.Console.WriteLine(game.Score == 0);
         }
 
         static void ArenaTest()
@@ -125,7 +141,7 @@ namespace SimpleAsteroids
             game.Update();
             game.Update();
             System.Console.WriteLine(ship.Position == new Vector2(-1, 0));
-            System.Console.WriteLine(game.Score == 0);
+            // System.Console.WriteLine(game.Score == 0);
         }
 
         static void PhysicsLayerTest()
@@ -133,7 +149,7 @@ namespace SimpleAsteroids
             Game game = new Game();
 
             var ship = game.Create<Ship>(new Vector2(0, 1));
-            var ship2 = game.Create<Ship>(new Vector2(0, -1));
+            var ship2 = game.Create<Ship>(new Vector2(0, -3));
 
             ship.Velocity = new Vector2(0, -1);
             ship.Direction = new Vector2(0, -1);
@@ -151,34 +167,34 @@ namespace SimpleAsteroids
             game.Update();
             game.Update();
             game.Update();
+            game.Update();
+            game.Update();
+            game.Update();
 
             System.Console.WriteLine(game.TEST.Count == 2);
-            System.Console.WriteLine(game.Score == 1);
+            // System.Console.WriteLine(game.Score == 1);
         }
 
         static void NoMoveUFOTest()
         {
             Game game = new Game();
 
-            var ship = game.Create<Ship>(new Vector2(0, 1));
+            var ship = game.Create<Ship>(new Vector2(0, 3));
 
-            var ufo = game.Create<UFO>(new Vector2(-2, 1));
+            var ufo = game.Create<UFO>(new Vector2(-4, 0));
 
-            var ufo2 = game.Create<UFO>(new Vector2(3, 1));
-
-            // ufo.Target = ship;
-            // ufo2.Target = ship;
+            var ufo2 = game.Create<UFO>(new Vector2(4, 0));
 
             game.Update();
             game.Update();
-            System.Console.WriteLine(game.TEST[3].Position == new Vector2(0, 1));
-            System.Console.WriteLine(game.TEST[4].Position == new Vector2(1, 1));
             game.Update();
             game.Update();
+            // System.Console.WriteLine(game.TEST[3].Position == new Vector2(0, 1));
+            // System.Console.WriteLine(game.TEST[4].Position == new Vector2(1, 1));
             game.Update();
 
             System.Console.WriteLine(game.TEST.Count == 2);
-            System.Console.WriteLine(game.Score == 0);
+            // System.Console.WriteLine(game.Score == 0);
         }
 
         static void MoveUFOTest()
@@ -198,9 +214,9 @@ namespace SimpleAsteroids
             game.Update();
             game.Update();
             game.Update();
-            System.Console.WriteLine(game.TEST.Count == 2);
+            System.Console.WriteLine(game.TEST.Count == 1);
             game.Update();
-            System.Console.WriteLine(game.Score == 0);
+            // System.Console.WriteLine(game.Score == 0);
         }
 
         static void CollisionTest()
@@ -222,7 +238,7 @@ namespace SimpleAsteroids
             game.Update();
 
             System.Console.WriteLine(game.TEST.Count == 1);
-            System.Console.WriteLine(game.Score == 1);
+            // System.Console.WriteLine(game.Score == 1);
         }
 
         static void TwoShipBulletTest()
@@ -243,7 +259,7 @@ namespace SimpleAsteroids
             game.Update();
 
             System.Console.WriteLine(game.TEST.Count == 2);
-            System.Console.WriteLine(game.Score == 0);
+            // System.Console.WriteLine(game.Score == 0);
         }
 
         static void BulletTest()
@@ -256,11 +272,11 @@ namespace SimpleAsteroids
 
             game.Update();
             game.Update();
-            System.Console.WriteLine(game.TEST[1].Position == new Vector2(0, 1));
+            System.Console.WriteLine(game.TEST[1].Position == new Vector2(0, 2));
             game.Update();
             game.Update();
             System.Console.WriteLine(game.TEST.Count == 1);
-            System.Console.WriteLine(game.Score == 0);
+            // System.Console.WriteLine(game.Score == 0);
         }
 
         static void ManyBulletTest()
@@ -282,15 +298,15 @@ namespace SimpleAsteroids
             game.Update();
             game.Update();
 
-            System.Console.WriteLine(game.TEST[1].Position == new Vector2(0, 1));
-            System.Console.WriteLine(game.TEST[2].Position == new Vector2(3, -2));
-            System.Console.WriteLine(game.TEST[3].Position == new Vector2(-3, -2));
+            System.Console.WriteLine(game.TEST[1].Position == new Vector2(0, 2));
+            System.Console.WriteLine(game.TEST[2].Position == new Vector2(4, -2));
+            System.Console.WriteLine(game.TEST[3].Position == new Vector2(-4, -2));
 
             game.Update();
             game.Update();
 
             System.Console.WriteLine(game.TEST.Count == 1);
-            System.Console.WriteLine(game.Score == 0);
+            // System.Console.WriteLine(game.Score == 0);
         }
     }
 }

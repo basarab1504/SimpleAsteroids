@@ -7,7 +7,7 @@ namespace SimpleAsteroids
     {
         public float GunForce { get; set; } = 1;
         public float LaserBeamLenght { get; set; } = 3;
-        public Vector2 GunPos => Position + Direction;
+        public Vector2 GunPos => Position + Direction * ColliderRadius * 2;
 
         public Ship()
         {
@@ -22,7 +22,7 @@ namespace SimpleAsteroids
         public void ShootLaser()
         {
             for (int i = 1; i <= LaserBeamLenght; i++)
-                Create<LaserBullet>(Direction * i).LifeTime = 1;
+                Create<LaserBullet>(GunPos + Direction * i).LifeTime = 1;
         }
 
         public void Shoot()

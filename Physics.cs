@@ -12,7 +12,7 @@ namespace SimpleAsteroids
                 {
                     var iElement = toCheck[i];
                     var jElement = toCheck[j];
-                    if (iElement.Position == jElement.Position)
+                    if (IsColliding(iElement, jElement))
                     {
                         if (ShouldCollide(iElement, jElement))
                             iElement.OnCollide(jElement);
@@ -24,11 +24,16 @@ namespace SimpleAsteroids
             }
         }
 
+        private bool IsColliding(GameObject gameObject, GameObject other)
+        {
+            return (gameObject.ColliderRadius + other.ColliderRadius) > (other.Position - gameObject.Position).Length();
+        }
+
         private bool ShouldCollide(GameObject gameObject, GameObject other)
         {
             if (gameObject is Ship)
             {
-                return !(other is Ship) && !(other is ISpawner);
+                return !(other is Ship) && !(other is ISpawner) && !(other is Arena);
             }
             else if (gameObject is Asteroid)
             {

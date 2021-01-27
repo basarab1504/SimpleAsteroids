@@ -4,20 +4,19 @@ using System.Numerics;
 
 namespace SimpleAsteroids
 {
-    public class Arena
+    public class Arena : GameObject
     {
-        private readonly int fromZeroSteps;
+        public int FromZeroSteps { get; set; }
 
-        public Arena(int fromZeroSteps)
+        public override void Update()
         {
-            this.fromZeroSteps = fromZeroSteps;
+
         }
 
-        public void Update(IEnumerable<GameObject> toCheck)
+        public override void OnCollide(GameObject other)
         {
-            foreach (var item in toCheck)
-                if (IsCrossedBorders(item))
-                    item.Position = RevertedPosition(item.Position);
+            if (IsCrossedBorders(other))
+                other.Position = RevertedPosition(other.Position);
         }
 
         private bool IsCrossedBorders(GameObject gameObject)
@@ -25,7 +24,7 @@ namespace SimpleAsteroids
             float x = gameObject.Position.X;
             float y = gameObject.Position.Y;
 
-            return (x >= fromZeroSteps || x <= -fromZeroSteps || y >= fromZeroSteps || y <= -fromZeroSteps);
+            return (x >= FromZeroSteps || x <= -FromZeroSteps || y >= FromZeroSteps || y <= -FromZeroSteps);
         }
 
         private Vector2 RevertedPosition(Vector2 position)

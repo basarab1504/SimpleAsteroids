@@ -5,17 +5,13 @@ namespace SimpleAsteroids
 {
     public class Game
     {
-        int score;
-
         List<GameObject> toAdd = new List<GameObject>();
         List<GameObject> toDestroy = new List<GameObject>();
         List<GameObject> gameObjects = new List<GameObject>();
 
         ConsoleDrawer consoleDrawer = new ConsoleDrawer(5);
-        Arena arena = new Arena(5);
         Physics physics = new Physics();
 
-        public int Score => score;
         public List<GameObject> TEST => gameObjects;
 
         public T Create<T>(Vector2 position) where T : GameObject, new()
@@ -40,6 +36,7 @@ namespace SimpleAsteroids
         {
             toAdd.Clear();
             gameObjects.Clear();
+            toDestroy.Clear();
         }
 
         public virtual void Update()
@@ -57,9 +54,6 @@ namespace SimpleAsteroids
             //физика
             physics.Update(gameObjects);
 
-            //арена
-            arena.Update(gameObjects);
-
             //ввод
 
             //логика
@@ -73,10 +67,7 @@ namespace SimpleAsteroids
             //очки
             //удаление
             foreach (var item in toDestroy)
-            {
-                score += item.ScoreForDestroying;
                 gameObjects.Remove(item);
-            }
             toDestroy.Clear();
         }
     }

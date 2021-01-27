@@ -9,6 +9,7 @@ namespace SimpleAsteroids
         public Vector2 Position { get; set; }
         public Vector2 Direction { get; set; } = new Vector2(0, 1);
         public Vector2 Size { get; set; } = new Vector2(1, 1);
+        public float ColliderRadius { get; set; } = 1;
         public Vector2 Velocity { get; set; }
         public bool Destroyed { get; protected set; }
         public char Symbol { get; set; }

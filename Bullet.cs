@@ -1,10 +1,12 @@
+using System.Numerics;
+
 namespace SimpleAsteroids
 {
     public class LaserBullet : Bullet
     {
         public override void OnCollide(GameObject other)
         {
-            
+
         }
     }
 
@@ -16,6 +18,8 @@ namespace SimpleAsteroids
         public Bullet()
         {
             Symbol = 'B';
+            ColliderRadius = 0.5f;
+            Size = new Vector2(0.5f, 0.5f);
         }
 
         public override void Start()
