@@ -4,9 +4,10 @@ namespace SimpleAsteroids
 {
     public class AsteroidsGame : Game
     {
-        private int score;
+        public override bool IsOver => Get<Ship>().Count == 0;
+        public int Score => Get<Scorer>()[0].Score;
 
-        public override void Start()
+        protected override void IternalStart()
         {
             base.Start();
             Create<Arena>(Vector2.Zero).FromZeroSteps = 5;
@@ -16,15 +17,9 @@ namespace SimpleAsteroids
             // Create<CooldownSpawner<UFO>>(new Vector2(0, -4)).SpawnCooldown = 5;
         }
 
-        public override void Update()
+        protected override void IternalUpdate()
         {
-            base.Update();
 
-            if (Get<Ship>().Count == 0)
-            {
-                System.Console.WriteLine($"+==+==|YOUR SCORE: {score}|==+==+");
-                // Start();
-            }
         }
     }
 }

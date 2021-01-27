@@ -3,7 +3,7 @@ using System.Numerics;
 
 namespace SimpleAsteroids
 {
-    public class Game
+    public abstract class Game
     {
         List<GameObject> toAdd = new List<GameObject>();
         List<GameObject> toDestroy = new List<GameObject>();
@@ -12,7 +12,7 @@ namespace SimpleAsteroids
         ConsoleDrawer consoleDrawer = new ConsoleDrawer(5);
         Physics physics = new Physics();
 
-        public List<GameObject> TEST => gameObjects;
+        public abstract bool IsOver { get; }
 
         public T Create<T>(Vector2 position) where T : GameObject, new()
         {
@@ -32,24 +32,24 @@ namespace SimpleAsteroids
             return collection;
         }
 
-        public virtual void Start()
+        public void Start()
         {
             toAdd.Clear();
             gameObjects.Clear();
             toDestroy.Clear();
+            IternalStart();
         }
 
-        public virtual void Update()
+        public void Update()
         {
             //создать
             gameObjects.AddRange(toAdd);
+            //включить
             toAdd.ForEach(x => x.Start());
             toAdd.Clear();
 
-            //включить
-
             //рисовка
-            consoleDrawer.Update(gameObjects);
+            // consoleDrawer.Update(gameObjects);
 
             //физика
             physics.Update(gameObjects);
@@ -64,11 +64,15 @@ namespace SimpleAsteroids
                     toDestroy.Add(item);
             }
 
-            //очки
             //удаление
             foreach (var item in toDestroy)
                 gameObjects.Remove(item);
             toDestroy.Clear();
+
+            IternalUpdate();
         }
+
+        protected abstract void IternalStart();
+        protected abstract void IternalUpdate();
     }
 }
