@@ -14,19 +14,19 @@ namespace SimpleAsteroids
             // AsteroidsArenaTest();
             // AsteroidsGameTest();
 
-            // StaticShipTest();
-            // CollisionTest();
-            // BulletTest();
-            // ManyBulletTest();
-            // TwoShipBulletTest();
+            StaticShipTest();
+            CollisionTest();
+            BulletTest();
+            ManyBulletTest();
+            TwoShipBulletTest();
             ArenaTest();
-            // NoMoveUFOTest();
-            // MoveUFOTest();
-            // PhysicsLayerTest();
-            // SpawnerTest();
-            // UFOSpawnerTest();
-            // LaserBeamTest();
-            // LaserBeamCollisionTest();
+            NoMoveUFOTest();
+            MoveUFOTest();
+            PhysicsLayerTest();
+            SpawnerTest();
+            UFOSpawnerTest();
+            LaserBeamTest();
+            LaserBeamCollisionTest();
         }
 
         static void ArenaTest()

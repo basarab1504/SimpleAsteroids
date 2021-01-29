@@ -26,10 +26,9 @@ namespace SimpleAsteroids
         {
             foreach (var item in toCheck)
             {
-                int x = (int)(xCenter + item.Position.X);
-                int y = (int)(yCenter + item.Position.Y);
-                if (x < window.GetLength(0) && y < window.GetLength(1))
-                    window[y, x] = item.Symbol;
+                var pos = GetDrawPositions(item);
+                if (pos.x < window.GetLength(0) && pos.y < window.GetLength(1))
+                    window[pos.y, pos.x] = item.Symbol;
             }
         }
 
@@ -44,16 +43,11 @@ namespace SimpleAsteroids
             System.Console.WriteLine("======");
         }
 
-        private IEnumerable<Vector2> GetDrawPositions(GameObject gameObject)
+        private (int x, int y) GetDrawPositions(GameObject gameObject)
         {
-            int halfSizeY = (int)Math.Floor(gameObject.Size.Y * 0.5);
-            int halfSizeX = (int)Math.Floor(gameObject.Size.X * 0.5);
-
-            System.Console.WriteLine($"{gameObject.GetType()} {halfSizeX}:{halfSizeY}");
-
-            for (int y = halfSizeY; y >= -halfSizeY; y -= 1)
-                for (int x = -halfSizeX; x <= halfSizeX; x += 1)
-                    yield return gameObject.Position + new Vector2(x, y);
+            int x = (int)(xCenter + gameObject.Position.X);
+            int y = (int)(yCenter + gameObject.Position.Y);
+            return (x: x, y: y);
         }
 
         private void Clear()
