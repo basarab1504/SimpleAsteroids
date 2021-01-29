@@ -28,6 +28,8 @@ namespace SimpleAsteroids
         {
             TestGame game = new TestGame();
             game.Start();
+            game.Create<Ship>(Vector2.Zero);
+            game.Create<NoChildAsteroid>(new Vector2(0, 4));
             game.Update();
             game.Update();
             game.Update();
@@ -39,6 +41,7 @@ namespace SimpleAsteroids
             game.Update();
             game.Update();
             game.Update();
+            System.Console.WriteLine(game.Get<Asteroid>().Count == 0);
         }
 
         static void StaticShipTest()

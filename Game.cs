@@ -46,11 +46,11 @@ namespace SimpleAsteroids
             //создать
             gameObjects.AddRange(toAdd);
             //включить
-            toAdd.ForEach(x => x.Start());
+            toAdd.ForEach(x => { x.Start(); input.KeyPressed += x.OnInput; });
             toAdd.Clear();
 
             //рисовка
-            // consoleDrawer.Update(gameObjects);
+            consoleDrawer.Update(gameObjects);
 
             //физика
             physics.Update(gameObjects);

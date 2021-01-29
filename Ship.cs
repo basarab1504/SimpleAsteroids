@@ -25,6 +25,12 @@ namespace SimpleAsteroids
                 Create<LaserBullet>(GunPos + Direction * i).LifeTime = 1;
         }
 
+        public override void OnInput(ConsoleKey key)
+        {
+            if (key == ConsoleKey.Spacebar)
+                Shoot();
+        }
+
         public void Shoot()
         {
             var bullet = Create<Bullet>(GunPos);

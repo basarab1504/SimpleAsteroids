@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Numerics;
 
@@ -32,6 +33,11 @@ namespace SimpleAsteroids
         }
 
         public abstract void Update();
+
+        public virtual void OnInput(ConsoleKey key)
+        {
+            
+        }
 
         public virtual void OnCollide(GameObject other)
         {
