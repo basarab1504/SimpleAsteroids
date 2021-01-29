@@ -14,18 +14,41 @@ namespace SimpleAsteroids
             // AsteroidsArenaTest();
             // AsteroidsGameTest();
 
-            StaticShipTest();
-            CollisionTest();
-            BulletTest();
-            ManyBulletTest();
-            TwoShipBulletTest();
-            NoMoveUFOTest();
-            MoveUFOTest();
-            PhysicsLayerTest();
-            SpawnerTest();
-            UFOSpawnerTest();
-            LaserBeamTest();
-            LaserBeamCollisionTest();
+            // StaticShipTest();
+            // CollisionTest();
+            // BulletTest();
+            // ManyBulletTest();
+            // TwoShipBulletTest();
+            ArenaTest();
+            // NoMoveUFOTest();
+            // MoveUFOTest();
+            // PhysicsLayerTest();
+            // SpawnerTest();
+            // UFOSpawnerTest();
+            // LaserBeamTest();
+            // LaserBeamCollisionTest();
+        }
+
+        static void ArenaTest()
+        {
+            TestGame game = new TestGame(new ConsoleDrawer(10, 10));
+            game.Start();
+
+            game.Create<Arena>(Vector2.Zero).FromZeroSteps = 5;
+
+            var asteroid = game.Create<MockAsteroid>(Vector2.Zero);
+            asteroid.Velocity = new Vector2(1, 0);
+
+            game.Update();
+            game.Update();
+            game.Update();
+            game.Update();
+            game.Update();
+            System.Console.WriteLine(asteroid.Position == new Vector2(5, 0));
+            game.Update();
+            game.Update();
+            game.Update();
+            System.Console.WriteLine(asteroid.Position == new Vector2(-2, 0));
         }
 
         static void ConsoleTest()
