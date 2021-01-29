@@ -6,40 +6,39 @@ namespace SimpleAsteroids
 {
     public class ConsoleDrawer : IDrawer
     {
-        private readonly int fromZeroSteps;
-        private Dictionary<Vector2, char> map = new Dictionary<Vector2, char>();
+        private char[,] window;
+        private int xCenter => window.GetLength(1) / 2;
+        private int yCenter => window.GetLength(0) / 2;
 
-        public ConsoleDrawer(int fromZeroSteps)
+        public ConsoleDrawer(int width, int height)
         {
-            this.fromZeroSteps = fromZeroSteps;
-
-            for (int y = fromZeroSteps; y >= -fromZeroSteps; y -= 1)
-                for (int x = -fromZeroSteps; x <= fromZeroSteps; x += 1)
-                    map.Add(new Vector2(x, y), '_');
+            window = new char[height, width];
         }
 
         public void Update(IEnumerable<GameObject> toCheck)
         {
-            InDraw(toCheck);
-            Draw();
             Clear();
+            Draw(toCheck);
+            Display();
         }
 
-        private void InDraw(IEnumerable<GameObject> toCheck)
+        private void Draw(IEnumerable<GameObject> toCheck)
         {
             foreach (var item in toCheck)
             {
-                var space = new Vector2((int)item.Position.X, (int)item.Position.Y);
-                map[space] = item.Symbol;
+                int x = (int)(xCenter + item.Position.X);
+                int y = (int)(yCenter + item.Position.Y);
+                if (x < window.GetLength(0) && y < window.GetLength(1))
+                    window[y, x] = item.Symbol;
             }
         }
 
-        private void Draw()
+        private void Display()
         {
-            for (int y = fromZeroSteps; y >= -fromZeroSteps; y -= 1)
+            for (int i = 0; i < window.GetLength(0); i++)
             {
-                for (int x = -fromZeroSteps; x <= fromZeroSteps; x += 1)
-                    System.Console.Write($"{map[new Vector2(x, y)]} ");
+                for (int j = 0; j < window.GetLength(1); j++)
+                    System.Console.Write($" {window[j, i]} ");
                 System.Console.WriteLine();
             }
             System.Console.WriteLine("======");
@@ -59,9 +58,9 @@ namespace SimpleAsteroids
 
         private void Clear()
         {
-            for (int y = fromZeroSteps; y >= -fromZeroSteps; y -= 1)
-                for (int x = -fromZeroSteps; x <= fromZeroSteps; x += 1)
-                    map[new Vector2(x, y)] = '_';
+            for (int i = 0; i < window.GetLength(0); i++)
+                for (int j = 0; j < window.GetLength(0); j++)
+                    window[i, j] = '_';
         }
     }
 }
