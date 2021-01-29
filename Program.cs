@@ -7,28 +7,30 @@ namespace SimpleAsteroids
     {
         static void Main(string[] args)
         {
-            ConsoleTest();
+            // ConsoleTest();
             // SFMLTest();
             // InputTest();
-            // StaticShipTest();
-            // CollisionTest();
-            // BulletTest();
-            // ManyBulletTest();
-            // TwoShipBulletTest();
-            // NoMoveUFOTest();
-            // MoveUFOTest();
-            // PhysicsLayerTest();
-            // SpawnerTest();
-            // UFOSpawnerTest();
-            // LaserBeamTest();
-            // LaserBeamCollisionTest();
+
             // AsteroidsArenaTest();
             // AsteroidsGameTest();
+
+            StaticShipTest();
+            CollisionTest();
+            BulletTest();
+            ManyBulletTest();
+            TwoShipBulletTest();
+            NoMoveUFOTest();
+            MoveUFOTest();
+            PhysicsLayerTest();
+            SpawnerTest();
+            UFOSpawnerTest();
+            LaserBeamTest();
+            LaserBeamCollisionTest();
         }
 
         static void ConsoleTest()
         {
-            TestGame game = new TestGame(new ConsoleDrawer(30, 30));
+            TestGame game = new TestGame(new ConsoleDrawer(10, 10));
             game.Start();
             game.Create<Ship>(Vector2.Zero);
             game.Update();
@@ -236,6 +238,8 @@ namespace SimpleAsteroids
             // System.Console.WriteLine(game.Get<GameObject>()[3].Position == new Vector2(0, 1));
             // System.Console.WriteLine(game.Get<GameObject>()[4].Position == new Vector2(1, 1));
             game.Update();
+            game.Update();
+            game.Update();
 
             System.Console.WriteLine(game.Get<GameObject>().Count == 2);
             // System.Console.WriteLine(game.Score == 0);
@@ -248,14 +252,16 @@ namespace SimpleAsteroids
 
             var ship = game.Create<Ship>(new Vector2(2, 0));
 
-            var ufo = game.Create<UFO>(new Vector2(-3, -3));
+            var ufo = game.Create<UFO>(new Vector2(-5, -3));
             ufo.Velocity = new Vector2(0, 1);
 
             // ufo.Target = ship;
 
             game.Update();
             game.Update();
-            System.Console.WriteLine(game.Get<GameObject>().Count == 3);
+            System.Console.WriteLine(game.Get<GameObject>().Count == 2);
+            game.Update();
+            game.Update();
             game.Update();
             game.Update();
             game.Update();

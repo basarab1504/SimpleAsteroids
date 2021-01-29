@@ -38,7 +38,7 @@ namespace SimpleAsteroids
             for (int i = 0; i < window.GetLength(0); i++)
             {
                 for (int j = 0; j < window.GetLength(1); j++)
-                    System.Console.Write($" {window[j, i]} ");
+                    System.Console.Write($" {window[i, j]} ");
                 System.Console.WriteLine();
             }
             System.Console.WriteLine("======");
