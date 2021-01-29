@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Numerics;
+using SFML.Graphics;
 
 namespace SimpleAsteroids
 {
@@ -13,7 +14,10 @@ namespace SimpleAsteroids
         public float ColliderRadius { get; set; } = 1;
         public Vector2 Velocity { get; set; }
         public bool Destroyed { get; protected set; }
+        //удалить
         public char Symbol { get; set; }
+        public Color Color { get; set; }
+        //
         public int ScoreForDestroying { get; set; }
 
         //можно лучше
@@ -36,7 +40,7 @@ namespace SimpleAsteroids
 
         public virtual void OnInput(ConsoleKey key)
         {
-            
+
         }
 
         public virtual void OnCollide(GameObject other)

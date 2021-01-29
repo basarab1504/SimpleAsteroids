@@ -7,7 +7,8 @@ namespace SimpleAsteroids
     {
         static void Main(string[] args)
         {
-            InputTest();
+            SFMLTest();
+            // InputTest();
             // StaticShipTest();
             // CollisionTest();
             // BulletTest();
@@ -24,9 +25,18 @@ namespace SimpleAsteroids
             // AsteroidsGameTest();
         }
 
+        static void SFMLTest()
+        {
+            AsteroidsGame game = new AsteroidsGame(new SFMLDrawer(new SFML.Window.VideoMode(800, 600)));
+            game.Start();
+
+            while (!game.IsOver)
+                game.Update();
+        }
+
         static void InputTest()
         {
-            TestGame game = new TestGame();
+            TestGame game = new TestGame(new ConsoleDrawer(5));
             game.Start();
             game.Create<Ship>(Vector2.Zero);
             game.Create<NoChildAsteroid>(new Vector2(0, 4));
@@ -46,7 +56,7 @@ namespace SimpleAsteroids
 
         static void StaticShipTest()
         {
-            TestGame game = new TestGame();
+            TestGame game = new TestGame(new ConsoleDrawer(5));
             game.Start();
             game.Create<Ship>(Vector2.Zero);
             game.Update();
@@ -54,7 +64,7 @@ namespace SimpleAsteroids
 
         static void LaserBeamTest()
         {
-            TestGame game = new TestGame();
+            TestGame game = new TestGame(new ConsoleDrawer(5));
             game.Start();
 
             var ship = game.Create<Ship>(Vector2.Zero);
@@ -71,7 +81,7 @@ namespace SimpleAsteroids
 
         static void LaserBeamCollisionTest()
         {
-            TestGame game = new TestGame();
+            TestGame game = new TestGame(new ConsoleDrawer(5));
             game.Start();
 
             var ship = game.Create<Ship>(Vector2.Zero);
@@ -90,13 +100,13 @@ namespace SimpleAsteroids
 
         static void AsteroidsGameTest()
         {
-            GameSession session = new GameSession(new AsteroidsGame());
+            GameSession session = new GameSession(new AsteroidsGame(new ConsoleDrawer(5)));
             session.Start();
         }
 
         static void SpawnerTest()
         {
-            TestGame game = new TestGame();
+            TestGame game = new TestGame(new ConsoleDrawer(5));
             game.Start();
 
             var asteroidSpawner = game.Create<CooldownSpawner<MockAsteroid>>(new Vector2(3, 3));
@@ -117,7 +127,7 @@ namespace SimpleAsteroids
 
         static void UFOSpawnerTest()
         {
-            TestGame game = new TestGame();
+            TestGame game = new TestGame(new ConsoleDrawer(5));
             game.Start();
 
             var ufoSpawner = game.Create<CooldownSpawner<UFO>>(new Vector2(0, 3));
@@ -140,7 +150,7 @@ namespace SimpleAsteroids
 
         static void AsteroidsArenaTest()
         {
-            Game game = new AsteroidsGame();
+            Game game = new AsteroidsGame(new ConsoleDrawer(5));
 
             // var ship = game.Create<Ship>(new Vector2(4, 0));
             game.Start();
@@ -165,7 +175,7 @@ namespace SimpleAsteroids
 
         static void PhysicsLayerTest()
         {
-            TestGame game = new TestGame();
+            TestGame game = new TestGame(new ConsoleDrawer(5));
             game.Start();
 
             var ship = game.Create<Ship>(new Vector2(0, 1));
@@ -197,7 +207,7 @@ namespace SimpleAsteroids
 
         static void NoMoveUFOTest()
         {
-            TestGame game = new TestGame();
+            TestGame game = new TestGame(new ConsoleDrawer(5));
             game.Start();
 
             var ship = game.Create<Ship>(new Vector2(0, 3));
@@ -220,7 +230,7 @@ namespace SimpleAsteroids
 
         static void MoveUFOTest()
         {
-            TestGame game = new TestGame();
+            TestGame game = new TestGame(new ConsoleDrawer(5));
             game.Start();
 
             var ship = game.Create<Ship>(new Vector2(2, 0));
@@ -243,7 +253,7 @@ namespace SimpleAsteroids
 
         static void CollisionTest()
         {
-            TestGame game = new TestGame();
+            TestGame game = new TestGame(new ConsoleDrawer(5));
             game.Start();
 
             var ship = game.Create<Ship>(Vector2.Zero);
@@ -266,7 +276,7 @@ namespace SimpleAsteroids
 
         static void TwoShipBulletTest()
         {
-            TestGame game = new TestGame();
+            TestGame game = new TestGame(new ConsoleDrawer(5));
             game.Start();
 
             var ship = game.Create<Ship>(new Vector2(-3, 0));
@@ -288,7 +298,7 @@ namespace SimpleAsteroids
 
         static void BulletTest()
         {
-            TestGame game = new TestGame();
+            TestGame game = new TestGame(new ConsoleDrawer(5));
             game.Start();
 
             var ship = game.Create<Ship>(new Vector2(0, -2));
@@ -306,7 +316,7 @@ namespace SimpleAsteroids
 
         static void ManyBulletTest()
         {
-            TestGame game = new TestGame();
+            TestGame game = new TestGame(new ConsoleDrawer(5));
             game.Start();
 
             var ship = game.Create<Ship>(new Vector2(0, -2));

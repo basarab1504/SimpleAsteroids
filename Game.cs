@@ -9,11 +9,16 @@ namespace SimpleAsteroids
         List<GameObject> toDestroy = new List<GameObject>();
         List<GameObject> gameObjects = new List<GameObject>();
 
-        ConsoleDrawer consoleDrawer = new ConsoleDrawer(5);
+        IDrawer drawer;
         Physics physics = new Physics();
         Input input = new Input();
 
         public abstract bool IsOver { get; }
+
+        public Game(IDrawer drawer)
+        {
+            this.drawer = drawer;
+        }
 
         public T Create<T>(Vector2 position) where T : GameObject, new()
         {
@@ -50,7 +55,7 @@ namespace SimpleAsteroids
             toAdd.Clear();
 
             //рисовка
-            consoleDrawer.Update(gameObjects);
+            drawer.Update(gameObjects);
 
             //физика
             physics.Update(gameObjects);

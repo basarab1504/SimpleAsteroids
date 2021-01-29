@@ -1,8 +1,15 @@
 {
   "version": 2,
-  "dgSpecHash": "W2jKs0f9vOP2MtS4D1YCLvFOsL/B6K9G4xBJyAlMybiEpA1+YoZp8BS9VHZFZEAyeikdR8UvBLTMVxlJTBKWDQ==",
+  "dgSpecHash": "TS0e+JvqKnQt0puM3h3xlnzsWstgIvPXEKkrp7iYTDrnYwzT0rZJLI6ssS8JF5f5IPnDDcnfA6+Q8OoIrNAYlw==",
   "success": true,
   "projectFilePath": "C:\\Users\\joker\\OneDrive\\Документы\\Проекты\\C#\\SimpleAsteroids\\SimpleAsteroids.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\joker\\.nuget\\packages\\csfml\\2.5.0\\csfml.2.5.0.nupkg.sha512",
+    "C:\\Users\\joker\\.nuget\\packages\\sfml.audio\\2.5.0\\sfml.audio.2.5.0.nupkg.sha512",
+    "C:\\Users\\joker\\.nuget\\packages\\sfml.graphics\\2.5.0\\sfml.graphics.2.5.0.nupkg.sha512",
+    "C:\\Users\\joker\\.nuget\\packages\\sfml.net\\2.5.0\\sfml.net.2.5.0.nupkg.sha512",
+    "C:\\Users\\joker\\.nuget\\packages\\sfml.system\\2.5.0\\sfml.system.2.5.0.nupkg.sha512",
+    "C:\\Users\\joker\\.nuget\\packages\\sfml.window\\2.5.0\\sfml.window.2.5.0.nupkg.sha512"
+  ],
   "logs": []
 }

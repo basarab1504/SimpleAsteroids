@@ -1,4 +1,5 @@
 using System.Numerics;
+using SFML.Graphics;
 
 namespace SimpleAsteroids
 {
@@ -14,6 +15,7 @@ namespace SimpleAsteroids
         {
             Symbol = 'U';
             ScoreForDestroying = 2;
+            Color = Color.Blue;
         }
 
         public override void Update()
@@ -27,11 +29,10 @@ namespace SimpleAsteroids
                 Direction = Vector2.Normalize(target.Position - Position);
 
                 if ((target.Position - Position).Length() > DistanceToKeep)
+                {
                     Velocity = Direction;
-                else
-                    Velocity = Vector2.Zero;
-
-                if (cooldown <= 0 && !target.Destroyed)
+                }
+                else if (cooldown <= 0)
                 {
                     Shoot();
                     cooldown = ShootingCooldown;

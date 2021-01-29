@@ -4,7 +4,7 @@ using System.Numerics;
 
 namespace SimpleAsteroids
 {
-    public class ConsoleDrawer
+    public class ConsoleDrawer : IDrawer
     {
         private readonly int fromZeroSteps;
         private Dictionary<Vector2, char> map = new Dictionary<Vector2, char>();

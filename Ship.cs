@@ -1,5 +1,6 @@
 using System;
 using System.Numerics;
+using SFML.Graphics;
 
 namespace SimpleAsteroids
 {
@@ -12,6 +13,7 @@ namespace SimpleAsteroids
         public Ship()
         {
             Symbol = 'S';
+            Color = Color.Green;
         }
 
         public override void Update()

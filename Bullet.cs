@@ -1,15 +1,8 @@
 using System.Numerics;
+using SFML.Graphics;
 
 namespace SimpleAsteroids
 {
-    public class LaserBullet : Bullet
-    {
-        public override void OnCollide(GameObject other)
-        {
-
-        }
-    }
-
     public class Bullet : GameObject
     {
         private float lifeTimeLeft;
@@ -20,6 +13,7 @@ namespace SimpleAsteroids
             Symbol = 'B';
             ColliderRadius = 0.5f;
             Size = new Vector2(0.5f, 0.5f);
+            Color = Color.Yellow;
         }
 
         public override void Start()
