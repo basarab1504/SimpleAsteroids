@@ -5,8 +5,9 @@ using SFML.Graphics;
 
 namespace SimpleAsteroids
 {
-    public abstract class GameObject : IDrawable
+    public abstract class GameObject : IDrawable, ICollideable
     {
+        private ICollideable Collideable { get; set; }
         public Game Game { set; private get; }
         public Vector2 Position { get; set; }
         public Vector2 Direction { get; set; } = new Vector2(0, 1);
@@ -19,6 +20,14 @@ namespace SimpleAsteroids
         public Color Color { get; set; }
         //
         public int ScoreForDestroying { get; set; }
+
+        public GameObject()
+        {
+            Collideable = new CircleCollider()
+            {
+                GameObject = this
+            };
+        }
 
         //можно лучше
         protected T Create<T>(Vector2 position) where T : GameObject, new()
@@ -43,14 +52,19 @@ namespace SimpleAsteroids
 
         }
 
-        public virtual void OnCollide(GameObject other)
-        {
-            Destroyed = true;
-        }
-
         public void Draw(ICanvas canvas)
         {
             canvas.Draw(Position, Size);
+        }
+
+        public virtual void Collide(ICollideable other)
+        {
+            // Destroyed = true;
+        }
+
+        public bool ShouldCollide(ICollideable other)
+        {
+            return Collideable.ShouldCollide(other);
         }
     }
 }

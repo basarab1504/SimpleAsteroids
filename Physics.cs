@@ -1,34 +1,17 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SimpleAsteroids
 {
     public class Physics
     {
-        public void Update(IList<GameObject> toCheck)
+        //ужас
+        public void Update(IEnumerable<ICollideable> collideables)
         {
-            for (int i = 0; i <= toCheck.Count; i++)
-            {
-                for (int j = i + 1; j < toCheck.Count; j++)
-                {
-                    var iElement = toCheck[i];
-                    var jElement = toCheck[j];
-                    if (IsColliding(iElement, jElement))
-                    {
-                        if (ShouldCollide(iElement, jElement))
-                            iElement.OnCollide(jElement);
-                        if (ShouldCollide(jElement, iElement))
-                            jElement.OnCollide(iElement);
-                        break;
-                    }
-                }
-            }
+            foreach (var item in collideables)
+                collideables.FirstOrDefault(x => x.ShouldCollide(item))?.Collide(item);
         }
-
-        private bool IsColliding(GameObject gameObject, GameObject other)
-        {
-            return (gameObject.ColliderRadius + other.ColliderRadius) > (other.Position - gameObject.Position).Length();
-        }
-
+        
         private bool ShouldCollide(GameObject gameObject, GameObject other)
         {
             if (gameObject is Ship)

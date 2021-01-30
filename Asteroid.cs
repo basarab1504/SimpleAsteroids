@@ -12,7 +12,7 @@ namespace SimpleAsteroids
 
     public class NoChildAsteroid : MockAsteroid
     {
-        public override void OnCollide(GameObject other)
+        public override void Collide(ICollideable other)
         {
             Destroyed = true;
         }
@@ -37,9 +37,9 @@ namespace SimpleAsteroids
             Position += Velocity;
         }
 
-        public override void OnCollide(GameObject other)
+        public override void Collide(ICollideable other)
         {
-            base.OnCollide(other);
+            base.Collide(other);
 
             var asteroid = Create<Asteroid>(Position + Direction);
             asteroid.Velocity = Velocity;

@@ -15,12 +15,6 @@ namespace SimpleAsteroids
                     item.Position = RevertedPosition(item.Position);
         }
 
-        public override void OnCollide(GameObject other)
-        {
-            if (IsCrossedBorders(other))
-                other.Position = RevertedPosition(other.Position);
-        }
-
         private bool IsCrossedBorders(GameObject gameObject)
         {
             float x = gameObject.Position.X;

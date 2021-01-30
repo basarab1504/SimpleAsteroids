@@ -32,18 +32,26 @@ namespace SimpleAsteroids
 
         static void DrawTest()
         {
-            // TestGame game = new TestGame(new ConsoleDrawer(10, 10));
-            TestGame game = new TestGame(new SFMLDrawer(new SFML.Window.VideoMode(800, 600)));
+            TestGame game = new TestGame(new ConsoleDrawer(10, 10));
 
             game.Start();
 
+            game.Create<Arena>(Vector2.Zero).FromZeroSteps = 5;
             var ship = game.Create<Ship>(Vector2.Zero);
             ship.Size = new Vector2(3, 1);
             ship.Direction = new Vector2(1, 0);
             ship.Velocity = new Vector2(1, 0);
 
-            while(true)
-                game.Update();
+            // while (true)
+            //     game.Update();
+            game.Update();
+            game.Update();
+            game.Update();
+            game.Update();
+            game.Update();
+            game.Update();
+            game.Update();
+            game.Update();
         }
 
         static void ArenaTest()
