@@ -22,7 +22,6 @@ namespace SimpleAsteroids
     {
         public Asteroid()
         {
-            Symbol = 'A';
             ScoreForDestroying = 1;
         }
 

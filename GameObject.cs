@@ -12,13 +12,8 @@ namespace SimpleAsteroids
         public Vector2 Position { get; set; }
         public Vector2 Direction { get; set; } = new Vector2(0, 1);
         public Vector2 Size { get; set; } = new Vector2(1, 1);
-        public float ColliderRadius { get; set; } = 1;
         public Vector2 Velocity { get; set; }
         public bool Destroyed { get; protected set; }
-        //удалить
-        public char Symbol { get; set; }
-        public Color Color { get; set; }
-        //
         public int ScoreForDestroying { get; set; }
 
         public GameObject()

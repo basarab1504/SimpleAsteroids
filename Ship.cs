@@ -8,13 +8,7 @@ namespace SimpleAsteroids
     {
         public float GunForce { get; set; } = 1;
         public float LaserBeamLenght { get; set; } = 3;
-        public Vector2 GunPos => Position + Direction * ColliderRadius * 2;
-
-        public Ship()
-        {
-            Symbol = 'S';
-            Color = Color.Green;
-        }
+        public Vector2 GunPos => Position + Direction * 2;
 
         public override void Update()
         {

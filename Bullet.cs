@@ -10,10 +10,7 @@ namespace SimpleAsteroids
 
         public Bullet()
         {
-            Symbol = 'B';
-            ColliderRadius = 0.5f;
             Size = new Vector2(0.5f, 0.5f);
-            Color = Color.Yellow;
         }
 
         public override void Start()
