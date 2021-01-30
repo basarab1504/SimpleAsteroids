@@ -7,7 +7,7 @@ namespace SimpleAsteroids
 {
     public abstract class GameObject : IDrawable, ICollideable
     {
-        private ICollideable Collideable { get; set; }
+        public ICollideable Collideable { get; set; }
         public Game Game { set; private get; }
         public Vector2 Position { get; set; }
         public Vector2 Direction { get; set; } = new Vector2(0, 1);

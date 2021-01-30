@@ -6,13 +6,18 @@ namespace SimpleAsteroids
 {
     public class Ship : GameObject
     {
-        public float GunForce { get; set; } = 1;
+        public float GunForce { get; set; } = 2;
         public float LaserBeamLenght { get; set; } = 3;
         public Vector2 GunPos => Position + Direction * 2;
 
         public override void Update()
         {
             Position += Direction * Vector2.Abs(Velocity);
+        }
+
+        public void Thrust()
+        {
+            Velocity = Direction;
         }
 
         public void ShootLaser()
@@ -25,6 +30,11 @@ namespace SimpleAsteroids
         {
             if (key == ConsoleKey.Spacebar)
                 Shoot();
+            else if (key == ConsoleKey.W)
+            {
+                Direction = -Direction;
+                Velocity = -Velocity;
+            }
         }
 
         public override void Collide(ICollideable other)

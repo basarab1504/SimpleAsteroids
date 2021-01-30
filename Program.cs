@@ -13,7 +13,7 @@ namespace SimpleAsteroids
             // DrawTest();
 
             // AsteroidsArenaTest();
-            // AsteroidsGameTest();
+            AsteroidsGameTest();
 
             // StaticShipTest();
             // CollisionTest();
@@ -163,7 +163,7 @@ namespace SimpleAsteroids
 
         static void AsteroidsGameTest()
         {
-            GameSession session = new GameSession(new AsteroidsGame(new ConsoleDrawer(10, 10)));
+            GameSession session = new GameSession(new AsteroidsGame(new SFMLDrawer(new SFML.Window.VideoMode(800, 600))));
             session.Start();
         }
 

@@ -7,7 +7,6 @@ namespace SimpleAsteroids
 
         public CooldownSpawner()
         {
-            Symbol = 's';
         }
 
         public override void Update()
