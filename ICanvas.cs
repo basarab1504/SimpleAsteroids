@@ -5,6 +5,6 @@ namespace SimpleAsteroids
 {
     public interface ICanvas
     {
-        void Draw(IEnumerable<Vector2> points);
+        void Draw(Vector2 position, Vector2 size);
     }
 }

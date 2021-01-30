@@ -22,13 +22,18 @@ namespace SimpleAsteroids
             Display();
         }
 
-        public void Draw(IEnumerable<Vector2> points)
+        public void Draw(Vector2 position, Vector2 size)
         {
-            foreach (var item in points)
+            var pos = GetDrawPositions(position);
+            for (int i = 0; i < size.X; i++)
             {
-                var pos = GetDrawPositions(item);
-                if (pos.x < window.GetLength(0) && pos.y < window.GetLength(1))
-                    window[pos.y, pos.x] = '*';
+                for (int j = 0; j < size.Y; j++)
+                {
+                    int x = pos.x + i;
+                    int y = pos.y + j;
+                    if (x < window.GetLength(0) && y < window.GetLength(1))
+                        window[y, x] = '*';
+                }
             }
         }
 

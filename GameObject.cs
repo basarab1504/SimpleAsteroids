@@ -50,11 +50,7 @@ namespace SimpleAsteroids
 
         public void Draw(ICanvas canvas)
         {
-            List<Vector2> drawables = new List<Vector2>();
-            for (int i = 0; i < Size.X; i++)
-                for (int j = 0; j < Size.Y; j++)
-                    drawables.Add(new Vector2(Position.X + i, Position.Y + j));
-            canvas.Draw(drawables);
+            canvas.Draw(Position, Size);
         }
     }
 }

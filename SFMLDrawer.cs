@@ -29,22 +29,19 @@ namespace SimpleAsteroids
             window.Display();
         }
 
-        public void Draw(IEnumerable<Vector2> points)
+        public void Draw(Vector2 postion, Vector2 size)
         {
-            Vertex[] arr = GetDrawPositions(points);
-            window.Draw(arr, PrimitiveType.Quads);
+            RectangleShape shape = new RectangleShape(new Vector2f(size.X, size.Y));
+            shape.Position = GetDrawPositions(postion);
+            shape.FillColor = Color.Red;
+            window.Draw(shape);
         }
 
-        private Vertex[] GetDrawPositions(IEnumerable<Vector2> points)
+        private Vector2f GetDrawPositions(Vector2 pos)
         {
-            List<Vertex> list = new List<Vertex>();
-            foreach (var item in points)
-            {
-                float x = (int)(window.Size.X / 2 + item.X);
-                float y = (int)(window.Size.Y / 2 + item.Y);
-                list.Add(new Vertex(new Vector2f(x, y)));
-            }
-            return list.ToArray();
+            float x = (int)(window.Size.X / 2 + pos.X);
+            float y = (int)(window.Size.Y / 2 + pos.Y);
+            return new Vector2f(x, y);
         }
     }
 }
