@@ -55,7 +55,7 @@ namespace SimpleAsteroids
             toAdd.Clear();
 
             //рисовка
-            // drawer.Update(gameObjects);
+            drawer.Update(gameObjects);
 
             //физика
             physics.Update(gameObjects);

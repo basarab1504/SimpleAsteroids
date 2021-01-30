@@ -4,7 +4,7 @@ using System.Numerics;
 
 namespace SimpleAsteroids
 {
-    public class ConsoleDrawer : IDrawer
+    public class ConsoleDrawer : IDrawer, ICanvas
     {
         private char[,] window;
         private int xCenter => window.GetLength(1) / 2;
@@ -15,21 +15,27 @@ namespace SimpleAsteroids
             window = new char[height, width];
         }
 
-        public void Update(IEnumerable<GameObject> toCheck)
+        public void Update(IEnumerable<IDrawable> toDraw)
         {
             Clear();
-            Draw(toCheck);
+            Draw(toDraw);
             Display();
         }
 
-        private void Draw(IEnumerable<GameObject> toCheck)
+        public void Draw(IEnumerable<Vector2> points)
         {
-            foreach (var item in toCheck)
+            foreach (var item in points)
             {
                 var pos = GetDrawPositions(item);
                 if (pos.x < window.GetLength(0) && pos.y < window.GetLength(1))
-                    window[pos.y, pos.x] = item.Symbol;
+                    window[pos.y, pos.x] = '*';
             }
+        }
+
+        private void Draw(IEnumerable<IDrawable> toDraw)
+        {
+            foreach (var item in toDraw)
+                item.Draw(this);
         }
 
         private void Display()
@@ -43,10 +49,10 @@ namespace SimpleAsteroids
             System.Console.WriteLine("======");
         }
 
-        private (int x, int y) GetDrawPositions(GameObject gameObject)
+        private (int x, int y) GetDrawPositions(Vector2 position)
         {
-            int x = (int)(xCenter + gameObject.Position.X);
-            int y = (int)(yCenter + gameObject.Position.Y);
+            int x = (int)(xCenter + position.X);
+            int y = (int)(yCenter + position.Y);
             return (x: x, y: y);
         }
 
@@ -56,5 +62,7 @@ namespace SimpleAsteroids
                 for (int j = 0; j < window.GetLength(0); j++)
                     window[i, j] = '_';
         }
+
+
     }
 }

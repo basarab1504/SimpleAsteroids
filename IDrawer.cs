@@ -4,6 +4,6 @@ namespace SimpleAsteroids
 {
     public interface IDrawer
     {
-        void Update(IEnumerable<GameObject> gameObjects);
+        void Update(IEnumerable<IDrawable> drawables);
     }
 }

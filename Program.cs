@@ -10,23 +10,42 @@ namespace SimpleAsteroids
             // ConsoleTest();
             // SFMLTest();
             // InputTest();
+            DrawTest();
 
             // AsteroidsArenaTest();
             // AsteroidsGameTest();
 
-            StaticShipTest();
-            CollisionTest();
-            BulletTest();
-            ManyBulletTest();
-            TwoShipBulletTest();
-            ArenaTest();
-            NoMoveUFOTest();
-            MoveUFOTest();
-            PhysicsLayerTest();
-            SpawnerTest();
-            UFOSpawnerTest();
-            LaserBeamTest();
-            LaserBeamCollisionTest();
+            // StaticShipTest();
+            // CollisionTest();
+            // BulletTest();
+            // ManyBulletTest();
+            // TwoShipBulletTest();
+            // ArenaTest();
+            // NoMoveUFOTest();
+            // MoveUFOTest();
+            // PhysicsLayerTest();
+            // SpawnerTest();
+            // UFOSpawnerTest();
+            // LaserBeamTest();
+            // LaserBeamCollisionTest();
+        }
+
+        static void DrawTest()
+        {
+            TestGame game = new TestGame(new ConsoleDrawer(10, 10));
+
+            game.Start();
+
+            var ship = game.Create<Ship>(Vector2.Zero);
+            ship.Size = new Vector2(3, 1);
+            ship.Direction = new Vector2(1, 0);
+            ship.Velocity = new Vector2(1, 0);
+
+            game.Update();
+            game.Update();
+            game.Update();
+            game.Update();
+            game.Update();
         }
 
         static void ArenaTest()
