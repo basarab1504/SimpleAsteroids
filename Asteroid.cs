@@ -39,11 +39,13 @@ namespace SimpleAsteroids
 
         public override void Collide(ICollideable other)
         {
-            base.Collide(other);
-
-            var asteroid = Create<Asteroid>(Position + Direction);
-            asteroid.Velocity = Velocity;
-            asteroid.Direction = Direction;
+            if (other is Ship || other is Bullet)
+            {
+                Destroyed = true;
+                var asteroid = Create<Asteroid>(Position + Direction);
+                asteroid.Velocity = Velocity;
+                asteroid.Direction = Direction;
+            }
         }
 
         private void PushRandomDirection()

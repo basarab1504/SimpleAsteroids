@@ -22,6 +22,11 @@ namespace SimpleAsteroids
             lifeTimeLeft = LifeTime;
         }
 
+        public override void Collide(ICollideable other)
+        {
+            Destroyed = true;
+        }
+
         public override void Update()
         {
             Position += Velocity;

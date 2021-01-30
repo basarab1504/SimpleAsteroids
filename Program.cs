@@ -10,24 +10,24 @@ namespace SimpleAsteroids
             // ConsoleTest();
             // SFMLTest();
             // InputTest();
-            DrawTest();
+            // DrawTest();
 
             // AsteroidsArenaTest();
             // AsteroidsGameTest();
 
-            // StaticShipTest();
-            // CollisionTest();
-            // BulletTest();
-            // ManyBulletTest();
-            // TwoShipBulletTest();
-            // ArenaTest();
-            // NoMoveUFOTest();
-            // MoveUFOTest();
-            // PhysicsLayerTest();
-            // SpawnerTest();
-            // UFOSpawnerTest();
-            // LaserBeamTest();
-            // LaserBeamCollisionTest();
+            StaticShipTest();
+            CollisionTest();
+            BulletTest();
+            ManyBulletTest();
+            TwoShipBulletTest();
+            ArenaTest();
+            NoMoveUFOTest();
+            MoveUFOTest();
+            PhysicsLayerTest();
+            SpawnerTest();
+            UFOSpawnerTest();
+            LaserBeamTest();
+            LaserBeamCollisionTest();
         }
 
         static void DrawTest()
@@ -127,7 +127,7 @@ namespace SimpleAsteroids
 
         static void LaserBeamTest()
         {
-            TestGame game = new TestGame(new ConsoleDrawer(10, 10));
+            TestGame game = new TestGame(new ConsoleDrawer(15, 15));
             game.Start();
 
             var ship = game.Create<Ship>(Vector2.Zero);
@@ -144,7 +144,7 @@ namespace SimpleAsteroids
 
         static void LaserBeamCollisionTest()
         {
-            TestGame game = new TestGame(new ConsoleDrawer(10, 10));
+            TestGame game = new TestGame(new ConsoleDrawer(15, 15));
             game.Start();
 
             var ship = game.Create<Ship>(Vector2.Zero);
@@ -155,7 +155,7 @@ namespace SimpleAsteroids
             game.Update();
             ship.ShootLaser();
             game.Update();
-            System.Console.WriteLine(game.Get<GameObject>().Count == 5);
+            System.Console.WriteLine(game.Get<GameObject>().Count == 4);
             game.Update();
             game.Update();
             System.Console.WriteLine(game.Get<GameObject>().Count == 1);
@@ -323,13 +323,11 @@ namespace SimpleAsteroids
             TestGame game = new TestGame(new ConsoleDrawer(10, 10));
             game.Start();
 
-            var ship = game.Create<Ship>(Vector2.Zero);
-            ship.Position = new Vector2(2, 0);
+            var ship = game.Create<Ship>(new Vector2(2, 0));
             ship.Direction = new Vector2(-1, 0);
             ship.Velocity = new Vector2(-1, 0);
 
-            var asteroid = game.Create<MockAsteroid>(Vector2.Zero);
-            asteroid.Position = new Vector2(-2, 0);
+            var asteroid = game.Create<NoChildAsteroid>(new Vector2(-2, 0));
             asteroid.Velocity = new Vector2(1, 0);
 
             game.Update();
@@ -337,7 +335,7 @@ namespace SimpleAsteroids
             game.Update();
             game.Update();
 
-            System.Console.WriteLine(game.Get<GameObject>().Count == 1);
+            System.Console.WriteLine(game.Get<GameObject>().Count == 0);
             // System.Console.WriteLine(game.Score == 1);
         }
 

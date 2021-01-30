@@ -40,6 +40,12 @@ namespace SimpleAsteroids
             }
         }
 
+        public override void Collide(ICollideable other)
+        {
+            if (other is Ship || other is Bullet)
+                Destroyed = true;
+        }
+
         private void Shoot()
         {
             var bullet = Create<Bullet>(GunPos);

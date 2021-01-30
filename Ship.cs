@@ -33,6 +33,12 @@ namespace SimpleAsteroids
                 Shoot();
         }
 
+        public override void Collide(ICollideable other)
+        {
+            if (!(other is Ship) && !(other is ISpawner) && !(other is Arena))
+                Destroyed = true;
+        }
+
         public void Shoot()
         {
             var bullet = Create<Bullet>(GunPos);
