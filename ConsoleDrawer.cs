@@ -31,8 +31,10 @@ namespace SimpleAsteroids
                 {
                     int x = pos.x + i;
                     int y = pos.y + j;
-                    if (x < window.GetLength(0) && y < window.GetLength(1))
+                    if (x < window.GetLength(1) && x >= 0 && y < window.GetLength(0) && y >= 0)
+                    {
                         window[y, x] = '*';
+                    }
                 }
             }
         }
