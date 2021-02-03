@@ -6,7 +6,7 @@ namespace SimpleAsteroids
     public class CircleCollider : ICollideable
     {
         public GameObject GameObject { get; set; }
-        public Vector2 Position => GameObject.Position;
+        public Vector2 Position => GameObject.Transform.Position;
         public float Radius { get; set; } = 1;
 
         public void Collide(ICollideable other)

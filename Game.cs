@@ -8,6 +8,7 @@ namespace SimpleAsteroids
         List<GameObject> toAdd = new List<GameObject>();
         List<GameObject> toDestroy = new List<GameObject>();
         List<GameObject> gameObjects = new List<GameObject>();
+        Dictionary<GameObject, IDrawable> drawables = new Dictionary<GameObject, IDrawable>();
 
         IDrawer drawer;
         Physics physics = new Physics();
@@ -20,9 +21,17 @@ namespace SimpleAsteroids
             this.drawer = drawer;
         }
 
+        public T CreateDrawable<T>(GameObject gameObject) where T : IDrawable, new()
+        {
+            T drawable = new T();
+            drawables.Add(gameObject, drawable);
+            return drawable;
+        }
+
         public T Create<T>(Vector2 position) where T : GameObject, new()
         {
-            var gameObject = new T() { Position = position };
+            var gameObject = new T();
+            gameObject.Transform.Position = position;
             gameObject.Game = this;
             toAdd.Add(gameObject);
             return gameObject;
@@ -55,7 +64,7 @@ namespace SimpleAsteroids
             toAdd.Clear();
 
             //рисовка
-            // drawer.Update(gameObjects);
+            drawer.Update(drawables.Values);
 
             //физика
             physics.Update(gameObjects);
@@ -73,7 +82,11 @@ namespace SimpleAsteroids
 
             //удаление
             foreach (var item in toDestroy)
+            {
                 gameObjects.Remove(item);
+                if (drawables.ContainsKey(item))
+                    drawables.Remove(item);
+            }
             toDestroy.Clear();
 
             IternalUpdate();

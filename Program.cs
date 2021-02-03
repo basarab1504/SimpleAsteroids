@@ -15,19 +15,19 @@ namespace SimpleAsteroids
             // AsteroidsArenaTest();
             // AsteroidsGameTest();
 
-            StaticShipTest();
+            // StaticShipTest();
             CollisionTest();
-            BulletTest();
-            ManyBulletTest();
-            TwoShipBulletTest();
-            ArenaTest();
-            NoMoveUFOTest();
-            MoveUFOTest();
-            PhysicsLayerTest();
-            SpawnerTest();
-            UFOSpawnerTest();
-            LaserBeamTest();
-            LaserBeamCollisionTest();
+            // BulletTest();
+            // ManyBulletTest();
+            // TwoShipBulletTest();
+            // ArenaTest();
+            // NoMoveUFOTest();
+            // MoveUFOTest();
+            // PhysicsLayerTest();
+            // SpawnerTest();
+            // UFOSpawnerTest();
+            // LaserBeamTest();
+            // LaserBeamCollisionTest();
         }
 
         static void DrawTest()
@@ -38,8 +38,8 @@ namespace SimpleAsteroids
 
             game.Create<Arena>(Vector2.Zero).FromZeroSteps = 5;
             var ship = game.Create<Ship>(Vector2.Zero);
-            ship.Size = new Vector2(3, 1);
-            ship.Direction = new Vector2(1, 0);
+            ship.Transform.Size = new Vector2(3, 1);
+            ship.Transform.Direction = new Vector2(1, 0);
             ship.Velocity = new Vector2(1, 0);
 
             // while (true)
@@ -221,8 +221,8 @@ namespace SimpleAsteroids
 
             var ship = game.Get<Ship>()[0];
 
-            ship.Position = new Vector2(4, 0);
-            ship.Direction = new Vector2(1, 0);
+            ship.Transform.Position = new Vector2(4, 0);
+            ship.Transform.Direction = new Vector2(1, 0);
             ship.Velocity = new Vector2(1, 0);
 
             game.Update();
@@ -245,10 +245,10 @@ namespace SimpleAsteroids
             var ship2 = game.Create<Ship>(new Vector2(0, -3));
 
             ship.Velocity = new Vector2(0, -1);
-            ship.Direction = new Vector2(0, -1);
+            ship.Transform.Direction = new Vector2(0, -1);
 
             ship2.Velocity = new Vector2(0, 1);
-            ship2.Direction = new Vector2(0, 1);
+            ship2.Transform.Direction = new Vector2(0, 1);
 
             game.Update();
             game.Update();
@@ -324,7 +324,7 @@ namespace SimpleAsteroids
             game.Start();
 
             var ship = game.Create<Ship>(new Vector2(2, 0));
-            ship.Direction = new Vector2(-1, 0);
+            ship.Transform.Direction = new Vector2(-1, 0);
             ship.Velocity = new Vector2(-1, 0);
 
             var asteroid = game.Create<NoChildAsteroid>(new Vector2(-2, 0));
@@ -347,8 +347,8 @@ namespace SimpleAsteroids
             var ship = game.Create<Ship>(new Vector2(-4, 0));
             var ship2 = game.Create<Ship>(new Vector2(4, 0));
 
-            ship.Direction = new Vector2(1, 0);
-            ship2.Direction = new Vector2(-1, 0);
+            ship.Transform.Direction = new Vector2(1, 0);
+            ship2.Transform.Direction = new Vector2(-1, 0);
 
             ship.Shoot();
             ship2.Shoot();
@@ -388,11 +388,11 @@ namespace SimpleAsteroids
 
             ship.Shoot();
 
-            ship.Direction = new Vector2(1, 0);
+            ship.Transform.Direction = new Vector2(1, 0);
 
             ship.Shoot();
 
-            ship.Direction = new Vector2(-1, 0);
+            ship.Transform.Direction = new Vector2(-1, 0);
 
             ship.Shoot();
 

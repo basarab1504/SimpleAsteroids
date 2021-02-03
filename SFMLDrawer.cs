@@ -31,7 +31,7 @@ namespace SimpleAsteroids
 
         public void Draw(Vector2 postion, Vector2 size)
         {
-            RectangleShape shape = new RectangleShape(new Vector2f(size.X, size.Y));
+            SFML.Graphics.RectangleShape shape = new SFML.Graphics.RectangleShape(new Vector2f(size.X, size.Y));
             shape.Position = GetDrawPositions(postion);
             shape.FillColor = Color.Red;
             window.Draw(shape);

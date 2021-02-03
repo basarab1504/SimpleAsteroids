@@ -7,6 +7,7 @@ namespace SimpleAsteroids
     {
         public override void Start()
         {
+            CreateDrawable<RectangleShape>().Transform = Transform;
         }
     }
 
@@ -20,6 +21,7 @@ namespace SimpleAsteroids
 
     public class Asteroid : GameObject
     {
+
         public Asteroid()
         {
             ScoreForDestroying = 1;
@@ -28,12 +30,13 @@ namespace SimpleAsteroids
         public override void Start()
         {
             base.Start();
+            CreateDrawable<RectangleShape>().Transform = Transform;
             PushRandomDirection();
         }
 
         public override void Update()
         {
-            Position += Velocity;
+            Transform.Position += Velocity;
         }
 
         public override void Collide(ICollideable other)
@@ -41,16 +44,16 @@ namespace SimpleAsteroids
             if (other is Ship || other is Bullet)
             {
                 Destroyed = true;
-                var asteroid = Create<Asteroid>(Position + Direction);
+                var asteroid = Create<Asteroid>(Transform.Position + Transform.Direction);
                 asteroid.Velocity = Velocity;
-                asteroid.Direction = Direction;
+                asteroid.Transform.Direction = Transform.Direction;
             }
         }
 
         private void PushRandomDirection()
         {
             Vector2 direction = RandomDirection();
-            Direction = Vector2.Normalize(direction);
+            Transform.Direction = Vector2.Normalize(direction);
             Velocity = RandomDirection();
         }
 

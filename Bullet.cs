@@ -10,12 +10,13 @@ namespace SimpleAsteroids
 
         public Bullet()
         {
-            Size = new Vector2(0.5f, 0.5f);
+            Transform.Size = new Vector2(0.5f, 0.5f);
         }
 
         public override void Start()
         {
             base.Start();
+            CreateDrawable<RectangleShape>().Transform = Transform;
             lifeTimeLeft = LifeTime;
         }
 
@@ -26,7 +27,7 @@ namespace SimpleAsteroids
 
         public override void Update()
         {
-            Position += Velocity;
+            Transform.Position += Velocity;
 
             if (lifeTimeLeft == 0)
                 Destroyed = true;

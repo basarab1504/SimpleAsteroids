@@ -7,23 +7,23 @@ namespace SimpleAsteroids
     {
         private float cooldown;
         public float GunForce { get; set; } = 1;
-        public Vector2 GunPos => Position + Direction * 2;
+        public Vector2 GunPos =>Transform. Position + Transform.Direction * 2;
         public float ShootingCooldown { get; set; } = 3;
         public float DistanceToKeep { get; set; } = 3;
 
         public override void Update()
         {
-            Position += Velocity;
+            Transform.Position += Velocity;
 
             cooldown--;
 
             foreach (var target in Get<Ship>())
             {
-                Direction = Vector2.Normalize(target.Position - Position);
+                Transform.Direction = Vector2.Normalize(target.Transform.Position - Transform.Position);
 
-                if ((target.Position - Position).Length() > DistanceToKeep)
+                if ((target.Transform.Position - Transform.Position).Length() > DistanceToKeep)
                 {
-                    Velocity = Direction;
+                    Velocity = Transform.Direction;
                 }
                 else if (cooldown <= 0)
                 {
@@ -42,8 +42,8 @@ namespace SimpleAsteroids
         private void Shoot()
         {
             var bullet = Create<Bullet>(GunPos);
-            bullet.Direction = Direction;
-            bullet.Velocity = Direction * GunForce;
+            bullet.Transform.Direction = Transform.Direction;
+            bullet.Velocity = Transform.Direction * GunForce;
         }
     }
 }

@@ -4,7 +4,7 @@ namespace SimpleAsteroids
     {
         public void Spawn()
         {
-            Create<T>(Position);
+            Create<T>(Transform.Position);
         }
 
         public override void Update()

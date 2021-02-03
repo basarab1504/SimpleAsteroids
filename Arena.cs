@@ -12,13 +12,13 @@ namespace SimpleAsteroids
         {
             foreach (var item in Get<GameObject>())
                 if (IsCrossedBorders(item))
-                    item.Position = RevertedPosition(item.Position);
+                    item.Transform.Position = RevertedPosition(item.Transform.Position);
         }
 
         private bool IsCrossedBorders(GameObject gameObject)
         {
-            float x = gameObject.Position.X;
-            float y = gameObject.Position.Y;
+            float x = gameObject.Transform.Position.X;
+            float y = gameObject.Transform.Position.Y;
 
             return (x >= FromZeroSteps || x <= -FromZeroSteps || y >= FromZeroSteps || y <= -FromZeroSteps);
         }

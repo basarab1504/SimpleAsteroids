@@ -8,22 +8,28 @@ namespace SimpleAsteroids
     {
         public float GunForce { get; set; } = 2;
         public float LaserBeamLenght { get; set; } = 3;
-        public Vector2 GunPos => Position + Direction * 2;
+        public Vector2 GunPos => Transform.Position + Transform.Direction * 2;
+        
+        public override void Start()
+        {
+            base.Start();
+            CreateDrawable<RectangleShape>().Transform = Transform;
+        }
 
         public override void Update()
         {
-            Position += Direction * Vector2.Abs(Velocity);
+            Transform.Position += Transform.Direction * Vector2.Abs(Velocity);
         }
 
         public void Thrust()
         {
-            Velocity = Direction;
+            Velocity = Transform.Direction;
         }
 
         public void ShootLaser()
         {
             for (int i = 1; i <= LaserBeamLenght; i++)
-                Create<LaserBullet>(GunPos + Direction * i).LifeTime = 1;
+                Create<LaserBullet>(GunPos + Transform.Direction * i).LifeTime = 1;
         }
 
         public override void OnInput(ConsoleKey key)
@@ -32,7 +38,7 @@ namespace SimpleAsteroids
                 Shoot();
             else if (key == ConsoleKey.W)
             {
-                Direction = -Direction;
+                Transform.Direction = -Transform.Direction;
                 Velocity = -Velocity;
             }
         }
@@ -46,8 +52,8 @@ namespace SimpleAsteroids
         public void Shoot()
         {
             var bullet = Create<Bullet>(GunPos);
-            bullet.Direction = Direction;
-            bullet.Velocity = Direction * GunForce;
+            bullet.Transform.Direction = Transform.Direction;
+            bullet.Velocity = Transform.Direction * GunForce;
         }
     }
 }
