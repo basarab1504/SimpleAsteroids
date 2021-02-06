@@ -5,11 +5,12 @@ namespace SimpleAsteroids
 {
     public abstract class Game
     {
-        List<GameObject> toAdd = new List<GameObject>();
-        List<GameObject> toDestroy = new List<GameObject>();
-        List<GameObject> gameObjects = new List<GameObject>();
+        GameCollection gameCollection = new GameCollection();
 
-        Container container = new Container();
+        GameCollection<IDrawable> drawables = new GameCollection<IDrawable>(x => x.Active);
+        GameCollection<ICollideable> collideables = new GameCollection<ICollideable>(x => x.Active);
+        GameCollection<IUpdateable> updateables = new GameCollection<IUpdateable>(x => x.Active);
+
         IDrawer drawer;
         Physics physics = new Physics();
         Input input = new Input();
@@ -19,76 +20,77 @@ namespace SimpleAsteroids
         public Game(IDrawer drawer)
         {
             this.drawer = drawer;
+            gameCollection.Added += Categorize;
+            gameCollection.Removed += Decategorize;
         }
 
-        public T Create<T>() where T : new()
-        {
-            T drawable = new T();
-            container.Add<T>(drawable);
-            return drawable;
-        }
+        // public T Create<T>() where T : IComponent, new()
+        // {
+        //     T item = new T();
+        //     Categorize(item);
+        //     return item;
+        // }
 
-        public T Create<T>(Vector2 position) where T : GameObject, new()
-        {
-            var gameObject = new T();
-            gameObject.Transform.Position = position;
-            gameObject.Game = this;
-            toAdd.Add(gameObject);
-            return gameObject;
-        }
-
-        //нужно лучше
-        public IList<T> Get<T>() where T : GameObject
-        {
-            IList<T> collection = new List<T>();
-            foreach (var item in gameObjects)
-                if (item is T)
-                    collection.Add(item as T);
-            return collection;
-        }
+        // public T Create<T>(Vector2 position) where T : IComponent, new()
+        // {
+        //     var gameObject = new T();
+        //     gameObject.Transform.Position = position;
+        //     gameObject.Game = this;
+        //     return gameObject;
+        // }
 
         public void Start()
         {
-            toAdd.Clear();
-            gameObjects.Clear();
-            toDestroy.Clear();
             IternalStart();
         }
 
         public void Update()
         {
             //создать
-            gameObjects.AddRange(toAdd);
             //включить
-            toAdd.ForEach(x => { x.Start(); input.KeyPressed += x.OnInput; });
-            toAdd.Clear();
 
             //рисовка
-            drawer.Update(container.Get<IDrawable>());
+            drawer.Update(drawables.FilteredItems);
 
             //физика
-            physics.Update(container.Get<ICollideable>());
+            physics.Update(collideables.FilteredItems);
 
             //ввод
             input.Update();
 
             //логика
-            foreach (var item in gameObjects)
-            {
+            foreach (var item in updateables.FilteredItems)
                 item.Update();
-                if (item.Destroyed)
-                    toDestroy.Add(item);
-            }
 
-            //удаление
-            foreach (var item in toDestroy)
-                gameObjects.Remove(item);
-            toDestroy.Clear();
+            // //удаление
+            // foreach (var item in gameCollection.Items)
+            //     if (!item.Destroyed)
+            //         gameCollection.Remove(item);
 
             IternalUpdate();
         }
 
         protected abstract void IternalStart();
         protected abstract void IternalUpdate();
+
+        private void Categorize(IComponent component)
+        {
+            if (component is IDrawable)
+                drawables.Add((IDrawable)component);
+            else if (component is ICollideable)
+                collideables.Add((ICollideable)component);
+            else if (component is IUpdateable)
+                updateables.Add((IUpdateable)component);
+        }
+
+        private void Decategorize(IComponent component)
+        {
+            if (component is IDrawable)
+                drawables.Remove((IDrawable)component);
+            else if (component is ICollideable)
+                collideables.Remove((ICollideable)component);
+            else if (component is IUpdateable)
+                updateables.Remove((IUpdateable)component);
+        }
     }
 }

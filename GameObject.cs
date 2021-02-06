@@ -21,7 +21,7 @@ namespace SimpleAsteroids
             return Game.Create<T>(position);
         }
 
-        protected T Create<T>() where T : new()
+        protected T Create<T>() where T : IComponent, new()
         {
             return Game.Create<T>();
         }

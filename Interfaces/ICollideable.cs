@@ -2,7 +2,7 @@ using System.Numerics;
 
 namespace SimpleAsteroids
 {
-    public interface ICollideable
+    public interface ICollideable : IComponent
     {
         GameObject GameObject { get; }
         Points Points { get; }
