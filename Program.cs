@@ -255,7 +255,7 @@ namespace SimpleAsteroids
 
             System.Console.WriteLine(game.Get<GameObject>().Count == 2);
 
-            var asteroid = game.Create<MockAsteroid>(new Vector2(0, 2));
+            // var asteroid = game.Create<MockAsteroid>(new Vector2(0, 2));
 
             game.Update();
             game.Update();
@@ -330,6 +330,8 @@ namespace SimpleAsteroids
             var asteroid = game.Create<NoChildAsteroid>(new Vector2(-2, 0));
             asteroid.Velocity = new Vector2(1, 0);
 
+            game.Update();
+            game.Update();
             game.Update();
             game.Update();
             game.Update();

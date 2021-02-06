@@ -94,6 +94,8 @@ namespace SimpleAsteroids
                 gameObjects.Remove(item);
                 if (drawables.ContainsKey(item))
                     drawables.Remove(item);
+                if (collideables.ContainsKey(item))
+                    collideables.Remove(item);
             }
             toDestroy.Clear();
 

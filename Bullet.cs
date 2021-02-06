@@ -20,7 +20,7 @@ namespace SimpleAsteroids
             var coll = CreateCollideable<RectangleCollider>();
             coll.Collided += Collide;
             coll.Transform = Transform;
-            coll.Layer = 0;
+            coll.GameObject = this;
             lifeTimeLeft = LifeTime;
         }
 

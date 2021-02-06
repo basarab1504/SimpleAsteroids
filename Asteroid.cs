@@ -10,9 +10,8 @@ namespace SimpleAsteroids
             CreateDrawable<RectangleShape>().Transform = Transform;
             var coll = CreateCollideable<RectangleCollider>();
             coll.Collided += Collide;
-
             coll.Transform = Transform;
-            coll.Layer = 0;
+            coll.GameObject = this;
         }
     }
 
@@ -22,10 +21,8 @@ namespace SimpleAsteroids
         {
             CreateDrawable<RectangleShape>().Transform = Transform;
             var coll = CreateCollideable<RectangleCollider>();
-            coll.Collided += Collide;
-
+            coll.Collided += (x) => Destroyed = true;
             coll.Transform = Transform;
-            coll.Layer = 0;
         }
     }
 
@@ -44,7 +41,7 @@ namespace SimpleAsteroids
             var coll = CreateCollideable<RectangleCollider>();
             coll.Collided += Collide;
             coll.Transform = Transform;
-            coll.Layer = 0;
+            coll.GameObject = this;
             PushRandomDirection();
         }
 
@@ -55,7 +52,7 @@ namespace SimpleAsteroids
 
         protected void Collide(ICollideable other)
         {
-            if (other is Ship || other is Bullet)
+            if ((other.GameObject is Ship || other.GameObject is Bullet))
             {
                 Destroyed = true;
                 var asteroid = Create<Asteroid>(Transform.Position + Transform.Direction);

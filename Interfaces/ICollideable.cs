@@ -4,7 +4,7 @@ namespace SimpleAsteroids
 {
     public interface ICollideable
     {
-        int Layer { get; }
+        GameObject GameObject { get; }
         Points Points { get; }
         void Collide(ICollideable other);
     }
