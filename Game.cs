@@ -61,12 +61,19 @@ namespace SimpleAsteroids
             //логика
             foreach (var item in updateables.FilteredItems)
                 item.Update();
+                if (item.Destroyed)
+                    toDestroy.Add(item);
+            }
 
-            // //удаление
-            // foreach (var item in gameCollection.Items)
-            //     if (!item.Destroyed)
-            //         gameCollection.Remove(item);
-
+            //удаление
+            foreach (var item in toDestroy)
+            {
+                gameObjects.Remove(item);
+                if (drawables.ContainsKey(item))
+                    drawables.Remove(item);
+            }
+            toDestroy.Clear();
+            
             IternalUpdate();
         }
 

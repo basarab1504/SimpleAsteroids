@@ -12,7 +12,7 @@ namespace SimpleAsteroids
                 {
                     var a = collideables[i];
                     var b = collideables[j];
-                    if (Intersects(a, b))
+                    if (a.Layer == b.Layer && Intersects(a, b))
                     {
                         a.Collide(b);
                         b.Collide(a);

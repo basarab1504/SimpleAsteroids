@@ -22,7 +22,11 @@ namespace SimpleAsteroids
 
         public bool Intersect(Points other)
         {
-            bool outside = Right <= other.Left || Left >= other.Right || Bottom >= other.Top || Top <= other.Bottom;
+            bool outside =
+              Right <= other.Left ||
+              Left >= other.Right ||
+              Bottom >= other.Top ||
+              other.Top <= other.Bottom;
             return (outside == false);
         }
     }

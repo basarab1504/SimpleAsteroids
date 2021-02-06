@@ -1,0 +1,3 @@
+
+*.cache
+obj/Debug/netcoreapp3.1/SimpleAsteroids.csproj.CoreCompileInputs.cache
