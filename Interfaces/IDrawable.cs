@@ -1,6 +1,6 @@
 namespace SimpleAsteroids
 {
-    public interface IDrawable : IComponent
+    public interface IDrawable
     {
         void Draw(ICanvas canvas);
     }
