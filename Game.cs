@@ -9,6 +9,7 @@ namespace SimpleAsteroids
         List<GameObject> toDestroy = new List<GameObject>();
         List<GameObject> gameObjects = new List<GameObject>();
         Dictionary<GameObject, IDrawable> drawables = new Dictionary<GameObject, IDrawable>();
+        Dictionary<GameObject, ICollideable> collideables = new Dictionary<GameObject, ICollideable>();
 
         IDrawer drawer;
         Physics physics = new Physics();
@@ -26,6 +27,13 @@ namespace SimpleAsteroids
             T drawable = new T();
             drawables.Add(gameObject, drawable);
             return drawable;
+        }
+
+        public T CreateCollideable<T>(GameObject gameObject) where T : ICollideable, new()
+        {
+            T collideable = new T();
+            collideables.Add(gameObject, collideable);
+            return collideable;
         }
 
         public T Create<T>(Vector2 position) where T : GameObject, new()
@@ -64,10 +72,10 @@ namespace SimpleAsteroids
             toAdd.Clear();
 
             //рисовка
-            drawer.Update(drawables.Values);
+            // drawer.Update(drawables.Values);
 
             //физика
-            physics.Update(gameObjects);
+            physics.Update(new List<ICollideable>(collideables.Values));
 
             //ввод
             input.Update();

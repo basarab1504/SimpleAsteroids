@@ -10,11 +10,19 @@ namespace SimpleAsteroids
             for (int i = 0; i <= collideables.Count; i++)
                 for (int j = i + 1; j < collideables.Count; j++)
                 {
-                    if (collideables[i].ShouldCollide(collideables[j]))
-                        collideables[i].Collide(collideables[j]);
-                    if (collideables[j].ShouldCollide(collideables[i]))
-                        collideables[j].Collide(collideables[i]);
+                    var a = collideables[i];
+                    var b = collideables[j];
+                    if (a.Layer == b.Layer && Intersects(a, b))
+                    {
+                        a.Collide(b);
+                        b.Collide(a);
+                    }
                 }
+        }
+
+        private static bool Intersects(ICollideable a, ICollideable b)
+        {
+            return a.Points.Intersect(b.Points);
         }
     }
 }

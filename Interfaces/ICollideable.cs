@@ -1,9 +1,11 @@
+using System.Numerics;
+
 namespace SimpleAsteroids
 {
     public interface ICollideable
     {
-        System.Numerics.Vector2 Position { get; }
+        int Layer { get; }
+        Points Points { get; }
         void Collide(ICollideable other);
-        bool ShouldCollide(ICollideable other);
     }
 }

@@ -7,9 +7,18 @@ namespace SimpleAsteroids
     {
         private float cooldown;
         public float GunForce { get; set; } = 1;
-        public Vector2 GunPos =>Transform. Position + Transform.Direction * 2;
+        public Vector2 GunPos => Transform.Position + Transform.Direction * 2;
         public float ShootingCooldown { get; set; } = 3;
         public float DistanceToKeep { get; set; } = 3;
+
+        public override void Start()
+        {
+            CreateDrawable<RectangleShape>().Transform = Transform;
+            var coll = CreateCollideable<RectangleCollider>();
+            coll.Collided += Collide;
+            coll.Transform = Transform;
+            coll.Layer = 0;
+        }
 
         public override void Update()
         {
@@ -33,7 +42,7 @@ namespace SimpleAsteroids
             }
         }
 
-        public override void Collide(ICollideable other)
+        private void Collide(ICollideable other)
         {
             if (other is Ship || other is Bullet)
                 Destroyed = true;

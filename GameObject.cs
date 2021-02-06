@@ -5,24 +5,15 @@ using SFML.Graphics;
 
 namespace SimpleAsteroids
 {
-    public abstract class GameObject : ICollideable
+    public abstract class GameObject
     {
         public Transform Transform { get; set; } = new Transform();
-        public ICollideable Collideable { get; set; }
         public Game Game { set; private get; }
         public Vector2 Velocity { get; set; }
         public bool Destroyed { get; protected set; }
         public int ScoreForDestroying { get; set; }
 
         public Vector2 Position => Transform.Position;
-
-        public GameObject()
-        {
-            Collideable = new CircleCollider()
-            {
-                GameObject = this
-            };
-        }
 
         //можно лучше
         protected T Create<T>(Vector2 position) where T : GameObject, new()
@@ -35,6 +26,10 @@ namespace SimpleAsteroids
             return Game.CreateDrawable<T>(this);
         }
 
+        protected T CreateCollideable<T>() where T : ICollideable, new()
+        {
+            return Game.CreateCollideable<T>(this);
+        }
 
         protected IEnumerable<T> Get<T>() where T : GameObject
         {
@@ -51,16 +46,6 @@ namespace SimpleAsteroids
         public virtual void OnInput(ConsoleKey key)
         {
 
-        }
-
-        public virtual void Collide(ICollideable other)
-        {
-            // Destroyed = true;
-        }
-
-        public bool ShouldCollide(ICollideable other)
-        {
-            return Collideable.ShouldCollide(other);
         }
     }
 }

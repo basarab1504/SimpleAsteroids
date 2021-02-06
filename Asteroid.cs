@@ -8,14 +8,24 @@ namespace SimpleAsteroids
         public override void Start()
         {
             CreateDrawable<RectangleShape>().Transform = Transform;
+            var coll = CreateCollideable<RectangleCollider>();
+            coll.Collided += Collide;
+
+            coll.Transform = Transform;
+            coll.Layer = 0;
         }
     }
 
     public class NoChildAsteroid : MockAsteroid
     {
-        public override void Collide(ICollideable other)
+        public override void Start()
         {
-            Destroyed = true;
+            CreateDrawable<RectangleShape>().Transform = Transform;
+            var coll = CreateCollideable<RectangleCollider>();
+            coll.Collided += Collide;
+
+            coll.Transform = Transform;
+            coll.Layer = 0;
         }
     }
 
@@ -31,6 +41,10 @@ namespace SimpleAsteroids
         {
             base.Start();
             CreateDrawable<RectangleShape>().Transform = Transform;
+            var coll = CreateCollideable<RectangleCollider>();
+            coll.Collided += Collide;
+            coll.Transform = Transform;
+            coll.Layer = 0;
             PushRandomDirection();
         }
 
@@ -39,7 +53,7 @@ namespace SimpleAsteroids
             Transform.Position += Velocity;
         }
 
-        public override void Collide(ICollideable other)
+        protected void Collide(ICollideable other)
         {
             if (other is Ship || other is Bullet)
             {

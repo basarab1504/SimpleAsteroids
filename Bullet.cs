@@ -17,10 +17,14 @@ namespace SimpleAsteroids
         {
             base.Start();
             CreateDrawable<RectangleShape>().Transform = Transform;
+            var coll = CreateCollideable<RectangleCollider>();
+            coll.Collided += Collide;
+            coll.Transform = Transform;
+            coll.Layer = 0;
             lifeTimeLeft = LifeTime;
         }
 
-        public override void Collide(ICollideable other)
+        private void Collide(ICollideable other)
         {
             Destroyed = true;
         }

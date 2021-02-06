@@ -3,20 +3,22 @@ using System.Numerics;
 
 namespace SimpleAsteroids
 {
-    public class CircleCollider : ICollideable
+    public class RectangleCollider : ICollideable
     {
-        public GameObject GameObject { get; set; }
-        public Vector2 Position => GameObject.Transform.Position;
-        public float Radius { get; set; } = 1;
+        public event Action<ICollideable> Collided;
+        public int Layer { get; set; }
+        public Points Points => GetPoints();
+        public Transform Transform { get; set; }
+
+        private Points GetPoints()
+        {
+            return new Points(Transform.Position, Transform.Size * 0.5f);
+        }
 
         public void Collide(ICollideable other)
         {
-            GameObject.Collide(other);
-        }
-
-        public bool ShouldCollide(ICollideable other)
-        {
-            return Radius > (other.Position - Position).Length();
+            if (Collided != null)
+                Collided(other);
         }
     }
 }
