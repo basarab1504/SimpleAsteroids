@@ -3,24 +3,26 @@ using SFML.Graphics;
 
 namespace SimpleAsteroids
 {
-    public class UFO : GameObject
+    public class UFO : GameComponent, IUpdateable
     {
         private float cooldown;
         public float GunForce { get; set; } = 1;
         public Vector2 GunPos => Transform.Position + Transform.Direction * 2;
         public float ShootingCooldown { get; set; } = 3;
         public float DistanceToKeep { get; set; } = 3;
+        public Vector2 Velocity { get; set; }
 
-        public override void Start()
+        public override void Initialize()
         {
-            Create<RectangleShape>().Transform = Transform;
-            var coll = Create<RectangleCollider>();
+            base.Initialize();
+            Create<RectangleShape>(Transform.Position);
+            var coll = Create<RectangleCollider>(Transform.Position);
             coll.Collided += Collide;
             coll.Transform = Transform;
-            coll.Layer = 0;
+            coll.Type = 0;
         }
 
-        public override void Update()
+        public void Update()
         {
             Transform.Position += Velocity;
 
@@ -44,8 +46,7 @@ namespace SimpleAsteroids
 
         private void Collide(ICollideable other)
         {
-            if (other is Ship || other is Bullet)
-                Destroyed = true;
+            Destroyed = true;
         }
 
         private void Shoot()

@@ -15,19 +15,19 @@ namespace SimpleAsteroids
             // AsteroidsArenaTest();
             // AsteroidsGameTest();
 
-            StaticShipTest();
+            // StaticShipTest();
             CollisionTest();
-            BulletTest();
-            ManyBulletTest();
-            TwoShipBulletTest();
-            ArenaTest();
-            NoMoveUFOTest();
-            MoveUFOTest();
-            PhysicsLayerTest();
-            SpawnerTest();
-            UFOSpawnerTest();
-            LaserBeamTest();
-            LaserBeamCollisionTest();
+            // BulletTest();
+            // ManyBulletTest();
+            // TwoShipBulletTest();
+            // ArenaTest();
+            // NoMoveUFOTest();
+            // MoveUFOTest();
+            // PhysicsLayerTest();
+            // SpawnerTest();
+            // UFOSpawnerTest();
+            // LaserBeamTest();
+            // LaserBeamCollisionTest();
         }
 
         static void DrawTest()
@@ -36,8 +36,9 @@ namespace SimpleAsteroids
 
             game.Start();
 
-            game.Create<Arena>(Vector2.Zero).FromZeroSteps = 5;
-            var ship = game.Create<Ship>(Vector2.Zero);
+            // game.Add<Arena>(Vector2.Zero).FromZeroSteps = 5;
+            var ship = new Ship();
+            game.Add(ship);
             ship.Transform.Size = new Vector2(3, 1);
             ship.Transform.Direction = new Vector2(1, 0);
             ship.Velocity = new Vector2(1, 0);
@@ -59,9 +60,10 @@ namespace SimpleAsteroids
             TestGame game = new TestGame(new ConsoleDrawer(10, 10));
             game.Start();
 
-            game.Create<Arena>(Vector2.Zero).FromZeroSteps = 5;
+            // game.Add<Arena>(Vector2.Zero).FromZeroSteps = 5;
 
-            var asteroid = game.Create<MockAsteroid>(Vector2.Zero);
+            var asteroid = new MockAsteroid();
+            game.Add(asteroid);
             asteroid.Velocity = new Vector2(1, 0);
 
             game.Update();
@@ -69,18 +71,18 @@ namespace SimpleAsteroids
             game.Update();
             game.Update();
             game.Update();
-            System.Console.WriteLine(asteroid.Position == new Vector2(5, 0));
+            System.Console.WriteLine(asteroid.Transform.Position == new Vector2(5, 0));
             game.Update();
             game.Update();
             game.Update();
-            System.Console.WriteLine(asteroid.Position == new Vector2(-2, 0));
+            System.Console.WriteLine(asteroid.Transform.Position == new Vector2(-2, 0));
         }
 
         static void ConsoleTest()
         {
             TestGame game = new TestGame(new ConsoleDrawer(10, 10));
             game.Start();
-            game.Create<Ship>(Vector2.Zero);
+            game.Add(new Ship());
             game.Update();
             game.Get<Ship>()[0].Shoot();
             game.Update();
@@ -101,8 +103,9 @@ namespace SimpleAsteroids
         {
             TestGame game = new TestGame(new ConsoleDrawer(10, 10));
             game.Start();
-            game.Create<Ship>(Vector2.Zero);
-            game.Create<NoChildAsteroid>(new Vector2(0, 4));
+            game.Add(new Ship());
+            var asteroid = new NoChildAsteroid();
+            asteroid.Transform.Position = new Vector2(0, 4);
             game.Update();
             game.Update();
             game.Update();
@@ -121,7 +124,7 @@ namespace SimpleAsteroids
         {
             TestGame game = new TestGame(new ConsoleDrawer(10, 10));
             game.Start();
-            game.Create<Ship>(Vector2.Zero);
+            game.Add(new Ship());
             game.Update();
         }
 
@@ -130,15 +133,16 @@ namespace SimpleAsteroids
             TestGame game = new TestGame(new ConsoleDrawer(15, 15));
             game.Start();
 
-            var ship = game.Create<Ship>(Vector2.Zero);
+            var ship = new Ship();
+            game.Add(ship);
 
             ship.ShootLaser();
 
             game.Update();
-            System.Console.WriteLine(game.Get<GameObject>().Count == 4);
+            System.Console.WriteLine(game.Get<GameComponent>().Count == 4);
             game.Update();
             game.Update();
-            System.Console.WriteLine(game.Get<GameObject>().Count == 1);
+            System.Console.WriteLine(game.Get<GameComponent>().Count == 1);
 
         }
 
@@ -147,18 +151,21 @@ namespace SimpleAsteroids
             TestGame game = new TestGame(new ConsoleDrawer(15, 15));
             game.Start();
 
-            var ship = game.Create<Ship>(Vector2.Zero);
-            var asteroid = game.Create<NoChildAsteroid>(new Vector2(0, 4));
-            var asteroid2 = game.Create<NoChildAsteroid>(new Vector2(0, 3));
+            var ship = new Ship();
+            game.Add(ship);
+            var asteroid = new NoChildAsteroid();
+            asteroid.Transform.Position = new Vector2(0, 4);
+            var asteroid2 = new NoChildAsteroid();
+            asteroid.Transform.Position = new Vector2(0, 3);
 
             game.Update();
             game.Update();
             ship.ShootLaser();
             game.Update();
-            System.Console.WriteLine(game.Get<GameObject>().Count == 4);
+            System.Console.WriteLine(game.Get<GameComponent>().Count == 4);
             game.Update();
             game.Update();
-            System.Console.WriteLine(game.Get<GameObject>().Count == 1);
+            System.Console.WriteLine(game.Get<GameComponent>().Count == 1);
         }
 
         static void AsteroidsGameTest()
@@ -172,19 +179,21 @@ namespace SimpleAsteroids
             TestGame game = new TestGame(new ConsoleDrawer(10, 10));
             game.Start();
 
-            var asteroidSpawner = game.Create<CooldownSpawner<MockAsteroid>>(new Vector2(3, 3));
-            var asteroidSpawner2 = game.Create<CooldownSpawner<MockAsteroid>>(new Vector2(-3, -3));
+            var asteroidSpawner = new CooldownSpawner<MockAsteroid>();
+            asteroidSpawner.Transform.Position = new Vector2(3, 3);
+            var asteroidSpawner2 = new CooldownSpawner<MockAsteroid>();
+            asteroidSpawner2.Transform.Position = new Vector2(-3, -3);
 
             game.Update();
             game.Update();
 
-            System.Console.WriteLine(game.Get<GameObject>().Count == 4);
+            System.Console.WriteLine(game.Get<GameComponent>().Count == 4);
 
             game.Update();
             game.Update();
             game.Update();
 
-            System.Console.WriteLine(game.Get<GameObject>().Count == 6);
+            System.Console.WriteLine(game.Get<GameComponent>().Count == 6);
             // System.Console.WriteLine(game.Score == 0);
         }
 
@@ -193,13 +202,14 @@ namespace SimpleAsteroids
             TestGame game = new TestGame(new ConsoleDrawer(10, 10));
             game.Start();
 
-            var ufoSpawner = game.Create<CooldownSpawner<UFO>>(new Vector2(0, 3));
+            var ufoSpawner = new CooldownSpawner<UFO>();
+            ufoSpawner.Transform.Position = new Vector2(0, 3);
             ufoSpawner.SpawnCooldown = 5;
 
             game.Update();
             game.Update();
 
-            System.Console.WriteLine(game.Get<GameObject>().Count == 2);
+            System.Console.WriteLine(game.Get<GameComponent>().Count == 2);
 
             game.Update();
             game.Update();
@@ -207,32 +217,31 @@ namespace SimpleAsteroids
             game.Update();
             game.Update();
 
-            System.Console.WriteLine(game.Get<GameObject>().Count == 3);
+            System.Console.WriteLine(game.Get<GameComponent>().Count == 3);
             // System.Console.WriteLine(game.Score == 0);
         }
 
         static void AsteroidsArenaTest()
         {
             Game game = new AsteroidsGame(new ConsoleDrawer(10, 10));
-
-            // var ship = game.Create<Ship>(new Vector2(4, 0));
+            var ship = new Ship();
+            game.Add(ship);
+            // ship.Transform.Position = new Vector2(4, 0);
             game.Start();
             game.Update();
-
-            var ship = game.Get<Ship>()[0];
 
             ship.Transform.Position = new Vector2(4, 0);
             ship.Transform.Direction = new Vector2(1, 0);
             ship.Velocity = new Vector2(1, 0);
 
             game.Update();
-            System.Console.WriteLine(ship.Position == new Vector2(5, 0));
+            System.Console.WriteLine(ship.Transform.Position == new Vector2(5, 0));
             game.Update();
-            System.Console.WriteLine(ship.Position == new Vector2(-4, 0));
+            System.Console.WriteLine(ship.Transform.Position == new Vector2(-4, 0));
             game.Update();
             game.Update();
             game.Update();
-            System.Console.WriteLine(ship.Position == new Vector2(-1, 0));
+            System.Console.WriteLine(ship.Transform.Position == new Vector2(-1, 0));
             // System.Console.WriteLine(game.Score == 0);
         }
 
@@ -241,8 +250,10 @@ namespace SimpleAsteroids
             TestGame game = new TestGame(new ConsoleDrawer(10, 10));
             game.Start();
 
-            var ship = game.Create<Ship>(new Vector2(0, 1));
-            var ship2 = game.Create<Ship>(new Vector2(0, -3));
+            var ship = new Ship();
+            ship.Transform.Position = new Vector2(0, 1);
+            var ship2 = new Ship();
+            ship2.Transform.Position = new Vector2(0, -3);
 
             ship.Velocity = new Vector2(0, -1);
             ship.Transform.Direction = new Vector2(0, -1);
@@ -250,21 +261,26 @@ namespace SimpleAsteroids
             ship2.Velocity = new Vector2(0, 1);
             ship2.Transform.Direction = new Vector2(0, 1);
 
-            game.Update();
-            game.Update();
-
-            System.Console.WriteLine(game.Get<GameObject>().Count == 2);
-
-            var asteroid = game.Create<MockAsteroid>(new Vector2(0, 2));
+            game.Add(ship);
+            game.Add(ship2);
 
             game.Update();
             game.Update();
+
+            System.Console.WriteLine(game.Get<GameComponent>().Count == 2);
+
+            var asteroid = new MockAsteroid();
+            asteroid.Transform.Position = new Vector2(0, 2);
+            game.Add(asteroid);
+
+            game.Update();
+            game.Update();
             game.Update();
             game.Update();
             game.Update();
             game.Update();
 
-            System.Console.WriteLine(game.Get<GameObject>().Count == 2);
+            System.Console.WriteLine(game.Get<GameComponent>().Count == 2);
             // System.Console.WriteLine(game.Score == 1);
         }
 
@@ -273,23 +289,29 @@ namespace SimpleAsteroids
             TestGame game = new TestGame(new ConsoleDrawer(10, 10));
             game.Start();
 
-            var ship = game.Create<Ship>(new Vector2(0, 3));
+            var ship = new Ship();
+            ship.Transform.Position = new Vector2(0, 3);
+            game.Add(ship);
 
-            var ufo = game.Create<UFO>(new Vector2(-4, 0));
+            var ufo = new UFO();
+            ufo.Transform.Position = new Vector2(-4, 0);
+            game.Add(ufo);
 
-            var ufo2 = game.Create<UFO>(new Vector2(4, 0));
+            var ufo2 = new UFO();
+            ufo2.Transform.Position = new Vector2(4, 0);
+            game.Add(ufo2);
 
             game.Update();
             game.Update();
             game.Update();
             game.Update();
-            // System.Console.WriteLine(game.Get<GameObject>()[3].Position == new Vector2(0, 1));
-            // System.Console.WriteLine(game.Get<GameObject>()[4].Position == new Vector2(1, 1));
+            // System.Console.WriteLine(game.Get<GameComponent>()[3].Transform.Position == new Vector2(0, 1));
+            // System.Console.WriteLine(game.Get<GameComponent>()[4].Transform.Position == new Vector2(1, 1));
             game.Update();
             game.Update();
             game.Update();
 
-            System.Console.WriteLine(game.Get<GameObject>().Count == 2);
+            System.Console.WriteLine(game.Get<GameComponent>().Count == 2);
             // System.Console.WriteLine(game.Score == 0);
         }
 
@@ -297,23 +319,28 @@ namespace SimpleAsteroids
         {
             TestGame game = new TestGame(new ConsoleDrawer(10, 10));
             game.Start();
+            var ship = new Ship();
+            // ship.Transform.Position = new Vector2(2, 0);
+            ship.Transform.Position = new Vector2(2, 0);
+            game.Add(ship);
 
-            var ship = game.Create<Ship>(new Vector2(2, 0));
-
-            var ufo = game.Create<UFO>(new Vector2(-5, -3));
+            // var ufo = game.Add<UFO>(new Vector2(-5, -3));
+            var ufo = new UFO();
+            ufo.Transform.Position = new Vector2(-5, -3);
             ufo.Velocity = new Vector2(0, 1);
+            game.Add(ufo);
 
             // ufo.Target = ship;
 
             game.Update();
             game.Update();
-            System.Console.WriteLine(game.Get<GameObject>().Count == 2);
+            System.Console.WriteLine(game.Get<GameComponent>().Count == 2);
             game.Update();
             game.Update();
             game.Update();
             game.Update();
             game.Update();
-            System.Console.WriteLine(game.Get<GameObject>().Count == 1);
+            System.Console.WriteLine(game.Get<GameComponent>().Count == 1);
             game.Update();
             // System.Console.WriteLine(game.Score == 0);
         }
@@ -321,21 +348,29 @@ namespace SimpleAsteroids
         static void CollisionTest()
         {
             TestGame game = new TestGame(new ConsoleDrawer(10, 10));
+
             game.Start();
 
-            var ship = game.Create<Ship>(new Vector2(2, 0));
+            var ship = new Ship();
+            ship.Game = game;
+            game.Add(ship);
+
+            ship.Transform.Position = new Vector2(2, 0);
             ship.Transform.Direction = new Vector2(-1, 0);
             ship.Velocity = new Vector2(-1, 0);
 
-            var asteroid = game.Create<NoChildAsteroid>(new Vector2(-2, 0));
+            var asteroid = new NoChildAsteroid();
+            asteroid.Game = game;
+            asteroid.Transform.Position = new Vector2(-2, 0);
             asteroid.Velocity = new Vector2(1, 0);
+            game.Add(asteroid);
 
             game.Update();
             game.Update();
             game.Update();
             game.Update();
 
-            System.Console.WriteLine(game.Get<GameObject>().Count == 0);
+            System.Console.WriteLine(game.Get<GameComponent>().Count == 0);
             // System.Console.WriteLine(game.Score == 1);
         }
 
@@ -343,9 +378,11 @@ namespace SimpleAsteroids
         {
             TestGame game = new TestGame(new ConsoleDrawer(10, 10));
             game.Start();
-
-            var ship = game.Create<Ship>(new Vector2(-4, 0));
-            var ship2 = game.Create<Ship>(new Vector2(4, 0));
+            var ship = new Ship();
+            game.Add(ship);
+            ship.Transform.Position = new Vector2(-4, 0);
+            var ship2 = new Ship();
+            ship2.Transform.Position = new Vector2(4, 0);
 
             ship.Transform.Direction = new Vector2(1, 0);
             ship2.Transform.Direction = new Vector2(-1, 0);
@@ -358,24 +395,25 @@ namespace SimpleAsteroids
             game.Update();
             game.Update();
 
-            System.Console.WriteLine(game.Get<GameObject>().Count == 2);
+            System.Console.WriteLine(game.Get<GameComponent>().Count == 2);
         }
 
         static void BulletTest()
         {
             TestGame game = new TestGame(new ConsoleDrawer(10, 10));
             game.Start();
-
-            var ship = game.Create<Ship>(new Vector2(0, -2));
+            var ship = new Ship();
+            game.Add(ship);
+            ship.Transform.Position = new Vector2(0, -2);
 
             ship.Shoot();
 
             game.Update();
             game.Update();
-            System.Console.WriteLine(game.Get<GameObject>()[1].Position == new Vector2(0, 4));
+            System.Console.WriteLine(game.Get<GameComponent>()[1].Transform.Position == new Vector2(0, 4));
             game.Update();
             game.Update();
-            System.Console.WriteLine(game.Get<GameObject>().Count == 1);
+            System.Console.WriteLine(game.Get<GameComponent>().Count == 1);
             // System.Console.WriteLine(game.Score == 0);
         }
 
@@ -383,8 +421,9 @@ namespace SimpleAsteroids
         {
             TestGame game = new TestGame(new ConsoleDrawer(10, 10));
             game.Start();
-
-            var ship = game.Create<Ship>(new Vector2(0, -2));
+            var ship = new Ship();
+            game.Add(ship);
+            ship.Transform.Position = new Vector2(0, -2);
 
             ship.Shoot();
 
@@ -399,14 +438,14 @@ namespace SimpleAsteroids
             game.Update();
             game.Update();
 
-            System.Console.WriteLine(game.Get<GameObject>()[1].Position == new Vector2(0, 4));
-            System.Console.WriteLine(game.Get<GameObject>()[2].Position == new Vector2(6, -2));
-            System.Console.WriteLine(game.Get<GameObject>()[3].Position == new Vector2(-6, -2));
+            System.Console.WriteLine(game.Get<GameComponent>()[1].Transform.Position == new Vector2(0, 4));
+            System.Console.WriteLine(game.Get<GameComponent>()[2].Transform.Position == new Vector2(6, -2));
+            System.Console.WriteLine(game.Get<GameComponent>()[3].Transform.Position == new Vector2(-6, -2));
 
             game.Update();
             game.Update();
 
-            System.Console.WriteLine(game.Get<GameObject>().Count == 1);
+            System.Console.WriteLine(game.Get<GameComponent>().Count == 1);
             // System.Console.WriteLine(game.Score == 0);
         }
     }

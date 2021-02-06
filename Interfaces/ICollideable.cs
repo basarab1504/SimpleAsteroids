@@ -2,9 +2,9 @@ using System.Numerics;
 
 namespace SimpleAsteroids
 {
-    public interface ICollideable
+    public interface ICollideable : IGameComponent
     {
-        int Layer { get; }
+        int Type { get; }
         Points Points { get; }
         void Collide(ICollideable other);
     }

@@ -9,12 +9,12 @@ namespace SimpleAsteroids
         }
 
         public override bool IsOver => false;
-        public int Score => Get<Scorer>()[0].Score;
+        // public int Score => Get<Scorer>()[0].Score;
 
         protected override void IternalStart()
         {
             // Create<Arena>(Vector2.Zero).FromZeroSteps = 5;
-            Create<Ship>(Vector2.Zero);
+            // Create<Ship>(Vector2.Zero);
             // ship.Direction = new Vector2(1, 0);
             // ship.Velocity = new Vector2(1, 0);
 

@@ -2,27 +2,28 @@ using System.Numerics;
 
 namespace SimpleAsteroids
 {
-    public class LaserBullet : GameObject
+    public class LaserBullet : GameComponent, IUpdateable
     {
         private float lifeTimeLeft;
         public float LifeTime { get; set; } = 3;
+        public Vector2 Velocity { get; set; }
 
         public LaserBullet()
         {
             Transform.Size = new Vector2(0.5f, 0.5f);
         }
 
-        public override void Start()
+        public override void Initialize()
         {
-            base.Start();
-            Create<RectangleShape>().Transform = Transform;
-            var coll = Create<RectangleCollider>();
+            base.Initialize();
+            Create<RectangleShape>(Transform.Position).Transform = Transform;
+            var coll = Create<RectangleCollider>(Transform.Position);
             coll.Transform = Transform;
-            coll.Layer = 0;
+            coll.Type = 1;
             lifeTimeLeft = LifeTime;
         }
 
-        public override void Update()
+        public void Update()
         {
             Transform.Position += Velocity;
 

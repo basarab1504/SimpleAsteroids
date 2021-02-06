@@ -4,23 +4,24 @@ using SFML.Graphics;
 
 namespace SimpleAsteroids
 {
-    public class Ship : GameObject
+    public class Ship : GameComponent, IUpdateable
     {
         public float GunForce { get; set; } = 2;
         public float LaserBeamLenght { get; set; } = 3;
         public Vector2 GunPos => Transform.Position + Transform.Direction * 2;
+        public Vector2 Velocity { get; set; }
 
-        public override void Start()
+        public override void Initialize()
         {
-            base.Start();
-            Create<RectangleShape>().Transform = Transform;
-            var coll = Create<RectangleCollider>();
+            base.Initialize();
+            Create<RectangleShape>(Transform.Position).Transform = Transform;
+            var coll = Create<RectangleCollider>(Transform.Position);
             coll.Collided += Collide;
             coll.Transform = Transform;
-            coll.Layer = 0;
+            coll.Type = 2;
         }
 
-        public override void Update()
+        public void Update()
         {
             Transform.Position += Transform.Direction * Vector2.Abs(Velocity);
         }
@@ -36,21 +37,20 @@ namespace SimpleAsteroids
                 Create<LaserBullet>(GunPos + Transform.Direction * i).LifeTime = 1;
         }
 
-        public override void OnInput(ConsoleKey key)
-        {
-            if (key == ConsoleKey.Spacebar)
-                Shoot();
-            else if (key == ConsoleKey.W)
-            {
-                Transform.Direction = -Transform.Direction;
-                Velocity = -Velocity;
-            }
-        }
+        // public override void OnInput(ConsoleKey key)
+        // {
+        //     if (key == ConsoleKey.Spacebar)
+        //         Shoot();
+        //     else if (key == ConsoleKey.W)
+        //     {
+        //         Transform.Direction = -Transform.Direction;
+        //         Velocity = -Velocity;
+        //     }
+        // }
 
         private void Collide(ICollideable other)
         {
-            if (!(other is Ship) && !(other is ISpawner) && !(other is Arena))
-                Destroyed = true;
+            Destroyed = true;
         }
 
         public void Shoot()

@@ -5,63 +5,58 @@ namespace SimpleAsteroids
 {
     public class MockAsteroid : Asteroid
     {
-        public override void Start()
+        public override void Initialize()
         {
-            Create<RectangleShape>().Transform = Transform;
-            var coll = Create<RectangleCollider>();
+            Active = true;
+            Create<RectangleShape>(Transform.Position).Transform = Transform;
+            var coll = Create<RectangleCollider>(Transform.Position);
             coll.Collided += Collide;
 
             coll.Transform = Transform;
-            coll.Layer = 0;
+            coll.Type = 0;
         }
     }
 
     public class NoChildAsteroid : MockAsteroid
     {
-        public override void Start()
+        public override void Initialize()
         {
-            CreateDrawable<RectangleShape>().Transform = Transform;
-            var coll = CreateCollideable<RectangleCollider>();
-            coll.Collided += Collide;
+            Active = true;
+            Create<RectangleShape>(Transform.Position).Transform = Transform;
+            var coll = Create<RectangleCollider>(Transform.Position);
+            coll.Collided += (x) => Destroyed = true;
 
             coll.Transform = Transform;
-            coll.Layer = 0;
+            coll.Type = 0;
         }
     }
 
-    public class Asteroid : GameObject
+    public class Asteroid : GameComponent, IUpdateable
     {
+        public Vector2 Velocity { get; set; }
 
-        public Asteroid()
+        public override void Initialize()
         {
-            ScoreForDestroying = 1;
-        }
-
-        public override void Start()
-        {
-            base.Start();
-            Create<RectangleShape>().Transform = Transform;
-            var coll = Create<RectangleCollider>();
+            Active = true;
+            Create<RectangleShape>(Transform.Position).Transform = Transform;
+            var coll = Create<RectangleCollider>(Transform.Position);
             coll.Collided += Collide;
             coll.Transform = Transform;
-            coll.Layer = 0;
+            coll.Type = 0;
             PushRandomDirection();
         }
 
-        public override void Update()
+        public void Update()
         {
             Transform.Position += Velocity;
         }
 
         protected void Collide(ICollideable other)
         {
-            if (other is Ship || other is Bullet)
-            {
-                Destroyed = true;
-                var asteroid = Create<Asteroid>(Transform.Position + Transform.Direction);
-                asteroid.Velocity = Velocity;
-                asteroid.Transform.Direction = Transform.Direction;
-            }
+            Destroyed = true;
+            var asteroid = Create<Asteroid>(Transform.Position + Transform.Direction);
+            asteroid.Velocity = Velocity;
+            asteroid.Transform.Direction = Transform.Direction;
         }
 
         private void PushRandomDirection()
