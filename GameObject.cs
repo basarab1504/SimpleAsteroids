@@ -21,14 +21,9 @@ namespace SimpleAsteroids
             return Game.Create<T>(position);
         }
 
-        protected T CreateDrawable<T>() where T : IDrawable, new()
+        protected T Create<T>() where T : new()
         {
-            return Game.CreateDrawable<T>(this);
-        }
-
-        protected T CreateCollideable<T>() where T : ICollideable, new()
-        {
-            return Game.CreateCollideable<T>(this);
+            return Game.Create<T>();
         }
 
         protected IEnumerable<T> Get<T>() where T : GameObject

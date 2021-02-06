@@ -7,8 +7,8 @@ namespace SimpleAsteroids
     {
         public override void Start()
         {
-            CreateDrawable<RectangleShape>().Transform = Transform;
-            var coll = CreateCollideable<RectangleCollider>();
+            Create<RectangleShape>().Transform = Transform;
+            var coll = Create<RectangleCollider>();
             coll.Collided += Collide;
             coll.Transform = Transform;
             coll.GameObject = this;
@@ -19,8 +19,8 @@ namespace SimpleAsteroids
     {
         public override void Start()
         {
-            CreateDrawable<RectangleShape>().Transform = Transform;
-            var coll = CreateCollideable<RectangleCollider>();
+            Create<RectangleShape>().Transform = Transform;
+            var coll = Create<RectangleCollider>();
             coll.Collided += (x) => Destroyed = true;
             coll.Transform = Transform;
         }
@@ -37,8 +37,8 @@ namespace SimpleAsteroids
         public override void Start()
         {
             base.Start();
-            CreateDrawable<RectangleShape>().Transform = Transform;
-            var coll = CreateCollideable<RectangleCollider>();
+            Create<RectangleShape>().Transform = Transform;
+            var coll = Create<RectangleCollider>();
             coll.Collided += Collide;
             coll.Transform = Transform;
             coll.GameObject = this;

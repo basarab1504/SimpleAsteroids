@@ -8,9 +8,8 @@ namespace SimpleAsteroids
         List<GameObject> toAdd = new List<GameObject>();
         List<GameObject> toDestroy = new List<GameObject>();
         List<GameObject> gameObjects = new List<GameObject>();
-        Dictionary<GameObject, IDrawable> drawables = new Dictionary<GameObject, IDrawable>();
-        Dictionary<GameObject, ICollideable> collideables = new Dictionary<GameObject, ICollideable>();
 
+        Container container = new Container();
         IDrawer drawer;
         Physics physics = new Physics();
         Input input = new Input();
@@ -22,18 +21,11 @@ namespace SimpleAsteroids
             this.drawer = drawer;
         }
 
-        public T CreateDrawable<T>(GameObject gameObject) where T : IDrawable, new()
+        public T Create<T>() where T : new()
         {
             T drawable = new T();
-            drawables.Add(gameObject, drawable);
+            container.Add<T>(drawable);
             return drawable;
-        }
-
-        public T CreateCollideable<T>(GameObject gameObject) where T : ICollideable, new()
-        {
-            T collideable = new T();
-            collideables.Add(gameObject, collideable);
-            return collideable;
         }
 
         public T Create<T>(Vector2 position) where T : GameObject, new()
@@ -72,10 +64,10 @@ namespace SimpleAsteroids
             toAdd.Clear();
 
             //рисовка
-            // drawer.Update(drawables.Values);
+            drawer.Update(container.Get<IDrawable>());
 
             //физика
-            physics.Update(new List<ICollideable>(collideables.Values));
+            physics.Update(container.Get<ICollideable>());
 
             //ввод
             input.Update();
@@ -90,13 +82,7 @@ namespace SimpleAsteroids
 
             //удаление
             foreach (var item in toDestroy)
-            {
                 gameObjects.Remove(item);
-                if (drawables.ContainsKey(item))
-                    drawables.Remove(item);
-                if (collideables.ContainsKey(item))
-                    collideables.Remove(item);
-            }
             toDestroy.Clear();
 
             IternalUpdate();
