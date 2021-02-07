@@ -4,7 +4,7 @@ namespace SimpleAsteroids
 {
     public interface ICollideable : IComponent
     {
-        int Type { get; }
+        int Layer { get; }
         Points Points { get; }
         void Collide(ICollideable other);
     }

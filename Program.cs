@@ -269,9 +269,7 @@ namespace SimpleAsteroids
 
             System.Console.WriteLine(game.Get<GameComponent>().Count == 2);
 
-            var asteroid = new MockAsteroid();
-            asteroid.Transform.Position = new Vector2(0, 2);
-            game.Add(asteroid);
+            var asteroid = game.Create<MockAsteroid>(new Vector2(0, 2));
 
             game.Update();
             game.Update();

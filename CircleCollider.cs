@@ -6,7 +6,7 @@ namespace SimpleAsteroids
     public class RectangleCollider : GameComponent, ICollideable
     {
         public event Action<ICollideable> Collided;
-        public int Type { get; set; }
+        public int Layer { get; set; }
         public Points Points => GetPoints();
 
         private Points GetPoints()
