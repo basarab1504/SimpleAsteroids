@@ -18,7 +18,7 @@ namespace SimpleAsteroids
             Create<RectangleShape>().Transform = Transform;
             var coll = Create<RectangleCollider>();
             coll.Transform = Transform;
-            coll.Layer = 0;
+            coll.Type = 1;
             lifeTimeLeft = LifeTime;
         }
 

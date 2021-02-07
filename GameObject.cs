@@ -23,7 +23,7 @@ namespace SimpleAsteroids
 
         protected T Create<T>() where T : new()
         {
-            return Game.Create<T>();
+            return Game.Create<T>(this);
         }
 
         protected IEnumerable<T> Get<T>() where T : GameObject

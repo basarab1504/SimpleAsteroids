@@ -17,7 +17,7 @@ namespace SimpleAsteroids
             var coll = Create<RectangleCollider>();
             coll.Collided += Collide;
             coll.Transform = Transform;
-            coll.Layer = 0;
+            coll.Type = 0;
         }
 
         public override void Update()
@@ -44,8 +44,7 @@ namespace SimpleAsteroids
 
         private void Collide(ICollideable other)
         {
-            if (other is Ship || other is Bullet)
-                Destroyed = true;
+            Destroyed = true;
         }
 
         private void Shoot()

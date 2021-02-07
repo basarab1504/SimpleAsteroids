@@ -9,7 +9,9 @@ namespace SimpleAsteroids
         List<GameObject> toDestroy = new List<GameObject>();
         List<GameObject> gameObjects = new List<GameObject>();
 
-        Container container = new Container();
+        List<IDrawable> drawables = new List<IDrawable>();
+        List<ICollideable> collideables = new List<ICollideable>();
+
         IDrawer drawer;
         Physics physics = new Physics();
         Input input = new Input();
@@ -21,11 +23,11 @@ namespace SimpleAsteroids
             this.drawer = drawer;
         }
 
-        public T Create<T>() where T : new()
+        public T Create<T>(GameObject gameObject) where T : new()
         {
-            T drawable = new T();
-            container.Add<T>(drawable);
-            return drawable;
+            T item = new T();
+            Categorize(item);
+            return item;
         }
 
         public T Create<T>(Vector2 position) where T : GameObject, new()
@@ -64,10 +66,10 @@ namespace SimpleAsteroids
             toAdd.Clear();
 
             //рисовка
-            drawer.Update(container.Get<IDrawable>());
+            drawer.Update(drawables);
 
             //физика
-            physics.Update(container.Get<ICollideable>());
+            physics.Update(collideables);
 
             //ввод
             input.Update();
@@ -84,11 +86,19 @@ namespace SimpleAsteroids
             foreach (var item in toDestroy)
                 gameObjects.Remove(item);
             toDestroy.Clear();
-            
+
             IternalUpdate();
         }
 
         protected abstract void IternalStart();
         protected abstract void IternalUpdate();
+
+        private void Categorize(object obj)
+        {
+            if (obj is ICollideable)
+                collideables.Add((ICollideable)obj);
+            if (obj is IDrawable)
+                drawables.Add((IDrawable)obj);
+        }
     }
 }

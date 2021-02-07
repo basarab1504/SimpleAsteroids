@@ -1,6 +1,6 @@
 namespace SimpleAsteroids
 {
-    public interface IUpdateable : IComponent
+    public interface IUpdateable
     {
         void Update();
     }
