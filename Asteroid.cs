@@ -5,11 +5,10 @@ namespace SimpleAsteroids
 {
     public class MockAsteroid : Asteroid
     {
-        public override void Initialize()
+        public override void Start()
         {
-            Active = true;
-            Create<RectangleShape>(Transform.Position).Transform = Transform;
-            var coll = Create<RectangleCollider>(Transform.Position);
+            Create<RectangleShape>().Transform = Transform;
+            var coll = Create<RectangleCollider>();
             coll.Collided += Collide;
 
             coll.Transform = Transform;
@@ -19,7 +18,7 @@ namespace SimpleAsteroids
 
     public class NoChildAsteroid : MockAsteroid
     {
-        public override void Initialize()
+        public override void Start()
         {
             CreateDrawable<RectangleShape>().Transform = Transform;
             var coll = CreateCollideable<RectangleCollider>();
@@ -30,22 +29,26 @@ namespace SimpleAsteroids
         }
     }
 
-    public class Asteroid : GameComponent, IUpdateable
+    public class Asteroid : GameObject
     {
-        public Vector2 Velocity { get; set; }
 
-        public override void Initialize()
+        public Asteroid()
         {
-            Active = true;
-            Create<RectangleShape>(Transform.Position).Transform = Transform;
-            var coll = Create<RectangleCollider>(Transform.Position);
+            ScoreForDestroying = 1;
+        }
+
+        public override void Start()
+        {
+            base.Start();
+            Create<RectangleShape>().Transform = Transform;
+            var coll = Create<RectangleCollider>();
             coll.Collided += Collide;
             coll.Transform = Transform;
             coll.Layer = 0;
             PushRandomDirection();
         }
 
-        public void Update()
+        public override void Update()
         {
             Transform.Position += Velocity;
         }

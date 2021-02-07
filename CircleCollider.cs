@@ -3,11 +3,12 @@ using System.Numerics;
 
 namespace SimpleAsteroids
 {
-    public class RectangleCollider : GameComponent, ICollideable
+    public class RectangleCollider : ICollideable
     {
         public event Action<ICollideable> Collided;
         public int Layer { get; set; }
         public Points Points => GetPoints();
+        public Transform Transform { get; set; }
 
         private Points GetPoints()
         {

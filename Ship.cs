@@ -4,24 +4,23 @@ using SFML.Graphics;
 
 namespace SimpleAsteroids
 {
-    public class Ship : GameComponent, IUpdateable
+    public class Ship : GameObject
     {
         public float GunForce { get; set; } = 2;
         public float LaserBeamLenght { get; set; } = 3;
         public Vector2 GunPos => Transform.Position + Transform.Direction * 2;
-        public Vector2 Velocity { get; set; }
 
-        public override void Initialize()
+        public override void Start()
         {
-            base.Initialize();
-            Create<RectangleShape>(Transform.Position).Transform = Transform;
-            var coll = Create<RectangleCollider>(Transform.Position);
+            base.Start();
+            Create<RectangleShape>().Transform = Transform;
+            var coll = Create<RectangleCollider>();
             coll.Collided += Collide;
             coll.Transform = Transform;
             coll.Layer = 0;
         }
 
-        public void Update()
+        public override void Update()
         {
             Transform.Position += Transform.Direction * Vector2.Abs(Velocity);
         }
@@ -37,16 +36,16 @@ namespace SimpleAsteroids
                 Create<LaserBullet>(GunPos + Transform.Direction * i).LifeTime = 1;
         }
 
-        // public override void OnInput(ConsoleKey key)
-        // {
-        //     if (key == ConsoleKey.Spacebar)
-        //         Shoot();
-        //     else if (key == ConsoleKey.W)
-        //     {
-        //         Transform.Direction = -Transform.Direction;
-        //         Velocity = -Velocity;
-        //     }
-        // }
+        public override void OnInput(ConsoleKey key)
+        {
+            if (key == ConsoleKey.Spacebar)
+                Shoot();
+            else if (key == ConsoleKey.W)
+            {
+                Transform.Direction = -Transform.Direction;
+                Velocity = -Velocity;
+            }
+        }
 
         private void Collide(ICollideable other)
         {

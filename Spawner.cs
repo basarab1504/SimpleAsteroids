@@ -1,10 +1,15 @@
 namespace SimpleAsteroids
 {
-    public class Spawner<T> : GameComponent, ISpawner where T : GameComponent, new()
+    public class Spawner<T> : GameObject, ISpawner where T : GameObject, new()
     {
         public void Spawn()
         {
-            var spawned = Create<T>(Transform.Position);
+            Create<T>(Transform.Position);
+        }
+
+        public override void Update()
+        {
+            
         }
     }
 }
