@@ -1,6 +1,6 @@
 namespace SimpleAsteroids
 {
-    public class CooldownSpawner<T> : Spawner<T>, ISpawner, IUpdateable where T : IComponent, new()
+    public class CooldownSpawner<T> : Spawner<T>, ISpawner, IUpdateable where T : Component, new()
     {
         private float cooldown;
         public float SpawnCooldown { get; set; } = 3;
