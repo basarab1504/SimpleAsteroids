@@ -31,6 +31,17 @@ namespace SimpleAsteroids
             return item;
         }
 
+        //ужасно
+        public IReadOnlyList<T> GetFromScene<T>() where T : IComponent, new()
+        {
+            List<T> ts = new List<T>();
+            foreach (var item in components)
+                if (item is T)
+                    ts.Add((T)item);
+            return ts;
+        }
+
+
         // public T Create<T>(Vector2 position) where T : IComponent, new()
         // {
         //     var IComponent = new T();

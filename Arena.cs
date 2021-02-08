@@ -4,13 +4,13 @@ using System.Numerics;
 
 namespace SimpleAsteroids
 {
-    public class Arena
+    public class Arena : Component, IUpdateable
     {
         public int FromZeroSteps { get; set; }
 
-        public void Update(IEnumerable<Transform> transforms)
+        public void Update()
         {
-            foreach (var item in transforms)
+            foreach (var item in GetFromScene<Transform>())
                 if (IsCrossedBorders(item))
                     item.Position = RevertedPosition(item.Position);
         }

@@ -9,7 +9,7 @@ namespace SimpleAsteroids
         }
 
         public override bool IsOver => false;
-        public int Score => Get<Scorer>()[0].Score;
+        public int Score => GetFromScene<Scorer>()[0].Score;
 
         protected override void IternalStart()
         {
