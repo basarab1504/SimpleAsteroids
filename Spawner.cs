@@ -1,6 +1,6 @@
 namespace SimpleAsteroids
 {
-    public class Spawner<T> : Component, ISpawner where T : IComponent, new()
+    public class Spawner<T> : Component, ISpawner where T : Component, new()
     {
         public void Spawn()
         {
