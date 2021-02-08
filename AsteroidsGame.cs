@@ -14,7 +14,7 @@ namespace SimpleAsteroids
         protected override void IternalStart()
         {
             // Create<Arena>(Vector2.Zero).FromZeroSteps = 5;
-            Create<Ship>(Vector2.Zero);
+            CreateOnScene<Ship>(Vector2.Zero);
             // ship.Direction = new Vector2(1, 0);
             // ship.Velocity = new Vector2(1, 0);
 

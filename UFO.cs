@@ -3,30 +3,30 @@ using SFML.Graphics;
 
 namespace SimpleAsteroids
 {
-    public class UFO : GameObject
+    public class UFO : Component, IStartable, IUpdateable
     {
         private float cooldown;
         public float GunForce { get; set; } = 1;
         public Vector2 GunPos => Transform.Position + Transform.Direction * 2;
+        public Vector2 Velocity { get; set; }
         public float ShootingCooldown { get; set; } = 3;
         public float DistanceToKeep { get; set; } = 3;
 
-        public override void Start()
+        public void Start()
         {
-            Create<RectangleShape>().Transform = Transform;
-            var coll = Create<RectangleCollider>();
+            Add<RectangleShape>();
+            var coll = Add<RectangleCollider>();
             coll.Collided += Collide;
-            coll.Transform = Transform;
             coll.Type = 0;
         }
 
-        public override void Update()
+        public void Update()
         {
             Transform.Position += Velocity;
 
             cooldown--;
 
-            foreach (var target in Get<Ship>())
+            foreach (var target in GetFromScene<Ship>())
             {
                 Transform.Direction = Vector2.Normalize(target.Transform.Position - Transform.Position);
 
@@ -49,7 +49,7 @@ namespace SimpleAsteroids
 
         private void Shoot()
         {
-            var bullet = Create<Bullet>(GunPos);
+            var bullet = CreateOnScene<Bullet>(GunPos);
             bullet.Transform.Direction = Transform.Direction;
             bullet.Velocity = Transform.Direction * GunForce;
         }

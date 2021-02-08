@@ -4,21 +4,21 @@ using System.Numerics;
 
 namespace SimpleAsteroids
 {
-    public class Arena : GameObject
+    public class Arena
     {
         public int FromZeroSteps { get; set; }
 
-        public override void Update()
+        public void Update(IEnumerable<Transform> transforms)
         {
-            foreach (var item in Get<GameObject>())
+            foreach (var item in transforms)
                 if (IsCrossedBorders(item))
-                    item.Transform.Position = RevertedPosition(item.Transform.Position);
+                    item.Position = RevertedPosition(item.Position);
         }
 
-        private bool IsCrossedBorders(GameObject gameObject)
+        private bool IsCrossedBorders(Transform gameObject)
         {
-            float x = gameObject.Transform.Position.X;
-            float y = gameObject.Transform.Position.Y;
+            float x = gameObject.Position.X;
+            float y = gameObject.Position.Y;
 
             return (x >= FromZeroSteps || x <= -FromZeroSteps || y >= FromZeroSteps || y <= -FromZeroSteps);
         }

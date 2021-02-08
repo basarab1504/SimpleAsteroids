@@ -7,11 +7,9 @@ namespace SimpleAsteroids
     {
         public override void Start()
         {
-            Create<RectangleShape>().Transform = Transform;
-            var coll = Create<RectangleCollider>();
+            Add<RectangleShape>();
+            var coll = Add<RectangleCollider>();
             coll.Collided += Collide;
-
-            coll.Transform = Transform;
             coll.Type = 0;
         }
     }
@@ -20,35 +18,27 @@ namespace SimpleAsteroids
     {
         public override void Start()
         {
-            Create<RectangleShape>().Transform = Transform;
-            var coll = Create<RectangleCollider>();
+            Add<RectangleShape>();
+            var coll = Add<RectangleCollider>();
             coll.Collided += (x) => Destroyed = true;
-
-            coll.Transform = Transform;
             coll.Type = 0;
         }
     }
 
-    public class Asteroid : GameObject
+    public class Asteroid : Component, IStartable, IUpdateable
     {
+        public Vector2 Velocity { get; set; }
 
-        public Asteroid()
+        public virtual void Start()
         {
-            ScoreForDestroying = 1;
-        }
-
-        public override void Start()
-        {
-            base.Start();
-            Create<RectangleShape>().Transform = Transform;
-            var coll = Create<RectangleCollider>();
+            Add<RectangleShape>();
+            var coll = Add<RectangleCollider>();
             coll.Collided += Collide;
-            coll.Transform = Transform;
             coll.Type = 0;
             PushRandomDirection();
         }
 
-        public override void Update()
+        public void Update()
         {
             Transform.Position += Velocity;
         }
@@ -56,7 +46,7 @@ namespace SimpleAsteroids
         protected void Collide(ICollideable other)
         {
             Destroyed = true;
-            var asteroid = Create<Asteroid>(Transform.Position + Transform.Direction);
+            var asteroid = CreateOnScene<Asteroid>(Transform.Position + Transform.Direction);
             asteroid.Velocity = Velocity;
             asteroid.Transform.Direction = Transform.Direction;
         }

@@ -2,7 +2,7 @@ using System.Numerics;
 
 namespace SimpleAsteroids
 {
-    public class Transform
+    public class Transform : Component
     {
         public Vector2 Position { get; set; }
         public Vector2 Direction { get; set; } = new Vector2(0, 1);

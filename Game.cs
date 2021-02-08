@@ -5,12 +5,13 @@ namespace SimpleAsteroids
 {
     public abstract class Game
     {
-        List<GameObject> toAdd = new List<GameObject>();
-        List<GameObject> toDestroy = new List<GameObject>();
-        List<GameObject> gameObjects = new List<GameObject>();
+        List<IComponent> components = new List<IComponent>();
 
+        List<IAwakeable> awakeables = new List<IAwakeable>();
+        List<IStartable> startables = new List<IStartable>();
         List<IDrawable> drawables = new List<IDrawable>();
         List<ICollideable> collideables = new List<ICollideable>();
+        List<IUpdateable> updateables = new List<IUpdateable>();
 
         IDrawer drawer;
         Physics physics = new Physics();
@@ -23,47 +24,47 @@ namespace SimpleAsteroids
             this.drawer = drawer;
         }
 
-        public T Create<T>(GameObject gameObject) where T : new()
+        public T CreateOnScene<T>(Vector2 position) where T : IComponent, new()
         {
             T item = new T();
             Categorize(item);
             return item;
         }
 
-        public T Create<T>(Vector2 position) where T : GameObject, new()
-        {
-            var gameObject = new T();
-            gameObject.Transform.Position = position;
-            gameObject.Game = this;
-            toAdd.Add(gameObject);
-            return gameObject;
-        }
-
-        //нужно лучше
-        public IList<T> Get<T>() where T : GameObject
-        {
-            IList<T> collection = new List<T>();
-            foreach (var item in gameObjects)
-                if (item is T)
-                    collection.Add(item as T);
-            return collection;
-        }
+        // public T Create<T>(Vector2 position) where T : IComponent, new()
+        // {
+        //     var IComponent = new T();
+        //     IComponent.Transform.Position = position;
+        //     IComponent.Game = this;
+        //     toAwake.Add(IComponent);
+        //     return IComponent;
+        // }
 
         public void Start()
         {
-            toAdd.Clear();
-            gameObjects.Clear();
-            toDestroy.Clear();
+            awakeables.Clear();
+            startables.Clear();
+            components.Clear();
+            collideables.Clear();
+            drawables.Clear();
+            updateables.Clear();
             IternalStart();
         }
 
         public void Update()
         {
             //создать
-            gameObjects.AddRange(toAdd);
+            foreach (var item in awakeables)
+                item.Awake();
             //включить
-            toAdd.ForEach(x => { x.Start(); input.KeyPressed += x.OnInput; });
-            toAdd.Clear();
+            foreach (var item in startables)
+                item.Start();
+            // toAdd.ForEach(x => { x.Start(); input.KeyPressed += x.OnInput; });
+
+            components.AddRange(awakeables);
+
+            awakeables.Clear();
+            startables.Clear();
 
             //рисовка
             drawer.Update(drawables);
@@ -75,17 +76,15 @@ namespace SimpleAsteroids
             input.Update();
 
             //логика
-            foreach (var item in gameObjects)
+            foreach (var item in updateables)
             {
                 item.Update();
-                if (item.Destroyed)
-                    toDestroy.Add(item);
             }
 
             //удаление
-            foreach (var item in toDestroy)
-                gameObjects.Remove(item);
-            toDestroy.Clear();
+            foreach (var item in components)
+                Decategorize(item);
+            components.RemoveAll(x => x.Destroyed);
 
             IternalUpdate();
         }
@@ -99,6 +98,26 @@ namespace SimpleAsteroids
                 collideables.Add((ICollideable)obj);
             if (obj is IDrawable)
                 drawables.Add((IDrawable)obj);
+            if (obj is IUpdateable)
+                updateables.Add((IUpdateable)obj);
+            if (obj is IAwakeable)
+                awakeables.Add((IAwakeable)obj);
+            if (obj is IStartable)
+                startables.Add((IStartable)obj);
+        }
+
+        private void Decategorize(object obj)
+        {
+            if (obj is ICollideable)
+                collideables.Remove((ICollideable)obj);
+            if (obj is IDrawable)
+                drawables.Remove((IDrawable)obj);
+            if (obj is IUpdateable)
+                updateables.Remove((IUpdateable)obj);
+            if (obj is IAwakeable)
+                awakeables.Remove((IAwakeable)obj);
+            if (obj is IStartable)
+                startables.Remove((IStartable)obj);
         }
     }
 }

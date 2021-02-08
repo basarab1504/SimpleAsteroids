@@ -3,24 +3,23 @@ using SFML.Graphics;
 
 namespace SimpleAsteroids
 {
-    public class Bullet : GameObject
+    public class Bullet : Component, IStartable, IUpdateable
     {
         private float lifeTimeLeft;
         public float LifeTime { get; set; } = 3;
+        public Vector2 Velocity { get; set; }
 
         public Bullet()
         {
             Transform.Size = new Vector2(0.5f, 0.5f);
         }
 
-        public override void Start()
+        public void Start()
         {
-            base.Start();
-            Create<RectangleShape>().Transform = Transform;
-            var coll = Create<RectangleCollider>();
+            Add<RectangleShape>();
+            var coll = Add<RectangleCollider>();
             coll.Collided += Collide;
-            coll.Transform = Transform;
-            coll.Type = 1;
+            coll.Type = BulletType;
             lifeTimeLeft = LifeTime;
         }
 
@@ -29,7 +28,7 @@ namespace SimpleAsteroids
             Destroyed = true;
         }
 
-        public override void Update()
+        public void Update()
         {
             Transform.Position += Velocity;
 

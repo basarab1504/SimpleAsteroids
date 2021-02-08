@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "TS0e+JvqKnQt0puM3h3xlnzsWstgIvPXEKkrp7iYTDrnYwzT0rZJLI6ssS8JF5f5IPnDDcnfA6+Q8OoIrNAYlw==",
+  "dgSpecHash": "eKkPT2N7oUv4LrH5IEF8KRbMs3z1NjMQ1gbh2Z8oXC95ftP95gKjD8/G9soq3RHdF10xtgITdz5C4zdwpd9ygw==",
   "success": true,
   "projectFilePath": "C:\\Users\\joker\\OneDrive\\Документы\\Проекты\\C#\\SimpleAsteroids\\SimpleAsteroids.csproj",
   "expectedPackageFiles": [
@@ -9,7 +9,11 @@
     "C:\\Users\\joker\\.nuget\\packages\\sfml.graphics\\2.5.0\\sfml.graphics.2.5.0.nupkg.sha512",
     "C:\\Users\\joker\\.nuget\\packages\\sfml.net\\2.5.0\\sfml.net.2.5.0.nupkg.sha512",
     "C:\\Users\\joker\\.nuget\\packages\\sfml.system\\2.5.0\\sfml.system.2.5.0.nupkg.sha512",
-    "C:\\Users\\joker\\.nuget\\packages\\sfml.window\\2.5.0\\sfml.window.2.5.0.nupkg.sha512"
+    "C:\\Users\\joker\\.nuget\\packages\\sfml.window\\2.5.0\\sfml.window.2.5.0.nupkg.sha512",
+    "C:\\Users\\joker\\.nuget\\packages\\microsoft.netcore.app.ref\\3.1.0\\microsoft.netcore.app.ref.3.1.0.nupkg.sha512",
+    "C:\\Users\\joker\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\3.1.0\\microsoft.windowsdesktop.app.ref.3.1.0.nupkg.sha512",
+    "C:\\Users\\joker\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.10\\microsoft.aspnetcore.app.ref.3.1.10.nupkg.sha512",
+    "C:\\Users\\joker\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.11\\microsoft.netcore.app.host.win-x64.3.1.11.nupkg.sha512"
   ],
   "logs": []
 }

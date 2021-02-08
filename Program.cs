@@ -16,10 +16,10 @@ namespace SimpleAsteroids
             // AsteroidsGameTest();
 
             // StaticShipTest();
-            CollisionTest();
+            // CollisionTest();
             // BulletTest();
             // ManyBulletTest();
-            // TwoShipBulletTest();
+            TwoShipBulletTest();
             // ArenaTest();
             // NoMoveUFOTest();
             // MoveUFOTest();
@@ -372,7 +372,7 @@ namespace SimpleAsteroids
 
             game.Update();
             game.Update();
-            System.Console.WriteLine(game.Get<GameObject>()[1].Position == new Vector2(0, 4));
+            // System.Console.WriteLine(game.Get<GameObject>()[1].Position == new Vector2(0, 4));
             game.Update();
             game.Update();
             System.Console.WriteLine(game.Get<GameObject>().Count == 1);

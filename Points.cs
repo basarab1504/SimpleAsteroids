@@ -26,7 +26,7 @@ namespace SimpleAsteroids
               Right <= other.Left ||
               Left >= other.Right ||
               Bottom >= other.Top ||
-              other.Top <= other.Bottom;
+              Top <= other.Bottom;
             return (outside == false);
         }
     }

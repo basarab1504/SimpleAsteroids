@@ -5,42 +5,47 @@ using SFML.Graphics;
 
 namespace SimpleAsteroids
 {
-    public abstract class GameObject
+    public sealed class GameObject
     {
-        public Transform Transform { get; set; } = new Transform();
+        private List<IComponent> components = new List<IComponent>();
+        public Transform Transform { get; set; }
         public Game Game { set; private get; }
-        public Vector2 Velocity { get; set; }
-        public bool Destroyed { get; protected set; }
-        public int ScoreForDestroying { get; set; }
 
-        public Vector2 Position => Transform.Position;
-
-        //можно лучше
-        protected T Create<T>(Vector2 position) where T : GameObject, new()
+        public GameObject()
         {
-            return Game.Create<T>(position);
+            Transform = Add<Transform>();
+            components.Add(Transform);
         }
 
-        protected T Create<T>() where T : new()
+        public T CreateOnScene<T>(Vector2 position) where T : Component, new()
         {
-            return Game.Create<T>(this);
+            return Game.CreateOnScene<T>(position);
         }
 
-        protected IEnumerable<T> Get<T>() where T : GameObject
-        {
-            return Game.Get<T>();
-        }
-
-        public virtual void Start()
+        public IEnumerable<T> GetFromScene<T>() where T : Component
         {
 
         }
 
-        public abstract void Update();
-
-        public virtual void OnInput(ConsoleKey key)
+        public T Add<T>() where T : Component
         {
 
+        }
+
+        public T Get<T>() where T : Component
+        {
+
+        }
+
+        public T Remove<T>() where T : Component
+        {
+
+        }
+
+        public void Destroy()
+        {
+            foreach (var item in components)
+                item.Destroyed = true;
         }
     }
 }
