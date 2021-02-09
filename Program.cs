@@ -15,19 +15,19 @@ namespace SimpleAsteroids
             // AsteroidsArenaTest();
             // AsteroidsGameTest();
 
-            // StaticShipTest();
-            // CollisionTest();
-            // BulletTest();
-            // ManyBulletTest();
+            StaticShipTest();
+            CollisionTest();
+            BulletTest();
+            ManyBulletTest();
             TwoShipBulletTest();
-            // ArenaTest();
-            // NoMoveUFOTest();
-            // MoveUFOTest();
-            // PhysicsLayerTest();
-            // SpawnerTest();
-            // UFOSpawnerTest();
-            // LaserBeamTest();
-            // LaserBeamCollisionTest();
+            ArenaTest();
+            NoMoveUFOTest();
+            MoveUFOTest();
+            PhysicsLayerTest();
+            SpawnerTest();
+            UFOSpawnerTest();
+            LaserBeamTest();
+            LaserBeamCollisionTest();
         }
 
         static void DrawTest()
@@ -155,7 +155,7 @@ namespace SimpleAsteroids
             game.Update();
             ship.ShootLaser();
             game.Update();
-            System.Console.WriteLine(game.GetFromScene<Transform>().Count == 4);
+            System.Console.WriteLine(game.GetFromScene<Transform>().Count == 6);
             game.Update();
             game.Update();
             System.Console.WriteLine(game.GetFromScene<Transform>().Count == 1);
@@ -303,8 +303,6 @@ namespace SimpleAsteroids
             var ufo = game.CreateOnScene<UFO>(new Vector2(-5, -3));
             ufo.Velocity = new Vector2(0, 1);
 
-            // ufo.Target = ship;
-
             game.Update();
             game.Update();
             System.Console.WriteLine(game.GetFromScene<Transform>().Count == 2);
@@ -313,8 +311,8 @@ namespace SimpleAsteroids
             game.Update();
             game.Update();
             game.Update();
-            System.Console.WriteLine(game.GetFromScene<Transform>().Count == 1);
             game.Update();
+            System.Console.WriteLine(game.GetFromScene<Transform>().Count == 1);
             // System.Console.WriteLine(game.Score == 0);
         }
 
@@ -345,7 +343,9 @@ namespace SimpleAsteroids
             game.Start();
 
             var ship = game.CreateOnScene<Ship>(new Vector2(-4, 0));
+            ship.BulletType = 9;
             var ship2 = game.CreateOnScene<Ship>(new Vector2(4, 0));
+            ship2.BulletType = 10;
 
             ship.Transform.Direction = new Vector2(1, 0);
             ship2.Transform.Direction = new Vector2(-1, 0);

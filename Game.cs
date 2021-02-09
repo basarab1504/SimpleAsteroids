@@ -5,6 +5,7 @@ namespace SimpleAsteroids
 {
     public abstract class Game
     {
+        List<IComponent> toAdd = new List<IComponent>();
         List<IComponent> components = new List<IComponent>();
 
         List<IAwakeable> awakeables = new List<IAwakeable>();
@@ -46,7 +47,7 @@ namespace SimpleAsteroids
         private T Create<T>() where T : Component, new()
         {
             var component = new T();
-            Categorize(component);
+            toAdd.Add(component);
             return component;
         }
 
@@ -74,9 +75,13 @@ namespace SimpleAsteroids
         public void Update()
         {
             //создать
+            foreach (var item in toAdd)
+                Categorize(item);
+            toAdd.Clear();
+
+            //включить
             foreach (var item in awakeables)
                 item.Awake();
-            //включить
             foreach (var item in startables)
                 item.Start();
             // toAdd.ForEach(x => { x.Start(); input.KeyPressed += x.OnInput; });
@@ -87,7 +92,7 @@ namespace SimpleAsteroids
             startables.Clear();
 
             //рисовка
-            drawer.Update(drawables);
+            // drawer.Update(drawables);
 
             //физика
             physics.Update(collideables);

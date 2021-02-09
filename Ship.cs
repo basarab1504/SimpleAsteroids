@@ -8,6 +8,7 @@ namespace SimpleAsteroids
         public float LaserBeamLenght { get; set; } = 3;
         public Vector2 GunPos => Transform.Position + Transform.Direction * 2;
         public Vector2 Velocity { get; set; }
+        public int BulletType { get; set; }
 
         public void Start()
         {
@@ -52,6 +53,7 @@ namespace SimpleAsteroids
         public void Shoot()
         {
             var bullet = CreateOnScene<Bullet>(GunPos);
+            bullet.Type = BulletType;
             bullet.Transform.Direction = Transform.Direction;
             bullet.Velocity = Transform.Direction * GunForce;
         }

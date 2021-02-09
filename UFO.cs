@@ -10,6 +10,7 @@ namespace SimpleAsteroids
         public Vector2 Velocity { get; set; }
         public float ShootingCooldown { get; set; } = 3;
         public float DistanceToKeep { get; set; } = 3;
+        public int BulletType { get; set; }
 
         public void Start()
         {
@@ -49,6 +50,7 @@ namespace SimpleAsteroids
         private void Shoot()
         {
             var bullet = CreateOnScene<Bullet>(GunPos);
+            bullet.Type = BulletType;
             bullet.Transform.Direction = Transform.Direction;
             bullet.Velocity = Transform.Direction * GunForce;
         }

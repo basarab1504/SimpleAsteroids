@@ -7,6 +7,7 @@ namespace SimpleAsteroids
         private float lifeTimeLeft;
         public float LifeTime { get; set; } = 3;
         public Vector2 Velocity { get; set; }
+        public int Type { get; set; }
 
         public void Start()
         {
@@ -14,7 +15,7 @@ namespace SimpleAsteroids
             Add<RectangleShape>();
             var coll = Add<RectangleCollider>();
             coll.Collided += Collide;
-            // coll.Type = BulletType;
+            coll.Type = Type;
             lifeTimeLeft = LifeTime;
         }
 

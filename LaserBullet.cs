@@ -2,19 +2,15 @@ using System.Numerics;
 
 namespace SimpleAsteroids
 {
-    public class LaserBullet : Component, IStartable, IUpdateable
+    public class LaserBullet : Component, IAwakeable, IStartable, IUpdateable
     {
         private float lifeTimeLeft;
         public float LifeTime { get; set; } = 3;
         public Vector2 Velocity { get; set; }
 
-        public LaserBullet()
-        {
-            Transform.Size = new Vector2(0.5f, 0.5f);
-        }
-
         public void Start()
         {
+            Transform.Size = new Vector2(0.5f, 0.5f);
             Add<RectangleShape>();
             var coll = Add<RectangleCollider>();
             coll.Type = 1;
