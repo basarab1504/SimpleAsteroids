@@ -24,22 +24,29 @@ namespace SimpleAsteroids
 
         public IEnumerable<T> GetFromScene<T>() where T : Component
         {
-
+            return Game.GetFromScene<T>();
         }
 
-        public T Add<T>() where T : Component
+        public T Add<T>(T item) where T : Component
         {
-
+            components.Add(item);
+            return item;
         }
 
+        //плохо
         public T Get<T>() where T : Component
         {
-
+            foreach (var item in components)
+                if (item is T)
+                    return item as T;
+            return default(T);
         }
 
-        public T Remove<T>() where T : Component
+        public void Remove<T>() where T : Component
         {
-
+            foreach (var item in components)
+                if (item is T)
+                    components.Remove(item);
         }
 
         public void Destroy()

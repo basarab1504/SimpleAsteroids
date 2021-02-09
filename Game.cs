@@ -32,7 +32,7 @@ namespace SimpleAsteroids
         }
 
         //ужасно
-        public IReadOnlyList<T> GetFromScene<T>() where T : IComponent, new()
+        public IReadOnlyList<T> GetFromScene<T>() where T : IComponent
         {
             List<T> ts = new List<T>();
             foreach (var item in components)
