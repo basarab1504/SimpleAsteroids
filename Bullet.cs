@@ -1,5 +1,4 @@
 using System.Numerics;
-using SFML.Graphics;
 
 namespace SimpleAsteroids
 {
@@ -9,23 +8,19 @@ namespace SimpleAsteroids
         public float LifeTime { get; set; } = 3;
         public Vector2 Velocity { get; set; }
 
-        public Bullet()
-        {
-            Transform.Size = new Vector2(0.5f, 0.5f);
-        }
-
         public void Start()
         {
+            Transform.Size = new Vector2(0.5f, 0.5f);
             Add<RectangleShape>();
             var coll = Add<RectangleCollider>();
             coll.Collided += Collide;
-            coll.Type = BulletType;
+            // coll.Type = BulletType;
             lifeTimeLeft = LifeTime;
         }
 
         private void Collide(ICollideable other)
         {
-            Destroyed = true;
+            Parent.Destroy();
         }
 
         public void Update()
@@ -33,7 +28,7 @@ namespace SimpleAsteroids
             Transform.Position += Velocity;
 
             if (lifeTimeLeft == 0)
-                Destroyed = true;
+                Parent.Destroy();
             lifeTimeLeft--;
         }
     }

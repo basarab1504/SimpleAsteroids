@@ -20,7 +20,7 @@ namespace SimpleAsteroids
         {
             Add<RectangleShape>();
             var coll = Add<RectangleCollider>();
-            coll.Collided += (x) => Destroyed = true;
+            coll.Collided += (x) => Parent.Destroy();
             coll.Type = 0;
         }
     }
@@ -45,7 +45,7 @@ namespace SimpleAsteroids
 
         protected void Collide(ICollideable other)
         {
-            Destroyed = true;
+            Parent.Destroy();
             var asteroid = CreateOnScene<Asteroid>(Transform.Position + Transform.Direction);
             asteroid.Velocity = Velocity;
             asteroid.Transform.Direction = Transform.Direction;

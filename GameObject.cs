@@ -1,21 +1,14 @@
 using System;
 using System.Collections.Generic;
 using System.Numerics;
-using SFML.Graphics;
 
 namespace SimpleAsteroids
 {
     public sealed class GameObject
     {
-        private List<IComponent> components = new List<IComponent>();
-        public Transform Transform { get; set; }
+        private List<Component> components = new List<Component>();
+        public Transform Transform => Get<Transform>();
         public Game Game { set; private get; }
-
-        public GameObject()
-        {
-            Transform = Add<Transform>();
-            components.Add(Transform);
-        }
 
         public T CreateOnScene<T>(Vector2 position) where T : Component, new()
         {
@@ -29,8 +22,14 @@ namespace SimpleAsteroids
 
         public T Add<T>(T item) where T : Component
         {
+            item.Parent = this;
             components.Add(item);
             return item;
+        }
+
+        public T Add<T>() where T : Component, new()
+        {
+            return Game.CreateOnScene<T>(this);
         }
 
         //плохо
@@ -42,12 +41,15 @@ namespace SimpleAsteroids
             return default(T);
         }
 
-        public void Remove<T>() where T : Component
-        {
-            foreach (var item in components)
-                if (item is T)
-                    components.Remove(item);
-        }
+        // public void Remove<T>() where T : Component
+        // {
+        //     foreach (var item in components)
+        //         if (item is T)
+        //         {
+        //             item.Parent = null;
+        //             components.Remove(item);
+        //         }
+        // }
 
         public void Destroy()
         {

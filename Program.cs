@@ -90,11 +90,11 @@ namespace SimpleAsteroids
 
         static void SFMLTest()
         {
-            AsteroidsGame game = new AsteroidsGame(new SFMLDrawer(new SFML.Window.VideoMode(800, 600)));
-            game.Start();
+            // AsteroidsGame game = new AsteroidsGame(new SFMLDrawer(new SFML.Window.VideoMode(800, 600)));
+            // game.Start();
 
-            while (!game.IsOver)
-                game.Update();
+            // while (!game.IsOver)
+            //     game.Update();
         }
 
         static void InputTest()
@@ -135,10 +135,10 @@ namespace SimpleAsteroids
             ship.ShootLaser();
 
             game.Update();
-            System.Console.WriteLine(game.GetFromScene<GameObject>().Count == 4);
+            System.Console.WriteLine(game.GetFromScene<Transform>().Count == 4);
             game.Update();
             game.Update();
-            System.Console.WriteLine(game.GetFromScene<GameObject>().Count == 1);
+            System.Console.WriteLine(game.GetFromScene<Transform>().Count == 1);
 
         }
 
@@ -155,16 +155,16 @@ namespace SimpleAsteroids
             game.Update();
             ship.ShootLaser();
             game.Update();
-            System.Console.WriteLine(game.GetFromScene<GameObject>().Count == 4);
+            System.Console.WriteLine(game.GetFromScene<Transform>().Count == 4);
             game.Update();
             game.Update();
-            System.Console.WriteLine(game.GetFromScene<GameObject>().Count == 1);
+            System.Console.WriteLine(game.GetFromScene<Transform>().Count == 1);
         }
 
         static void AsteroidsGameTest()
         {
-            GameSession session = new GameSession(new AsteroidsGame(new SFMLDrawer(new SFML.Window.VideoMode(800, 600))));
-            session.Start();
+            // GameSession session = new GameSession(new AsteroidsGame(new SFMLDrawer(new SFML.Window.VideoMode(800, 600))));
+            // session.Start();
         }
 
         static void SpawnerTest()
@@ -178,13 +178,13 @@ namespace SimpleAsteroids
             game.Update();
             game.Update();
 
-            System.Console.WriteLine(game.GetFromScene<GameObject>().Count == 4);
+            System.Console.WriteLine(game.GetFromScene<Transform>().Count == 4);
 
             game.Update();
             game.Update();
             game.Update();
 
-            System.Console.WriteLine(game.GetFromScene<GameObject>().Count == 6);
+            System.Console.WriteLine(game.GetFromScene<Transform>().Count == 6);
             // System.Console.WriteLine(game.Score == 0);
         }
 
@@ -199,7 +199,7 @@ namespace SimpleAsteroids
             game.Update();
             game.Update();
 
-            System.Console.WriteLine(game.GetFromScene<GameObject>().Count == 2);
+            System.Console.WriteLine(game.GetFromScene<Transform>().Count == 2);
 
             game.Update();
             game.Update();
@@ -207,7 +207,7 @@ namespace SimpleAsteroids
             game.Update();
             game.Update();
 
-            System.Console.WriteLine(game.GetFromScene<GameObject>().Count == 3);
+            System.Console.WriteLine(game.GetFromScene<Transform>().Count == 3);
             // System.Console.WriteLine(game.Score == 0);
         }
 
@@ -253,7 +253,7 @@ namespace SimpleAsteroids
             game.Update();
             game.Update();
 
-            System.Console.WriteLine(game.GetFromScene<GameObject>().Count == 2);
+            System.Console.WriteLine(game.GetFromScene<Transform>().Count == 2);
 
             var asteroid = game.CreateOnScene<MockAsteroid>(new Vector2(0, 2));
 
@@ -264,7 +264,7 @@ namespace SimpleAsteroids
             game.Update();
             game.Update();
 
-            System.Console.WriteLine(game.GetFromScene<GameObject>().Count == 2);
+            System.Console.WriteLine(game.GetFromScene<Transform>().Count == 2);
             // System.Console.WriteLine(game.Score == 1);
         }
 
@@ -283,13 +283,13 @@ namespace SimpleAsteroids
             game.Update();
             game.Update();
             game.Update();
-            // System.Console.WriteLine(game.GetFromScene<GameObject>()[3].Transform.Position == new Vector2(0, 1));
-            // System.Console.WriteLine(game.GetFromScene<GameObject>()[4].Transform.Position == new Vector2(1, 1));
+            // System.Console.WriteLine(game.GetFromScene<Transform>()[3].Transform.Position == new Vector2(0, 1));
+            // System.Console.WriteLine(game.GetFromScene<Transform>()[4].Transform.Position == new Vector2(1, 1));
             game.Update();
             game.Update();
             game.Update();
 
-            System.Console.WriteLine(game.GetFromScene<GameObject>().Count == 2);
+            System.Console.WriteLine(game.GetFromScene<Transform>().Count == 2);
             // System.Console.WriteLine(game.Score == 0);
         }
 
@@ -307,13 +307,13 @@ namespace SimpleAsteroids
 
             game.Update();
             game.Update();
-            System.Console.WriteLine(game.GetFromScene<GameObject>().Count == 2);
+            System.Console.WriteLine(game.GetFromScene<Transform>().Count == 2);
             game.Update();
             game.Update();
             game.Update();
             game.Update();
             game.Update();
-            System.Console.WriteLine(game.GetFromScene<GameObject>().Count == 1);
+            System.Console.WriteLine(game.GetFromScene<Transform>().Count == 1);
             game.Update();
             // System.Console.WriteLine(game.Score == 0);
         }
@@ -335,7 +335,7 @@ namespace SimpleAsteroids
             game.Update();
             game.Update();
 
-            System.Console.WriteLine(game.GetFromScene<GameObject>().Count == 0);
+            System.Console.WriteLine(game.GetFromScene<Transform>().Count == 0);
             // System.Console.WriteLine(game.Score == 1);
         }
 
@@ -358,7 +358,7 @@ namespace SimpleAsteroids
             game.Update();
             game.Update();
 
-            System.Console.WriteLine(game.GetFromScene<GameObject>().Count == 2);
+            System.Console.WriteLine(game.GetFromScene<Transform>().Count == 2);
         }
 
         static void BulletTest()
@@ -372,10 +372,10 @@ namespace SimpleAsteroids
 
             game.Update();
             game.Update();
-            // System.Console.WriteLine(game.GetFromScene<GameObject>()[1].Transform.Position == new Vector2(0, 4));
+            // System.Console.WriteLine(game.GetFromScene<Transform>()[1].Transform.Position == new Vector2(0, 4));
             game.Update();
             game.Update();
-            System.Console.WriteLine(game.GetFromScene<GameObject>().Count == 1);
+            System.Console.WriteLine(game.GetFromScene<Transform>().Count == 1);
             // System.Console.WriteLine(game.Score == 0);
         }
 
@@ -399,14 +399,14 @@ namespace SimpleAsteroids
             game.Update();
             game.Update();
 
-            System.Console.WriteLine(game.GetFromScene<GameObject>()[1].Transform.Position == new Vector2(0, 4));
-            System.Console.WriteLine(game.GetFromScene<GameObject>()[2].Transform.Position == new Vector2(6, -2));
-            System.Console.WriteLine(game.GetFromScene<GameObject>()[3].Transform.Position == new Vector2(-6, -2));
+            System.Console.WriteLine(game.GetFromScene<Transform>()[1].Transform.Position == new Vector2(0, 4));
+            System.Console.WriteLine(game.GetFromScene<Transform>()[2].Transform.Position == new Vector2(6, -2));
+            System.Console.WriteLine(game.GetFromScene<Transform>()[3].Transform.Position == new Vector2(-6, -2));
 
             game.Update();
             game.Update();
 
-            System.Console.WriteLine(game.GetFromScene<GameObject>().Count == 1);
+            System.Console.WriteLine(game.GetFromScene<Transform>().Count == 1);
             // System.Console.WriteLine(game.Score == 0);
         }
     }

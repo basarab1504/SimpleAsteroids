@@ -26,7 +26,7 @@ namespace SimpleAsteroids
             Transform.Position += Velocity;
 
             if (lifeTimeLeft == 0)
-                Destroyed = true;
+                Parent.Destroy();
             lifeTimeLeft--;
         }
     }

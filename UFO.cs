@@ -1,5 +1,4 @@
 using System.Numerics;
-using SFML.Graphics;
 
 namespace SimpleAsteroids
 {
@@ -44,7 +43,7 @@ namespace SimpleAsteroids
 
         private void Collide(ICollideable other)
         {
-            Destroyed = true;
+            Parent.Destroy();
         }
 
         private void Shoot()

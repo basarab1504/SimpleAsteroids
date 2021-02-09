@@ -31,9 +31,9 @@ namespace SimpleAsteroids
             return Parent.Add<T>(item);
         }
 
-        public T Add<T>() where T : Component
+        public T Add<T>() where T : Component, new()
         {
-            return Parent.Add<T>(CreateOnScene<T>(Transform.Position));
+            return Parent.Add<T>();
         }
 
         public T Get<T>() where T : Component
@@ -41,9 +41,9 @@ namespace SimpleAsteroids
             return Parent.Get<T>();
         }
 
-        public void Remove<T>() where T : Component
-        {
-            Parent.Remove<T>();
-        }
+        // public void Remove<T>() where T : Component
+        // {
+        //     Parent.Remove<T>();
+        // }
     }
 }

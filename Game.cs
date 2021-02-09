@@ -24,11 +24,30 @@ namespace SimpleAsteroids
             this.drawer = drawer;
         }
 
-        public T CreateOnScene<T>(Vector2 position) where T : IComponent, new()
+        public T CreateOnScene<T>(Vector2 position) where T : Component, new()
         {
-            T item = new T();
-            Categorize(item);
+            T item = Create<T>();
+            GameObject gameObject = new GameObject();
+            gameObject.Game = this;
+            Transform transform = Create<Transform>();
+            transform.Position = position;
+            gameObject.Add<Transform>(transform);
+            gameObject.Add<T>(item);
             return item;
+        }
+
+        public T CreateOnScene<T>(GameObject parent) where T : Component, new()
+        {
+            T item = Create<T>();
+            parent.Add<T>(item);
+            return item;
+        }
+
+        private T Create<T>() where T : Component, new()
+        {
+            var component = new T();
+            Categorize(component);
+            return component;
         }
 
         //ужасно
@@ -40,16 +59,6 @@ namespace SimpleAsteroids
                     ts.Add((T)item);
             return ts;
         }
-
-
-        // public T Create<T>(Vector2 position) where T : IComponent, new()
-        // {
-        //     var IComponent = new T();
-        //     IComponent.Transform.Position = position;
-        //     IComponent.Game = this;
-        //     toAwake.Add(IComponent);
-        //     return IComponent;
-        // }
 
         public void Start()
         {
@@ -84,17 +93,17 @@ namespace SimpleAsteroids
             physics.Update(collideables);
 
             //ввод
-            input.Update();
+            // input.Update();
 
             //логика
             foreach (var item in updateables)
-            {
-                item.Update();
-            }
+                if (item.Active && !item.Destroyed)
+                    item.Update();
 
             //удаление
             foreach (var item in components)
-                Decategorize(item);
+                if (item.Destroyed)
+                    Decategorize(item);
             components.RemoveAll(x => x.Destroyed);
 
             IternalUpdate();
