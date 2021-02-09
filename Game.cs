@@ -92,7 +92,7 @@ namespace SimpleAsteroids
             startables.Clear();
 
             //рисовка
-            // drawer.Update(drawables);
+            drawer.Update(drawables);
 
             //физика
             physics.Update(collideables);

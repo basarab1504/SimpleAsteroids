@@ -7,27 +7,28 @@ namespace SimpleAsteroids
     {
         static void Main(string[] args)
         {
+            // ConsoleAsteroidsTest();
+            SFMLAsteroidsTest();
             // ConsoleTest();
-            // SFMLTest();
             // InputTest();
             // DrawTest();
 
             // AsteroidsArenaTest();
             // AsteroidsGameTest();
 
-            StaticShipTest();
-            CollisionTest();
-            BulletTest();
-            ManyBulletTest();
-            TwoShipBulletTest();
-            ArenaTest();
-            NoMoveUFOTest();
-            MoveUFOTest();
-            PhysicsLayerTest();
-            SpawnerTest();
-            UFOSpawnerTest();
-            LaserBeamTest();
-            LaserBeamCollisionTest();
+            // StaticShipTest();
+            // CollisionTest();
+            // BulletTest();
+            // ManyBulletTest();
+            // TwoShipBulletTest();
+            // ArenaTest();
+            // NoMoveUFOTest();
+            // MoveUFOTest();
+            // PhysicsLayerTest();
+            // SpawnerTest();
+            // UFOSpawnerTest();
+            // LaserBeamTest();
+            // LaserBeamCollisionTest();
         }
 
         static void DrawTest()
@@ -88,13 +89,20 @@ namespace SimpleAsteroids
             game.Update();
         }
 
-        static void SFMLTest()
+        static void ConsoleAsteroidsTest()
         {
-            // AsteroidsGame game = new AsteroidsGame(new SFMLDrawer(new SFML.Window.VideoMode(800, 600)));
-            // game.Start();
+            Game game = new AsteroidsGame(new ConsoleDrawer(10, 10));
+            game.Start();
+            while (!game.IsOver)
+                game.Update();
+        }
 
-            // while (!game.IsOver)
-            //     game.Update();
+        static void SFMLAsteroidsTest()
+        {
+            Game game = new AsteroidsGame(new SFMLDrawer(10, 10));
+            game.Start();
+            while (!game.IsOver)
+                game.Update();
         }
 
         static void InputTest()

@@ -8,18 +8,20 @@ namespace SimpleAsteroids
         {
         }
 
-        public override bool IsOver => false;
+        private Ship ship;
+
+        public override bool IsOver => ship.Destroyed;
         public int Score => GetFromScene<Scorer>()[0].Score;
 
         protected override void IternalStart()
         {
-            // Create<Arena>(Vector2.Zero).FromZeroSteps = 5;
-            CreateOnScene<Ship>(Vector2.Zero);
-            // ship.Direction = new Vector2(1, 0);
-            // ship.Velocity = new Vector2(1, 0);
+            CreateOnScene<Arena>(Vector2.Zero).FromZeroSteps = 5;
+            ship = CreateOnScene<Ship>(Vector2.Zero);
+            ship.Transform.Direction = new Vector2(1, 0);
+            ship.Velocity = new Vector2(1, 0);
 
-            // Create<CooldownSpawner<Asteroid>>(new Vector2(10, 10));
-            // Create<CooldownSpawner<Asteroid>>(new Vector2(-4, -4));
+            CreateOnScene<CooldownSpawner<Asteroid>>(new Vector2(10, 10));
+            CreateOnScene<CooldownSpawner<Asteroid>>(new Vector2(-4, -4));
             // Create<CooldownSpawner<UFO>>(new Vector2(50, 50)).SpawnCooldown = 30;
         }
 
