@@ -18,9 +18,9 @@ namespace SimpleAsteroids
             coll.Type = 2;
         }
 
-        public void Update()
+        public void Update(float deltaTime)
         {
-            Transform.Position += Transform.Direction * Vector2.Abs(Velocity);
+            Transform.Position += Transform.Direction * Vector2.Abs(Velocity) * deltaTime;
         }
 
         public void Thrust()

@@ -8,7 +8,7 @@ namespace SimpleAsteroids
     {
         public int FromZeroSteps { get; set; }
 
-        public void Update()
+        public void Update(float deltaTime)
         {
             foreach (var item in GetFromScene<Transform>())
                 if (IsCrossedBorders(item))

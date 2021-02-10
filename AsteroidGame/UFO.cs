@@ -20,11 +20,11 @@ namespace SimpleAsteroids
             coll.Type = 0;
         }
 
-        public void Update()
+        public void Update(float deltaTime)
         {
-            Transform.Position += Velocity;
+            Transform.Position += Velocity * deltaTime;
 
-            cooldown--;
+            cooldown -= deltaTime;
 
             foreach (var target in GetFromScene<Ship>())
             {

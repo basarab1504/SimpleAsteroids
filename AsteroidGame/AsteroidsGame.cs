@@ -15,19 +15,18 @@ namespace SimpleAsteroids
 
         protected override void IternalStart()
         {
-            CreateOnScene<Arena>(Vector2.Zero).FromZeroSteps = 5;
+            CreateOnScene<Arena>(Vector2.Zero).FromZeroSteps = 15;
             ship = CreateOnScene<Ship>(Vector2.Zero);
             ship.Transform.Direction = new Vector2(1, 0);
-            ship.Velocity = new Vector2(1, 0);
+            ship.Velocity = new Vector2(5, 0);
 
-            CreateOnScene<CooldownSpawner<Asteroid>>(new Vector2(10, 10));
-            CreateOnScene<CooldownSpawner<Asteroid>>(new Vector2(-4, -4));
+            CreateOnScene<CooldownSpawner<Asteroid>>(new Vector2(6, 6));
+            CreateOnScene<CooldownSpawner<Asteroid>>(new Vector2(-6, -6));
             // Create<CooldownSpawner<UFO>>(new Vector2(50, 50)).SpawnCooldown = 30;
         }
 
         protected override void IternalUpdate()
         {
-
         }
     }
 }

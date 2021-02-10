@@ -17,9 +17,9 @@ namespace SimpleAsteroids
             lifeTimeLeft = LifeTime;
         }
 
-        public void Update()
+        public void Update(float deltaTime)
         {
-            Transform.Position += Velocity;
+            Transform.Position += Velocity * deltaTime;
 
             if (lifeTimeLeft == 0)
                 Parent.Destroy();

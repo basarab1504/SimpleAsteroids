@@ -38,9 +38,9 @@ namespace SimpleAsteroids
             PushRandomDirection();
         }
 
-        public void Update()
+        public void Update(float deltaTime)
         {
-            Transform.Position += Velocity;
+            Transform.Position += Velocity * deltaTime;
         }
 
         protected void Collide(ICollideable other)

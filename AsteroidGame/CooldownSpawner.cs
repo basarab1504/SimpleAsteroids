@@ -5,13 +5,9 @@ namespace SimpleAsteroids
         private float cooldown;
         public float SpawnCooldown { get; set; } = 3;
 
-        public CooldownSpawner()
+        public void Update(float deltaTime)
         {
-        }
-
-        public void Update()
-        {
-            cooldown--;
+            cooldown -= deltaTime;
             if (cooldown <= 0)
             {
                 Spawn();

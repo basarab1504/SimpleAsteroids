@@ -16,7 +16,7 @@ namespace SimpleAsteroids
             window = new RenderWindow(videoMode, "Asteroids");
             window.SetActive(true);
             window.SetVerticalSyncEnabled(true);
-            window.SetFramerateLimit(10);
+            // window.SetFramerateLimit(10);
         }
 
         public void Update(IEnumerable<IDrawable> drawables)

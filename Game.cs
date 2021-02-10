@@ -17,6 +17,7 @@ namespace SimpleAsteroids
         IDrawer drawer;
         Physics physics = new Physics();
         Input input = new Input();
+        Time time = new Time();
 
         public abstract bool IsOver { get; }
 
@@ -74,6 +75,8 @@ namespace SimpleAsteroids
 
         public void Update()
         {
+            time.Update();
+
             //создать
             foreach (var item in toAdd)
                 Categorize(item);
@@ -103,7 +106,7 @@ namespace SimpleAsteroids
             //логика
             foreach (var item in updateables)
                 if (item.Active && !item.Destroyed)
-                    item.Update();
+                    item.Update(time.DeltaTime);
 
             //удаление
             foreach (var item in components)
