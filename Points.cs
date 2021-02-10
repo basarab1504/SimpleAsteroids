@@ -9,15 +9,20 @@ namespace SimpleAsteroids
         public float Left { get; }
         public float Right { get; }
 
+        public Vector2 Center { get; }
+        public Vector2 TopRight { get; }
+        public Vector2 BottomLeft { get; }
+
         public Points(Vector2 center, Vector2 halfSize)
         {
-            Vector2 topRight = center + halfSize;
-            Vector2 bottomLeft = center - halfSize;
+            TopRight = center + halfSize;
+            BottomLeft = center - halfSize;
 
-            this.Top = topRight.Y;
-            this.Right = topRight.X;
-            this.Bottom = bottomLeft.Y;
-            this.Left = bottomLeft.X;
+            this.Center = center;
+            this.Top = TopRight.Y;
+            this.Right = TopRight.X;
+            this.Bottom = BottomLeft.Y;
+            this.Left = BottomLeft.X;
         }
 
         public bool Intersect(Points other)

@@ -12,7 +12,8 @@ namespace SimpleAsteroids
         public void Start()
         {
             // Transform.Size = new Vector2(0.5f, 0.5f);
-            Add<RectangleShape>();
+            var shape = Add<CircleShape>();
+            shape.Color = new Color(0, 0, 255);
             var coll = Add<RectangleCollider>();
             coll.Collided += Collide;
             coll.Type = Type;

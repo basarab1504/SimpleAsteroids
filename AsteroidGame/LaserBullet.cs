@@ -10,8 +10,9 @@ namespace SimpleAsteroids
 
         public void Start()
         {
-            Transform.Size = new Vector2(0.5f, 0.5f);
-            Add<RectangleShape>();
+            // Transform.Size = new Vector2(0.5f, 0.5f);
+            var shape = Add<CircleShape>();
+            shape.Color = new Color(0, 0, 255);
             var coll = Add<RectangleCollider>();
             coll.Type = 1;
             lifeTimeLeft = LifeTime;

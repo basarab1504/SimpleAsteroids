@@ -23,7 +23,7 @@ namespace SimpleAsteroids
 
             // CreateOnScene<CooldownSpawner<Asteroid>>(new Vector2(6, 6));
             // CreateOnScene<CooldownSpawner<Asteroid>>(new Vector2(-6, -6));
-            // CreateOnScene<CooldownSpawner<UFO>>(new Vector2(20, 20)).SpawnCooldown = 30;
+            CreateOnScene<CooldownSpawner<UFO>>(new Vector2(20, 20)).SpawnCooldown = 30;
         }
 
         protected override void IternalUpdate()

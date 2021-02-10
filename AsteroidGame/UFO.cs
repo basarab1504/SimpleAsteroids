@@ -14,7 +14,8 @@ namespace SimpleAsteroids
 
         public void Start()
         {
-            Add<RectangleShape>();
+            var shape = Add<CircleShape>();
+            shape.Color = new Color(255, 0, 255);
             var coll = Add<RectangleCollider>();
             coll.Collided += Collide;
             coll.Type = 0;

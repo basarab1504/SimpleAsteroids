@@ -22,21 +22,20 @@ namespace SimpleAsteroids
             Display();
         }
 
-        public void Draw(Vector2 position, Vector2 size)
+        public void Draw(Points points, Color color)
         {
-            var pos = GetDrawPositions(position);
-            for (int i = 0; i < size.X; i++)
-            {
-                for (int j = 0; j < size.Y; j++)
-                {
-                    int x = pos.x + i;
-                    int y = pos.y + j;
-                    if (x < window.GetLength(1) && x >= 0 && y < window.GetLength(0) && y >= 0)
-                    {
-                        window[y, x] = '*';
-                    }
-                }
-            }
+            // for (int i = 0; i < size.X; i++)
+            // {
+            //     for (int j = 0; j < size.Y; j++)
+            //     {
+            //         int x = pos.x + i;
+            //         int y = pos.y + j;
+            //         if (x < window.GetLength(1) && x >= 0 && y < window.GetLength(0) && y >= 0)
+            //         {
+            //             window[y, x] = '*';
+            //         }
+            //     }
+            // }
         }
 
         private void Draw(IEnumerable<IDrawable> toDraw)

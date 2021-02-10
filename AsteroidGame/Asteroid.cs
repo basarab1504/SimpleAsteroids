@@ -7,7 +7,8 @@ namespace SimpleAsteroids
     {
         public override void Start()
         {
-            Add<RectangleShape>();
+            var shape = Add<CircleShape>();
+            shape.Color = new Color(255, 255, 0);
             var coll = Add<RectangleCollider>();
             coll.Collided += Collide;
             coll.Type = 0;
@@ -18,7 +19,8 @@ namespace SimpleAsteroids
     {
         public override void Start()
         {
-            Add<RectangleShape>();
+            var shape = Add<CircleShape>();
+            shape.Color = new Color(255, 255, 0);
             var coll = Add<RectangleCollider>();
             coll.Collided += (x) => Parent.Destroy();
             coll.Type = 0;
@@ -31,7 +33,8 @@ namespace SimpleAsteroids
 
         public virtual void Start()
         {
-            Add<RectangleShape>();
+            var shape = Add<CircleShape>();
+            shape.Color = new Color(255, 255, 0);
             var coll = Add<RectangleCollider>();
             coll.Collided += Collide;
             coll.Type = 0;

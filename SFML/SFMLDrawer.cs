@@ -30,11 +30,11 @@ namespace SimpleAsteroids
             window.Display();
         }
 
-        public void Draw(Vector2 postion, Vector2 size)
+        public void Draw(Points points, Color color)
         {
-            SFML.Graphics.RectangleShape shape = new SFML.Graphics.RectangleShape(new Vector2f(size.X, size.Y));
-            shape.Position = GetDrawPositions(postion);
-            shape.FillColor = Color.Red;
+            var shape = new SFML.Graphics.CircleShape((points.TopRight - points.Center).Length());
+            shape.Position = GetDrawPositions(points.Center);
+            shape.FillColor = new SFML.Graphics.Color(color.r, color.g, color.b);
             window.Draw(shape);
         }
 
