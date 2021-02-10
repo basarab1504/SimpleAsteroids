@@ -11,7 +11,7 @@ namespace SimpleAsteroids
 
         public void Start()
         {
-            Transform.Size = new Vector2(0.5f, 0.5f);
+            // Transform.Size = new Vector2(0.5f, 0.5f);
             Add<RectangleShape>();
             var coll = Add<RectangleCollider>();
             coll.Collided += Collide;
@@ -28,9 +28,9 @@ namespace SimpleAsteroids
         {
             Transform.Position += Velocity * deltaTime;
 
-            if (lifeTimeLeft == 0)
+            if (lifeTimeLeft <= 0)
                 Parent.Destroy();
-            lifeTimeLeft--;
+            lifeTimeLeft -= deltaTime;
         }
     }
 }

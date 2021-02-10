@@ -21,9 +21,9 @@ namespace SimpleAsteroids
         {
             Transform.Position += Velocity * deltaTime;
 
-            if (lifeTimeLeft == 0)
+            if (lifeTimeLeft <= 0)
                 Parent.Destroy();
-            lifeTimeLeft--;
+            lifeTimeLeft -= deltaTime;
         }
     }
 }
