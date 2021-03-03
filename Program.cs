@@ -8,7 +8,7 @@ namespace SimpleAsteroids
         static void Main(string[] args)
         {
             // ConsoleAsteroidsTest();
-            SFMLAsteroidsTest();
+            // SFMLAsteroidsTest();
             // ConsoleTest();
             // InputTest();
             // DrawTest();
@@ -20,7 +20,7 @@ namespace SimpleAsteroids
             // CollisionTest();
             // BulletTest();
             // ManyBulletTest();
-            // TwoShipBulletTest();
+            TwoShipBulletTest();
             // ArenaTest();
             // NoMoveUFOTest();
             // MoveUFOTest();
@@ -130,6 +130,7 @@ namespace SimpleAsteroids
             TestGame game = new TestGame(new ConsoleDrawer(10, 10));
             game.Start();
             game.CreateOnScene<Ship>(Vector2.Zero);
+            game.Update();
             game.Update();
         }
 
